@@ -1,5 +1,5 @@
 {
-  "extends": ["cantonjs"],
+  "extends": ["cantonjs","plugin:import/recommended"],
   "globals": {
     "__DEV__": true,
     "__WECHAT__": true,
@@ -15,6 +15,10 @@
     "import/resolver": {
       "webpack": {
         "config": "webpack.config.babel.js"
+      },
+      "alias":{
+        "map":[["@","./src"],["@components","src/components"]],
+        "extensions": [".js", ".jsx"]
       }
     }
   }

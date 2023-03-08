@@ -126,6 +126,10 @@ export default (env = {}) => {
 		devtool: isDev ? 'source-map' : false,
 		resolve: {
 			modules: [resolve(__dirname, 'src'), 'node_modules'],
+			alias:{
+				"@components": resolve(__dirname, 'src/components'),
+				"@": resolve(__dirname, 'src')
+			}
 		},
 		watchOptions: {
 			ignored: /dist|manifest/,
