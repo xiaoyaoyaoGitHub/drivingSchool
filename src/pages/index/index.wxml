@@ -1,15 +1,11 @@
 <!--index.wxml-->
-<import src="../../wxml/motto/motto.wxml"/>
-<wxs src="../../wxs/powered.wxs" module="powered" />
-
 <view class="container">
-  <view bindtap="bindViewTap">
-    <user avatarUrl="{{userInfo.avatarUrl}}" nickName="{{userInfo.nickName}}"></user>
-  </view>
-  <view class="motto">
-    <template is="motto" data="{{motto:motto}}" />
-  </view>
-  <view class="powered">
-    <text>{{powered.by}}</text>
-  </view>
+    <!-- 头部卡片 -->
+    <view class="top-card">
+        <image  src="/images/top-card.webp"></image>
+    </view>
+    <!-- 99vip -->
+    <view class="center-banner">
+        <image src="/images/center-banner.webp"></image>
+    </view>
 </view>

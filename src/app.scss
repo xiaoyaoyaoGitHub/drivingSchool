@@ -1,12 +1,15 @@
+@import "common";
 
-$padding: 200rpx;
+$padding: 32rpx;
 
-.container {
+page {
+	background-color: $baseColor;
+	height: 100vh;
+	padding: 0 $padding;
+	width: auto;
+}
+
+image {
+	width: 100%;
 	height: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
-	padding: $padding 0;
-	box-sizing: border-box;
 }

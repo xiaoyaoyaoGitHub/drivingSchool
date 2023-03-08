@@ -72,6 +72,7 @@
 		"es6-promise": "^4.1.0",
 		"lodash": "^4.17.4"
 	},
+	"copyWebpack":["custom-tab-bar","images"],
 	"jest": {
 		"modulePathIgnorePatterns": [
 			"node_modules",

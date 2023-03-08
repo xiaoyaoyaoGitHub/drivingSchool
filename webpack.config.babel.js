@@ -83,7 +83,7 @@ export default (env = {}) => {
 					],
 				},
 				{
-					test: /\.(json|png|jpg|gif)$/,
+					test: /\.(json|png|jpg|gif|webp)$/,
 					include: /src/,
 					use: relativeFileLoader(),
 				},

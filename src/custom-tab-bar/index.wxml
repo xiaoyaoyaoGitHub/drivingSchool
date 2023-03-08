@@ -1,0 +1,21 @@
+<!--miniprogram/custom-tab-bar/index.wxml-->
+<view class="tab-bar">
+  <cover-view class="tab-bar-border" />
+  <cover-view
+    wx:for="{{list}}"
+    wx:key="index"
+    class="tab-bar-item {{item.isSpecial ? 'riseUp':''}}"
+    data-path="{{item.pagePath}}"
+    data-index="{{index}}"
+    bindtap="switchTab"
+  >
+    <block wx:if="{{!item.isSpecial}}">
+      <cover-image src="{{selected === index ? item.selectedIconPath : item.iconPath}}" />
+      <cover-view style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</cover-view>
+    </block>
+    <block wx:else="{{item.isSpecial}}">
+      <cover-image class="rise-up" src="{{selected === index ? item.selectedIconPath : item.iconPath}}" />
+      <!-- <cover-view style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</cover-view> -->
+    </block>
+  </cover-view>
+</view>

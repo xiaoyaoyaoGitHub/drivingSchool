@@ -1,24 +1,19 @@
 
 @import 'share';
 
-.motto {
-	@extend %center-flex;
-
-	margin-top: 200px;
-	align-items: center;
-}
-
-.face {
-	$r: 24px;
-
-	width: $r;
-	height: $r;
-	border-radius: 50%;
-	margin-right: 10px;
-}
-
-.powered {
-	margin-top: 30px;
-	font-size: 11px;
-	color: gray;
+// 根节点
+.container {
+	// 头部卡片
+	.top-card {
+		width: 100%;
+		height: 392rpx;
+		margin-top: 32rpx;
+		
+	}
+	// 99vip
+	.center-banner {
+		width: 100%;
+		height: 194rpx;
+		margin-top: 24rpx;
+	}
 }
