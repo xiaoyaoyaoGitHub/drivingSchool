@@ -29,7 +29,7 @@
   flex-direction: column;
 }
 
-.tab-bar-item cover-image {
+.tab-bar-item image {
   width: 56rpx;
   height: 56rpx;
 }
@@ -49,6 +49,6 @@
   height: 138rpx;
 }
 
-.tab-bar-item cover-view {
+.tab-bar-item view {
   font-size: 20rpx;
 }

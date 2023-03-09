@@ -2,10 +2,10 @@
 <view class="container">
     <!-- 头部卡片 -->
     <view class="top-card">
-        <image  src="/images/top-card.webp"></image>
+        <image  src="/images/top-card.png" webp="true"></image>
     </view>
     <!-- 99vip -->
     <view class="center-banner">
-        <image src="/images/center-banner.webp"></image>
+        <image src="/images/center-banner.png" webp="true"></image>
     </view>
 </view>
