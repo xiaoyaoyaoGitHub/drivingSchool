@@ -2,10 +2,64 @@
 <view class="container">
     <!-- 头部卡片 -->
     <view class="top-card">
-        <image  src="/images/top-card.png" webp="true"></image>
+        <image src="/images/top-card.png" />
     </view>
     <!-- 99vip -->
     <view class="center-banner">
-        <image src="/images/center-banner.png" webp="true"></image>
+        <image src="/images/center-banner.png" />
     </view>
+    <!-- 安架科目 -->
+    <view class="business">
+        <!-- 左侧 -->
+        <view class="left">
+            <image src="/images/ajkm.png" />
+        </view>
+        <!-- 右侧 -->
+        <view class="right">
+            <!-- 右侧上方 -->
+            <image src="/images/hysp.png" />
+            <!-- 右侧下方 -->
+            <image src="/images/eshc.png" />
+        </view>
+    </view>
+    <!-- switch tab -->
+    <view class="switch-tab">
+        <!-- tab -->
+        <view class="swiper-tab">
+            <view
+              bindtap="checkSwiperTab"
+              data-index="{{index}}"
+              wx:for="{{swiperTab}}"
+              wx:key="*this"
+              class="swiper-tab-item {{swiperTabCheckIndex === index ? 'checked':''}}"
+            >
+                {{item.name}}
+            </view>
+        </view>
+        <!-- swiper -->
+        <swiper
+          class="swiper-content"
+          style="height:{{swiperHeight}}px"
+          bindchange="changeSwiperCurrent"
+          current="{{swiperTabCheckIndex}}"
+        >
+            <block wx:for="{{[1,2]}}" wx:key="*this">
+                <swiper-item class="swiper-content-item">
+                    <view class="swiper-{{index}}">
+                        <view class="swiper-item">
+                            <!-- 图片 -->
+                            <image class="swiper-item-img" src="/images/video.png" />
+                            <!-- 文案描述 -->
+                            <view class="desc">无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心…</view>
+                            <!-- 标签 -->
+                            <view class="tag" />
+                        </view>
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+
 </view>
+<!-- 底部tab高度占位 -->
+<view class="place-holder" style="height:{{tabbarHeight}}px" />
