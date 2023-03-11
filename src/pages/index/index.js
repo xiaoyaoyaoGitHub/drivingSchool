@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 16:21:28
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-10 20:58:14
+ * @LastEditTime: 2023-03-11 10:08:15
  * @FilePath: /wxapp-boilerplate/src/pages/index/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -69,7 +69,8 @@ Page({
 		const that = this;
 		obj.select('.tab-bar').boundingClientRect(function (rect) {
 			console.log('获取tabBar元素的高度', rect.height);
-			const tabbarHeight = rect.height * (wx.getSystemInfoSync().pixelRatio);
+			// const tabbarHeight = rect.height * (wx.getSystemInfoSync().pixelRatio);
+			const tabbarHeight = rect.height;
 			that.setData({
 				tabbarHeight,
 			});
@@ -90,6 +91,10 @@ Page({
 		});
 
 	},
+	/**
+	 * 点击切换tab
+	 * @param {} e 
+	 */
 	checkSwiperTab(e) {
 		const { target: { dataset: { index: swiperTabCheckIndex = 0 } = {} } = {} } = e || {};
 		this.setData({

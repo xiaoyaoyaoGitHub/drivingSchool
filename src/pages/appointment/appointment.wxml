@@ -1,5 +1,50 @@
-<!--index.wxml-->
-<view class="container">
-    <!-- 头部卡片 -->
-    
+<!-- appointment.wxml-->
+<view class="appointment" style="height:{{totalHeight}}px">
+    <!-- bg -->
+    <image class="appointment-bg" src="/images/bg.png"></image>
+    <!-- statusbar占位 -->
+    <view class="statusBar" style="height:{{statusBarHeight}}px"></view>
+    <!-- switch tab -->
+    <view class="switch-tab">
+        <!-- tab -->
+        <view class="swiper-tab">
+            <view
+              bindtap="checkSwiperTab"
+              data-index="{{index}}"
+              wx:for="{{appointmentStatus}}"
+              wx:key="*this"
+              class="swiper-tab-item {{swiperTabCheckIndex === index ? 'checked':''}}"
+            >
+                {{item.name}}
+            </view>
+        </view>
+        <!-- swiper -->
+        <swiper
+          class="swiper-content"
+          bindchange="changeSwiperCurrent"
+          current="{{swiperTabCheckIndex}}"
+        >
+            <block wx:for="{{[1,2]}}" wx:key="*this">
+                <swiper-item class="swiper-content-item">
+                    <view class="swiper-{{index}}">
+                        <view class="swiper-item">
+                            <!-- 图片 -->
+                            <image class="swiper-item-img" src="/images/video.png" />
+                            <!-- 文案描述 -->
+                            <view class="desc">无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心…</view>
+                            <!-- 标签 -->
+                            <view class="tag" />
+                        </view>
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <!-- 预约按钮 -->
+    <view class="reservation-btn">
+        添加新预约
+    </view>
 </view>
+<!-- 底部tab高度占位 -->
+<view class="place-holder" style="height:{{tabbarHeight}}rpx" />
+

@@ -1,0 +1,63 @@
+@import "common";
+
+.appointment {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    margin:0 -$padding 0 -$padding;
+    padding:0 $padding;
+    .appointment-bg{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+    }
+
+    .statusBar {
+        width: 100%;
+    }
+    .switch-tab{
+        width: 100%;
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        .swiper-tab {
+            flex: 0 0 72rpx;
+            display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			&-item {
+				&.checked {
+					background: $btnColor;
+					opacity: 1;
+				}
+				background: transparent;
+				padding: 12rpx 32rpx;
+				border-radius: 74rpx;
+				color: #fff;
+				opacity: 0.6;
+			}
+        }
+        .swiper-content {
+            flex: 1;
+        }
+    }
+    // 预约按钮
+    .reservation-btn {
+        flex: 0 0 88rpx;
+        width: 100%;
+        background: $btnColor;
+        text-align: center;
+        line-height: 88rpx;
+        font-size: 32rpx;
+        font-weight: 500;
+        color: #fff;
+        border-radius: 44rpx;
+        margin-bottom: 49rpx;
+    }
+}
