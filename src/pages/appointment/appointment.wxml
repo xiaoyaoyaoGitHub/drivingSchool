@@ -27,13 +27,31 @@
             <block wx:for="{{[1,2]}}" wx:key="*this">
                 <swiper-item class="swiper-content-item">
                     <view class="swiper-{{index}}">
-                        <view class="swiper-item">
-                            <!-- 图片 -->
-                            <image class="swiper-item-img" src="/images/video.png" />
-                            <!-- 文案描述 -->
-                            <view class="desc">无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心…</view>
-                            <!-- 标签 -->
-                            <view class="tag" />
+                        <view wx:for="{{[1,2,3,4]}}" wx:key="*this" class="swiper-item done">
+                            <!-- 预约类型 -->
+                            <view class="type">
+                                预约类型:<text>练车</text>
+                            </view>
+                            <!-- 校区 -->
+                            <view class="address">
+                                校区:<text>顺义驾校</text>
+                            </view>
+                            <!-- 学习 -->
+                            <view class="project">
+                                学习:<text>科目二油离配合</text>
+                            </view>
+                            <!-- 日期 -->
+                            <view class="date">
+                                日期:<text>3月1日（星期一）</text>
+                            </view>
+                            <!-- 学习时间 -->
+                            <view class="time">
+                                学习:<text>9:30 ～ 12:00     13:30 ～ 17:00</text>
+                            </view>
+                            <!-- 取消预约 -->
+                            <view class="cancel">
+                                取消预约
+                            </view>
                         </view>
                     </view>
                 </swiper-item>
