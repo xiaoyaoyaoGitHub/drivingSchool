@@ -1,0 +1,85 @@
+<!-- 约课流程 -->
+<view class="reservation-process">
+    <view class="process-list">
+        <!-- 驾校名称 -->
+        <view class="list-item">
+            <view class="icon">
+                <image src="/images/p_icon_1.png"></image>
+            </view>
+            <view class="content">
+                <text wx:if="{{false}}" class="placeHolder">请选择驾校</text>
+                <text wx:else>安架</text>
+            </view>
+            <view wx:if="{{false}}" class="btn">
+                选择
+            </view>
+            <view wx:else class="btn change-btn">
+                更改
+            </view>
+        </view>
+        <!-- 选择校区 -->
+        <view class="list-item">
+            <view class="icon">
+                <image src="/images/p_icon_2.png"></image>
+            </view>
+            <view class="content">
+                <text wx:if="{{true}}" class="placeHolder">请选择校区</text>
+                <text wx:else>安架</text>
+            </view>
+            <view class="btn">
+                选择
+            </view>
+        </view>
+        <!-- 选择科目 -->
+        <view class="list-item">
+            <view class="icon">
+                <image src="/images/p_icon_3.png"></image>
+            </view>
+            <view class="content">
+                <text wx:if="{{true}}" class="placeHolder">请选择科目</text>
+                <text wx:else>安架</text>
+            </view>
+            <view class="btn">
+                选择
+            </view>
+        </view>
+        <!-- 选择时间段 -->
+        <view class="list-item">
+            <view class="icon">
+                <image src="/images/p_icon_4.png"></image>
+            </view>
+            <view class="content">
+                <text wx:if="{{true}}" class="placeHolder">请选择日期/时段</text>
+                <text wx:else>安架</text>
+            </view>
+            <view class="btn">
+                选择
+            </view>
+        </view>
+    </view>
+</view>
+<!-- picker 选择 -->
+<view class="picker-select">
+    <!-- picker-select-content -->
+    <view class="picker-select-content">
+        <!-- 标题 -->
+        <view class="picker-title">
+            请选择类型
+        </view>
+        <!-- 类型列表 -->
+        <view class="select-content">
+            <!-- 校区 -->
+            <view class="schools-list-item">
+
+            </view>
+            <view class="schools-list-item">
+                
+            </view>
+        </view>
+        <!-- 按钮 -->
+        <view class="picker-btn">
+            <view class="cancel">取消</view>
+            <view class="confirm">确定</view>
+        </view>
+    </view>
+</view>

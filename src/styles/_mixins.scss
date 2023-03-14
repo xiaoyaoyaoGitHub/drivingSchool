@@ -96,3 +96,18 @@
 		}
 	}
 }
+
+@mixin border-1($color){
+	&:after {
+		content:'';
+		display: block;
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+		height: 0;
+		border-top: 1px solid $color;
+	}
+
+}

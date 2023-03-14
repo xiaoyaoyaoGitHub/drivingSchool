@@ -20,6 +20,7 @@
     .statusBar {
         width: 100%;
     }
+    // 预约列表
     .switch-tab{
         width: 100%;
         flex: 1 1 auto;
@@ -86,7 +87,7 @@
         }
     }
     // 预约按钮
-    .reservation-btn {
+    &>.reservation-btn {
         flex: 0 0 88rpx;
         width: 100%;
         background: $btnColor;
@@ -97,5 +98,39 @@
         color: #fff;
         border-radius: 44rpx;
         margin-bottom: 49rpx;
+    }
+    // 没有预约列表
+    .none-appointment-list {
+        width: 100%;
+        flex: 1;
+        .none-appointment {
+            width: 400rpx;
+            height: 400rpx;
+            margin: 312rpx auto 16rpx;
+            display: block;
+        }
+        .desc {
+            font-size: 32rpx;
+            line-height: 48rpx;
+            color: #fff;
+            text-align: center;
+        }
+        &>.reservation-btn {
+            width: 686rpx;
+            background: $btnColor;
+            text-align: center;
+            line-height: 88rpx;
+            font-size: 32rpx;
+            font-weight: 500;
+            color: #fff;
+            border-radius: 44rpx;
+            margin: 96rpx auto 0;
+        }
+    }
+    // 预约流程
+    .reservation {
+        width: 100%;
+        flex: 1;
+        padding-top: 136rpx;
     }
 }

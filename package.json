@@ -70,9 +70,14 @@
 	"dependencies": {
 		"babel-runtime": "^6.23.0",
 		"es6-promise": "^4.1.0",
-		"lodash": "^4.17.4"
+		"lodash": "^4.17.4",
+		"mobx-miniprogram": "^4.13.2",
+		"mobx-miniprogram-bindings": "^2.1.5"
 	},
-	"copyWebpack":["custom-tab-bar","images"],
+	"copyWebpack": [
+		"custom-tab-bar",
+		"images"
+	],
 	"jest": {
 		"modulePathIgnorePatterns": [
 			"node_modules",

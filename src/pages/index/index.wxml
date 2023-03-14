@@ -62,4 +62,4 @@
 
 </view>
 <!-- 底部tab高度占位 -->
-<view class="place-holder" style="height:{{tabbarHeight}}px" />
+<view class="place-holder" style="height:{{tabBarHeight}}px" />

@@ -1,0 +1,131 @@
+@import "common";
+// 约课流程
+.reservation-process {
+    width: 100%;
+    background: rgba(44, 42, 55, 1);
+    border-radius: 24rpx;
+    // 选择 列表
+    .process-list {
+        padding: 0 32rpx;
+        .list-item {
+            padding: 32rpx 0;
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            .icon {
+                flex: 0 0 48rpx;
+                height: 48rpx;
+                background: rgba(29, 29, 31, 1);
+                border-radius: 50%;
+            }
+            .content {
+                flex: 1;
+                font-size: 32rpx;
+                font-weight: 700;
+                color: rgba(255, 255, 255, 1);
+                padding-left: 16rpx;
+                &>.placeHolder {
+                    opacity: 0.6;
+                    font-weight: 400;
+                }
+            }
+            .btn {
+                flex: 0 0 128rpx;
+                box-sizing: border-box;
+                border: 2rpx solid $btnColor;
+                text-align: center;
+                border-radius: 74rpx;
+                background: $btnColor;
+                color: #fff;
+                font-size: 24rpx;
+                line-height: 1;
+                font-weight: 500;
+                padding: 11rpx 0;
+                &.change-btn {
+                    background: transparent;
+                    color: $btnColor;
+                }
+            }
+            @include border-1(rgba(255, 255, 255, 0.1))
+            
+        }
+    }
+}
+// 底部选择picker
+.picker-select {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 10000;
+    padding: 0 32rpx  env(safe-area-inset-bottom);
+    // picker-select-content
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    .picker-select-content {
+        background-color: #fff;
+        padding: 0 32rpx;
+        border-radius: 24rpx;
+        height: 800rpx;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        // 标题 
+        .picker-title {
+            font-size: 32rpx;
+            font-weight: 400;
+            color: rgba(29, 29, 31, 0.6);
+            padding: 32rpx 0;
+            flex: 0 0 48rpx;
+            width: 100%;
+            text-align: left;
+            position: relative;
+            @include border-1(rgba(241, 241, 243, 1))
+        }
+        // 按钮
+        .picker-btn {
+            width: 100%;
+            flex: 0 0 112rpx;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+            &:after {
+                content:'';
+                display: block;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                width: 0;
+                margin: auto;
+                height: 48rpx;
+                border-right: 1px solid rgba(241, 241, 243, 1) ;
+            }
+            &>view {
+                flex: 1;
+                font-size: 32rpx;
+                font-weight: 400;
+                text-align: center;
+                &.cancel {
+                    color: rgba(29, 29, 31, 0.6);
+                }
+                &.confirm {
+                    font-weight: 700;
+                    color: rgba(0, 103, 247, 1);
+                }
+            }
+        }
+        // 选择列表
+        .select-content{
+            flex: 1 0 auto;
+        }
+    }
+}   

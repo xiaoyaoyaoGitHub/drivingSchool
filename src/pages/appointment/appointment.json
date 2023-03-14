@@ -2,7 +2,7 @@
 {
     "navigationStyle":"custom",
     "usingComponents": {
-      
+      "reservation":"../../components/reservation/reservation"
     }
   }
   

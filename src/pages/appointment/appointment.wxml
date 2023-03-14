@@ -1,68 +1,86 @@
 <!-- appointment.wxml-->
 <view class="appointment" style="height:{{totalHeight}}px">
     <!-- bg -->
-    <image class="appointment-bg" src="/images/bg.png"></image>
+    <image class="appointment-bg" src="/images/bg.png" />
     <!-- statusbar占位 -->
-    <view class="statusBar" style="height:{{statusBarHeight}}px"></view>
-    <!-- switch tab -->
-    <view class="switch-tab">
-        <!-- tab -->
-        <view class="swiper-tab">
-            <view
-              bindtap="checkSwiperTab"
-              data-index="{{index}}"
-              wx:for="{{appointmentStatus}}"
-              wx:key="*this"
-              class="swiper-tab-item {{swiperTabCheckIndex === index ? 'checked':''}}"
-            >
-                {{item.name}}
+    <view class="statusBar" style="height:{{statusBarHeight}}px" />
+    <!-- 预约列表 -->
+    <block wx:if="{{false}}">
+        <view class="switch-tab">
+            <!-- tab -->
+            <view class="swiper-tab">
+                <view
+                  bindtap="checkSwiperTab"
+                  data-index="{{index}}"
+                  wx:for="{{appointmentStatus}}"
+                  wx:key="*this"
+                  class="swiper-tab-item {{swiperTabCheckIndex === index ? 'checked':''}}"
+                >
+                    {{item.name}}
+                </view>
             </view>
-        </view>
-        <!-- swiper -->
-        <swiper
-          class="swiper-content"
-          bindchange="changeSwiperCurrent"
-          current="{{swiperTabCheckIndex}}"
-        >
-            <block wx:for="{{[1,2]}}" wx:key="*this">
-                <swiper-item class="swiper-content-item">
-                    <view class="swiper-{{index}}">
-                        <view wx:for="{{[1,2,3,4]}}" wx:key="*this" class="swiper-item done">
-                            <!-- 预约类型 -->
-                            <view class="type">
-                                预约类型:<text>练车</text>
-                            </view>
-                            <!-- 校区 -->
-                            <view class="address">
-                                校区:<text>顺义驾校</text>
-                            </view>
-                            <!-- 学习 -->
-                            <view class="project">
-                                学习:<text>科目二油离配合</text>
-                            </view>
-                            <!-- 日期 -->
-                            <view class="date">
-                                日期:<text>3月1日（星期一）</text>
-                            </view>
-                            <!-- 学习时间 -->
-                            <view class="time">
-                                学习:<text>9:30 ～ 12:00     13:30 ～ 17:00</text>
-                            </view>
-                            <!-- 取消预约 -->
-                            <view class="cancel">
-                                取消预约
+            <!-- swiper -->
+            <swiper class="swiper-content" bindchange="changeSwiperCurrent" current="{{swiperTabCheckIndex}}">
+                <block wx:for="{{[1,2]}}" wx:key="*this">
+                    <swiper-item class="swiper-content-item">
+                        <view class="swiper-{{index}}">
+                            <view wx:for="{{[1,2,3,4]}}" wx:key="*this" class="swiper-item done">
+                                <!-- 预约类型 -->
+                                <view class="type">
+                                    预约类型:
+                                    <text>练车</text>
+                                </view>
+                                <!-- 校区 -->
+                                <view class="address">
+                                    校区:
+                                    <text>顺义驾校</text>
+                                </view>
+                                <!-- 学习 -->
+                                <view class="project">
+                                    学习:
+                                    <text>科目二油离配合</text>
+                                </view>
+                                <!-- 日期 -->
+                                <view class="date">
+                                    日期:
+                                    <text>3月1日（星期一）</text>
+                                </view>
+                                <!-- 学习时间 -->
+                                <view class="time">
+                                    学习:
+                                    <text>9:30 ～ 12:00     13:30 ～ 17:00</text>
+                                </view>
+                                <!-- 取消预约 -->
+                                <view class="cancel">
+                                    取消预约
+                                </view>
                             </view>
                         </view>
-                    </view>
-                </swiper-item>
-            </block>
-        </swiper>
-    </view>
-    <!-- 预约按钮 -->
-    <view class="reservation-btn">
-        添加新预约
-    </view>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <!-- 预约按钮 -->
+        <view class="reservation-btn">
+            添加新预约
+        </view>
+    </block>
+    <!-- 没有预约课程 -->
+    <block wx:if="{{false}}">
+        <view class="none-appointment-list">
+            <image class="none-appointment" src="/images/none-appointment.png"></image>
+            <view class="desc">您还没有预约过课程，马上去预约吧！</view>
+            <view class="reservation-btn">
+                去预约
+            </view>
+        </view>
+    </block>
+    <!-- 去预约 -->
+    <block>
+        <view class="reservation">
+            <reservation></reservation>
+        </view>
+    </block>
 </view>
 <!-- 底部tab高度占位 -->
-<view class="place-holder" style="height:{{tabbarHeight}}rpx" />
-
+<view class="place-holder" style="height:{{tabBarHeight}}px" />
