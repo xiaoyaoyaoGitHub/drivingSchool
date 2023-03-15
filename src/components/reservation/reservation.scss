@@ -126,6 +126,26 @@
         // 选择列表
         .select-content{
             flex: 1 0 auto;
+            width: 100%;
         }
     }
 }   
+
+// 类型选择
+.type-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 20rpx 0;
+    .name {
+        font-size: 32rpx;
+        line-height: 48rpx;
+        color: rgba(29, 29, 31, 1);
+    }
+    .radio {
+        width: 40rpx;
+        height: 40rpx;
+    }
+    @include border-1(rgba(241, 241, 243, 1))
+}
