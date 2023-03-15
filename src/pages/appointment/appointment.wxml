@@ -1,9 +1,9 @@
 <!-- appointment.wxml-->
 <view class="appointment" style="height:{{totalHeight}}px">
     <!-- bg -->
-    <image class="appointment-bg" src="/images/bg.png" />
+    <image mode="top" class="appointment-bg" src="/images/bg.png" />
     <!-- statusbar占位 -->
-    <view class="statusBar" style="height:{{statusBarHeight}}px" />
+    <view class="statusBar" style="height:{{transparentHeight}}px" />
     <!-- 预约列表 -->
     <block wx:if="{{false}}">
         <view class="switch-tab">

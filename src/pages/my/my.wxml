@@ -1,6 +1,54 @@
-<!--logs.wxml-->
-<view class="container log-list">
-  <block wx:for="{{logs}}" wx:for-item="log" wx:key="*this">
-    <text class="log-item">{{index + 1}}. {{log}}</text>
-  </block>
+<!--my.wxml-->
+<view class="profile" style="height:{{totalHeight}}px">
+    <!-- bg -->
+    <image class="bg" src="/images/my-bg.png"></image>
+    <!-- statusbar占位 -->
+    <view class="statusBar" style="height:{{transparentHeight}}px" />
+    <!-- 用户信息 -->
+    <view class="user-info">
+        <!-- 头像 -->
+        <view class="avatar">
+            <image src=""></image>
+        </view>
+        <!-- 用户名称 -->
+        <view class="info">
+            <view class="info-top">
+                注册/登录
+            </view>
+            <!-- 标签 -->
+            <view class="tag">登录更精彩...</view>
+        </view>
+        <!-- 设置 -->
+        <view class="setting">
+            <image src="/images/setting.png"></image>
+        </view>
+    </view>
+    <!-- 会员积分 -->
+    <view class="points">
+        <image src="/images/points.png"></image>
+    </view>
+    <!-- about -->
+    <view class="about">
+        <image src="/images/about.png"></image>
+    </view>
+    <!-- my-servies -->
+    <view class="services">
+        <view class="list-item" wx:for="{{[1,3,4]}}" wx:key="*this">
+            <!-- icon -->
+            <view class="list-item-icon">
+                <image src=""></image>
+            </view>
+            <!-- name -->
+            <view class="list-item-name">
+                柜子
+            </view>
+            <!-- value -->
+            <view class="list-item-value">
+                <view class="value">30</view>
+                <view class="desc">剩余有效期</view>
+            </view>
+        </view>
+    </view>
 </view>
+<!-- 底部tab高度占位 -->
+<view class="place-holder" style="height:{{tabBarHeight}}px" />

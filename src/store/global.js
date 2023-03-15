@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 14:04:24
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-14 20:58:28
+ * @LastEditTime: 2023-03-15 21:05:42
  * @FilePath: /wxapp-boilerplate/src/store/global.js
  * @Description: 全局状态数据
  */
@@ -10,6 +10,9 @@ import { observable, action } from 'mobx-miniprogram';
 
 export const global = observable({
 	tabBarHeight: 0, // 底部tabBar高度
+	titleHeight:0, // 标题栏高度
+	statusBarHeight: 0, // 状态栏高度
+	systemInfo:{}, // 系统信息
 	/**
      * 获取底部自定义tabBar高度
 	 * @param {callee} 当前页面实例
@@ -27,4 +30,27 @@ export const global = observable({
 			wx.setStorageSync('tabBarHeight', tabBarHeight); // 将获取到的高度设置缓存，以便之后使用
 		}).exec();
 	}),
+	/**
+	 * 顶部透明占位高度
+	 */
+	get transparentHeight() {
+		return this.titleHeight + this.statusBarHeight
+	},
+	get totalHeight(){
+		return this.systemInfo.screenHeight - this.tabBarHeight
+	},
+	/**
+	 * 获取 状态栏+ 标题栏的高度
+	 */
+	getTitleBarAndStatusBarHeight() {
+		console.log(`wx.getSystemInfoSync()`, wx.getSystemInfoSync());
+		const systemInfo = wx.getSystemInfoSync();
+		const { statusBarHeight, screenHeight, windowHeight } = systemInfo || {};
+		const titleHeight = screenHeight - windowHeight;
+		this.systemInfo = systemInfo;
+		// 标题栏高度
+		this.titleHeight = titleHeight;
+		// 状态栏高度
+		this.statusBarHeight = statusBarHeight;
+	},
 });

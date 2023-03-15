@@ -146,7 +146,7 @@
 </view>
 
 <!-- picker 请选择上课时间 选择 -->
-<view class="picker-select" wx:if="{{true}}">
+<view class="picker-select" wx:if="{{false}}">
     <!-- picker-select-content -->
     <view class="picker-select-content">
         <!-- 标题 -->
