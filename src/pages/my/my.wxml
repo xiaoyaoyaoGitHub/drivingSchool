@@ -1,5 +1,5 @@
 <!--my.wxml-->
-<view class="profile" style="height:{{totalHeight}}px">
+<view class="profile" >
     <!-- bg -->
     <image class="bg" src="/images/my-bg.png"></image>
     <!-- statusbar占位 -->
@@ -46,6 +46,40 @@
             <view class="list-item-value">
                 <view class="value">30</view>
                 <view class="desc">剩余有效期</view>
+            </view>
+        </view>
+    </view>
+    <!-- 我的摩托车 -->
+    <view class="my-cars">
+        <view class="title">
+            我的摩托车
+        </view>
+        <view class="cars-list">
+            <view class="cars-list-item" wx:for="{{[1,3,4]}}" wx:key="*this">
+
+            </view>
+        </view>
+    </view>
+    <!-- 功能 -->
+    <view class="func-lists">
+        <view class="list-item">
+            <view class="icon">
+                <image src="/images/jjlxr.png"></image>
+            </view>
+            <view class="desc">紧急联系人</view>
+            <view class="operate">
+                <text>添加</text>
+                <image src="/images/triangle-right.png"></image>
+            </view>
+        </view>
+        <view class="list-item">
+            <view class="icon">
+                <image src="/images/tsyjy.png"></image>
+            </view>
+            <view class="desc">投诉与建议</view>
+            <view class="operate">
+                <text>输入</text>
+                <image src="/images/triangle-right.png"></image>
             </view>
         </view>
     </view>
