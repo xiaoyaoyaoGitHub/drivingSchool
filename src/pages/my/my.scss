@@ -182,3 +182,114 @@
         }
     }
 }
+
+.add-car-license {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: rgba(0,0,0,.3);
+    &>.content {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 590rpx;
+        height: 780rpx;
+        border-radius: 48rpx;
+        background-color: #fff;
+        .title {
+            font-size: 48rpx;
+            line-height: 70rpx;
+            font-weight: 500;
+            color: rgba(29, 29, 31, 1);
+            margin-top: 40rpx;
+            text-align: center;
+        }
+        .car-license {
+            width: 526rpx;
+            height: 112rpx;
+            margin: 106rpx auto 0;
+            border-radius: 16rpx;
+            .license {
+                height: 100%;
+                padding-left: 32rpx;
+                color: rgba(29, 29, 31, 0.6);
+                background-color: rgba(245, 245, 247, 0.6);
+            }
+        }
+        .btn {
+            width: 526rpx;
+            height: 87.9rpx;
+            text-align: center;
+            margin: 0 auto;
+            line-height: 87.9rpx;
+            color: #fff;
+            font-size: 32rpx;
+            font-weight: 500;
+            background: $btnColor;
+            border-radius: 44rpx;
+            margin-top: 284rpx;
+        }
+    }
+}
+// 紧急联系人
+.emergency-contcat {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: rgba(0,0,0,.3);
+    &>.content {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 590rpx;
+        height: 780rpx;
+        border-radius: 48rpx;
+        background-color: #fff;
+        .title {
+            font-size: 48rpx;
+            line-height: 70rpx;
+            font-weight: 500;
+            color: rgba(29, 29, 31, 1);
+            margin-top: 40rpx;
+            text-align: center;
+        }
+        .emergency-contcat-input {
+            width: 526rpx;
+            height: 112rpx;
+            margin: 106rpx auto 0;
+            border-radius: 16rpx;
+
+            &>input {
+                height: 100%;
+                padding-left: 32rpx;
+                color: rgba(29, 29, 31, 0.6);
+                background-color: rgba(245, 245, 247, 0.6);
+            }
+        }
+        .btn {
+            width: 526rpx;
+            height: 87.9rpx;
+            text-align: center;
+            margin: 0 auto;
+            line-height: 87.9rpx;
+            color: #fff;
+            font-size: 32rpx;
+            font-weight: 500;
+            background: $btnColor;
+            border-radius: 44rpx;
+            margin-top: 148rpx;
+        }
+    }
+}
