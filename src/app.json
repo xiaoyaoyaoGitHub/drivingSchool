@@ -1,8 +1,10 @@
 {
   "pages":[
+    "pages/costs/costs",
     "pages/index/index",
     "pages/my/my",
     "pages/appointment/appointment"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",
