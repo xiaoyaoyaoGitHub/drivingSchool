@@ -1,0 +1,40 @@
+<view class="login">
+  <!-- 透明顶部占位 -->
+  <view class="trans-placeholder" style="height:{{transparentHeight}}px" />
+  <!-- 底部背景图 -->
+  <image src="/images/login-bg.png" class="bg" />
+  <!-- container -->
+  <view class="login-container">
+    <block wx:if="{{true}}">
+      <!-- logo -->
+      <view class="logo">
+        <image src="/images/login-logo.png" />
+      </view>
+      <!-- title -->
+      <view class="title">
+        <image src="/images/login-title.png" />
+      </view>
+    </block>
+    <!-- 按钮 -->
+    <view class="btn enable" >
+      使用手机号登录
+    </view>
+    <!-- 声明 -->
+    <view class="statement">
+      <view class="check-status">
+        <image wx:if="{{true}}" src="/images/login-unchecked.png"></image>
+        <image wx:else src="/images/login-checked.png"></image>
+        <view class="tips">
+          <image src="/images/tip-bg.png" class="bg"></image>
+          请先阅读并勾选用户协议
+          <image class="close" src="/images/close.png"></image>
+        </view>
+      </view>
+      <view class="desc">
+
+        我已阅读并同意<text style="color:rgba(227, 87, 0, 1)">《摩杰座用户服务协议》</text>和<text style="color:rgba(0, 103, 247, 1)">疑似政策</text>
+        
+      </view>
+    </view>
+  </view>
+</view>

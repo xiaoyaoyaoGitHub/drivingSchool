@@ -1,0 +1,109 @@
+@import "common";
+
+page {
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(29, 29, 31, 1) 0%, rgba(0, 0, 0, 1) 99.97%);
+    .login {
+        height: 100%;
+        position: relative;
+        margin-left: -$padding;
+        margin-right: -$padding;
+        padding: 0 $padding;
+        &>.bg {
+            position: absolute;
+            left: -324rpx;
+            right: -324rpx;
+            top: 0;
+            height: 784rpx;
+            margin: auto;
+            z-index: -1;
+            filter: blur(60rpx);
+        }
+        // container
+        .login-container{
+            // logo
+            .logo {
+                width: 356rpx;
+                height: 200rpx;
+                margin: 136rpx auto 0;
+
+            }
+            // title
+            .title {
+                width: 620rpx;
+                height: 120rpx;
+                margin: 32rpx auto 0;
+            }
+            // 按钮
+            .btn {
+                width: 686rpx;
+                font-size: 32rpx;
+                font-weight: 500;
+                color: rgba(29, 29, 31, 1);
+                text-align: center;
+                line-height: 48rpx;
+                padding: 20rpx 0;
+                border-radius: 44rpx;
+                background: #fff;
+                margin-top: 96rpx;
+                &.enable {
+                    background: $btnColor;
+                    color: #fff;
+                }
+            }
+            // 声明
+            .statement {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 48rpx;
+                .check-status {
+                    width: 24rpx;
+                    height: 24rpx;
+                    position: relative;
+                    .tips {
+                        position: absolute;
+                        left: -51rpx;
+                        bottom: -126rpx;
+                        width: 440rpx;
+                        height: 68rpx;
+                        font-size: 32rpx;
+                        font-weight: 400;
+                        color: #fff;
+                        line-height: 48rpx;
+                        padding-top: 38rpx;
+                        padding-left: 32rpx;
+                        &>.bg {
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            top: 0;
+                            bottom: 0;
+                            margin: auto;
+                            z-index: -1;
+                        }
+                        &>.close {
+                            position: absolute;
+                            right:24rpx;
+                            top: 42rpx;
+                            width: 40rpx;
+                            height: 40rpx;
+
+                        }
+                    }
+                    &>image {
+                        display: block;
+                    }
+                }
+                .desc {
+                    padding-left: 8rpx;
+                    font-size: 20rpx;
+                    line-height: 30rpx;
+                    opacity: 0.6;
+                    color: rgba(255, 255, 255,1);
+
+                }
+            }
+        }
+    }
+}
