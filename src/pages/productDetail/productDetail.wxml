@@ -1,0 +1,27 @@
+<view class="product-detail">
+  <!-- 价格 -->
+  <view class="price">
+    <view class="price-value">
+      <text class="unit">¥</text>
+
+      90000
+
+    </view>
+    <view class="points">
+      <text class="unit">可用积分</text>
+      <text class="value">800</text>
+    </view>
+  </view>
+  <!-- 标题 -->
+  <view class="title">
+    力帆摩托22年新V16LF250-E 巡航太子ABS电喷 皮带版
+  </view>
+  <!-- 描述 -->
+  <view class="desc">
+    力帆摩托22年新V16LF250-E 巡航太子ABS电喷 皮带版力帆摩托22年新V16LF250-E 巡航太子ABS电喷 皮带版力帆摩托22年新V16LF250-E 巡航太子ABS电喷 皮带版力帆摩托22年新V16LF250-E 巡航太子ABS电喷 皮带版力帆摩托22年新V16LF250-E 巡航太子ABS电喷...
+  </view>
+  <!-- btn -->
+  <view class="btn">
+    我想要
+  </view>
+</view>

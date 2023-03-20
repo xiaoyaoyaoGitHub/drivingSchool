@@ -1,0 +1,23 @@
+<view class="products">
+    <view class="lists">
+      <view class="list-item" wx:for="{{[1,3,4,5]}}" wx:key="*this">
+        <view class="product-img">
+          <image src=""></image>
+        </view>
+        <!-- 描述 -->
+        <view class="desc">
+          个人车，2020年2约大蟒蛇N19一台，双杠450cc个人车，2020年2约大蟒蛇N19一台，双杠450cc
+        </view>
+        <!-- 价格 -->
+        <view class="price">
+          <view class="price-value">
+            <text class="unit">¥</text>
+            9000
+          </view>
+          <view class="points">
+            <text class="unit">可用积分</text>888
+          </view>
+        </view>
+      </view>
+    </view>
+</view>

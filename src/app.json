@@ -1,5 +1,8 @@
 {
   "pages":[
+    "pages/productDetail/productDetail",
+    "pages/products/products",
+    "pages/subjects/subjects",
     "pages/login/login",
     "pages/costs/costs",
     "pages/index/index",

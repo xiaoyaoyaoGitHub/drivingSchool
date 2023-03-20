@@ -1,0 +1,104 @@
+@import "common";
+
+
+page {
+    height: 100vh;
+}
+.subjects {
+    height: 100%;
+    width: 100%;
+    .subjects-lists {
+        .list-item {
+            background: rgba(44, 42, 55, 1);
+            border-radius: 24rpx;
+            display: flex;
+            justify-content: space-between;
+            align-items: top;
+            padding: 16rpx 16rpx 16rpx 24rpx;
+            margin-bottom: 16rpx;
+            &>.order{
+                font-size: 32rpx;
+                line-height: 40rpx;
+                text-align: center;
+                width: 40rpx;
+                height: 40rpx;
+                color: #fff;
+                background: rgba(29, 29, 31, 1);
+                border-radius: 50%;
+                margin-top: 12rpx;
+                
+            }
+            // 标题
+            &>.titles{
+                flex: 1;
+                padding-left: 8rpx;
+                &>.main-title {
+                    font-size: 32rpx;
+                    line-height: 48rpx;
+                    color: #fff;
+                    font-weight: 500;   
+                    padding-top: 8rpx;
+                }
+                &>.sub-title {
+                    font-size: 24rpx;
+                    line-height: 36rpx;
+                    color: rgba(255,255,255,0.6);
+                    margin-top: 16rpx;
+                }
+            }
+            // video
+            &>.video {
+                width: 240rpx;
+                height: 136rpx;
+                background: rgba(29, 29, 31, 1);
+                border-radius: 16rpx;
+            }
+        }
+    }
+}
+// 底部picker
+.open-vip {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right:0;
+    bottom: 0;
+    margin: auto;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    .open-vip-container {
+        width: 686rpx;
+        height: 720rpx;
+        background:  rgba(255, 255, 255, 0.8);
+        border-radius: 24rpx;
+        &>.logo {
+            width: 165rpx;
+            height: 136rpx;
+            margin: 96rpx auto 8rpx;
+        }
+        &>.title {
+            text-align: center;
+            &>text {
+                font-size: 32rpx;
+                line-height: 47rpx;
+                font-weight: 500;
+                color: rgba(29, 29, 31, 1);
+            }
+        }
+        &>.btn {
+            width: 494rpx;
+            font-size: 32rpx;
+            line-height: 48rpx;
+            padding: 20rpx 0;
+            text-align: center;
+            color: #fff;
+            margin: auto;
+            background: $btnColor;
+            border-radius: 44rpx;
+            margin-top: 96rpx;
+        }
+    }
+}

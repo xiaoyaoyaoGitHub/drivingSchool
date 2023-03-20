@@ -17,7 +17,7 @@
 	display: -webkit-box;
 	-webkit-line-clamp: $lines-to-show;
 	-webkit-box-orient: vertical;
-	height: ($font-size * $line-height * $lines-to-show) - 2;
+	// height: ($font-size * $line-height * $lines-to-show) - 2;
 	font-size: $font-size;
 	line-height: $line-height;
 	overflow: hidden;
