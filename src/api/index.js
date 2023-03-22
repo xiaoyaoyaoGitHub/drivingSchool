@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 17:07:13
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-22 16:07:17
+ * @LastEditTime: 2023-03-22 22:21:33
  * @FilePath: /wxapp-boilerplate/src/api/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -249,6 +249,21 @@ const init = () => {
 			return getInstance.http({
 				baseURL: hostConfig.url,
 				url: '/mobile/module/getModuleBanner',
+				methods: 'GET',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 获取模块内容（获取模块里的图片，文字，商品等信息）
+		 * @param {*} data
+		 * @param {*} options
+		 * @returns
+		 */
+		GET_MODULE_CONTENT(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/mobile/module/getModuleContent',
 				methods: 'GET',
 				data,
 				...options,

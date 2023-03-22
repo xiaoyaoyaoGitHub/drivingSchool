@@ -1,8 +1,8 @@
 <!--index.wxml-->
 <view class="container">
     <!-- 头部卡片 -->
-    <view class="top-card">
-        <image src="/images/top-card.png" />
+    <view class="top-card" wx:if="{{modulesInfo['CAPRICORN_INTRO']}}">
+        <image src="{{modulesInfo['CAPRICORN_INTRO'].image}}" />
     </view>
     <!-- 99vip -->
     <view class="center-banner">
@@ -12,14 +12,14 @@
     <view class="business">
         <!-- 左侧 -->
         <view class="left">
-            <image src="/images/ajkm.png" />
+            <image src="{{modulesInfo['SAFE_DRIVING_SUBJECT'].image}}" />
         </view>
         <!-- 右侧 -->
         <view class="right">
             <!-- 右侧上方 -->
-            <image src="/images/hysp.png" />
+            <image src="{{modulesInfo['MEMBER_PRODUCT'].image}}" />
             <!-- 右侧下方 -->
-            <image src="/images/eshc.png" />
+            <image src="{{modulesInfo['USED_CAR'].image}}" />
         </view>
     </view>
     <!-- switch tab -->
@@ -45,16 +45,30 @@
         >
             <block wx:for="{{[1,2]}}" wx:key="*this">
                 <swiper-item class="swiper-content-item">
-                    <view class="swiper-{{index}}">
-                        <view class="swiper-item">
-                            <!-- 图片 -->
-                            <image class="swiper-item-img" src="/images/video.png" />
-                            <!-- 文案描述 -->
-                            <view class="desc">无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心…</view>
-                            <!-- 标签 -->
-                            <view class="tag" />
+                    <block wx:if="{{index === 0}}">
+                        <view class="swiper-{{index}}">
+                            <view class="swiper-item">
+                                <!-- 图片 -->
+                                <image class="swiper-item-img" src="/images/video.png" />
+                                <!-- 文案描述 -->
+                                <view class="desc">无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心…</view>
+                                <!-- 标签 -->
+                                <view class="tag" />
+                            </view>
                         </view>
-                    </view>
+                    </block>
+                    <block wx:if="{{index === 1}}">
+                        <view class="swiper-{{index}}">
+                            <view class="swiper-item">
+                                <!-- 图片 -->
+                                <image class="swiper-item-img" src="/images/video.png" />
+                                <!-- 文案描述 -->
+                                <view class="desc">无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心无法阻碍骑士飞驰的心…</view>
+                                <!-- 标签 -->
+                                <view class="tag" />
+                            </view>
+                        </view>
+                    </block>
                 </swiper-item>
             </block>
         </swiper>

@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 16:21:28
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-22 16:11:07
+ * @LastEditTime: 2023-03-22 22:40:27
  * @FilePath: /wxapp-boilerplate/src/pages/index/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,6 +11,14 @@ import { indexBehavior } from "./behavior";
 // 获取应用实例
 const app = getApp(); //  eslint-disable-line no-undef
 const apis = app.apis;
+const MODULE_CODE = {
+	CAPRICORN_INTRO: 'CAPRICORN_INTRO', //魔杰座介绍
+	SAFE_DRIVING_SUBJECT: "SAFE_DRIVING_SUBJECT", //安驾科目
+	MEMBER_PRODUCT: " MEMBER_PRODUCT", //会员商品
+	USED_CAR: "USED_CAR", //二手车
+	TRAVEL_GUIDE: "TRAVEL_GUIDE", //摩旅路书
+	ACCIDENT_ANALYSIS: "ACCIDENT_ANALYSIS" // 事故分析
+}
 
 Page({
 	data: {
@@ -23,6 +31,8 @@ Page({
 			name: "事故分析"
 		}],
 		swiperTabCheckIndex: 0,
+		modulesInfo: {}, // 首页模块信息
+		moduleContent: {}, // 模块内容信息
 	},
 	behaviors: [indexBehavior],
 	// 事件处理函数
@@ -32,7 +42,9 @@ Page({
 		});
 	},
 	async onLoad() {
-		this.getModuleBanner()
+		this.getModuleBanner();
+		// 摩旅路书
+		this.getModuleContent({ moduleCode: MODULE_CODE.TRAVEL_GUIDE });
 		if (typeof this.getTabBar === 'function' &&
 			this.getTabBar()) {
 			this.getTabBar().setData({
@@ -48,7 +60,7 @@ Page({
 			});
 			this.getTabBarHeight(this)
 		};
-		this.setSwiperHeight(this.data.swiperTabCheckIndex)
+		
 	},
 	/**
 	 * 动态设置swiper高度
@@ -58,6 +70,7 @@ Page({
 		let query = wx.createSelectorQuery().in(this);
 		const that = this;
 		query.select(`.swiper-${index}`).boundingClientRect().exec((res) => {
+			console.log(`res`,res);
 			that.setData({
 				swiperHeight: res[0].height
 			})
@@ -89,8 +102,28 @@ Page({
 	/**
 	 * 获取banner图（首页解摩羯座，安驾科目，会员商品，二手好车的banner图从这里获取）									
 	 */
-	async getModuleBanner(){
-		const res = await apis.GET_MODULE_BANNER({moduleCodes:'CAPRICORN_INTRO,SAFE_DRIVING_SUBJECT,MEMBER_PRODUCT,USED_CAR'});
-		console.log(res);
-	}
+	async getModuleBanner() {
+		const { CAPRICORN_INTRO, SAFE_DRIVING_SUBJECT, MEMBER_PRODUCT, USED_CAR, TRAVEL_GUIDE, ACCIDENT_ANALYSIS } = MODULE_CODE || {};
+		const { code, data: modulesInfo = {} } = await apis.GET_MODULE_BANNER({ moduleCodes: `${CAPRICORN_INTRO},${SAFE_DRIVING_SUBJECT},${MEMBER_PRODUCT},${USED_CAR},${TRAVEL_GUIDE},${ACCIDENT_ANALYSIS}` });
+		if (code === 200) {
+			this.setData({
+				modulesInfo
+			})
+		}
+	},
+	/**
+	 * 获取模块内容
+	 * @param {*} moduleCode 模块名称
+	 */
+	async getModuleContent({ moduleCode }) {
+		const { code, data: modulesContent = {} } = await apis.GET_MODULE_CONTENT({ moduleCode });
+		if (code === 500) {
+			const moduleName = `moduleContent.${moduleCode}`;
+			this.setData({
+				[moduleName]: modulesContent
+			},() => {
+				this.setSwiperHeight(this.data.swiperTabCheckIndex)
+			})
+		}
+	},
 });
