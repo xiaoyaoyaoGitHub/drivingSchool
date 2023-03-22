@@ -76,7 +76,9 @@
 	},
 	"copyWebpack": [
 		"custom-tab-bar",
-		"images"
+		"images",
+		"project.config.json",
+		"project.private.config.json"
 	],
 	"jest": {
 		"modulePathIgnorePatterns": [

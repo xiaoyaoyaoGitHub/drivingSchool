@@ -1,0 +1,23 @@
+{
+    "appid": "wx582c85760d213f7f",
+    "projectname": "miniprogram-1",
+    "compileType": "miniprogram",
+    "libVersion": "2.30.2",
+    "packOptions": {
+      "ignore": [],
+      "include": []
+    },
+    "condition": {},
+    "setting": {
+      "babelSetting": {
+        "ignore": [],
+        "disablePlugins": [],
+        "outputPath": ""
+      },
+      "condition": false
+    },
+    "editorSetting": {
+      "tabIndent": "insertSpaces",
+      "tabSize": 2
+    }
+  }

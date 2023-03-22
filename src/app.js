@@ -2,15 +2,22 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 16:21:28
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-15 20:50:28
+ * @LastEditTime: 2023-03-21 10:24:09
  * @FilePath: /wxapp-boilerplate/src/app.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 
 import { camelCase } from 'lodash';
 import { global } from "@/store/index"
+import API from "@/api/index"
 
 App({
+	globalData: {
+		userInfo: null,
+		totalHeight: 0,
+		
+	},
+	apis: API.init(),
 	onLaunch() {
 		// 获取系统高度
 		global.getTitleBarAndStatusBarHeight();
@@ -36,9 +43,6 @@ App({
 			});
 		}
 	},
-	globalData: {
-		userInfo: null,
-		totalHeight: 0,
-	},
+	
 	
 });

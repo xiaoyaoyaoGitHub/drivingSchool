@@ -7,11 +7,11 @@
                 <image src="/images/p_icon_1.png" />
             </view>
             <view class="content">
-                <text wx:if="{{typeValue === ''}}" class="placeHolder">请选择驾校</text>
-                <text wx:else>{{typeValue}}</text>
+                <text wx:if="{{selectTypeInfo.memberTypeName}}" >{{selectTypeInfo.memberTypeName}}</text>
+                <text wx:else class="placeHolder">请选择驾校</text>
             </view>
-            <view bindtap="typePickerSwitch" class="btn {{typeValue === '' ?'':'change-btn' }}">
-                {{typeValue === '' ? '选择':'更改'}}
+            <view bindtap="typePickerSwitch" class="btn {{selectTypeInfo.memberTypeName ?'change-btn':'' }}">
+                {{selectTypeInfo.memberTypeName? '更改':'选择'}}
             </view>
         </view>
         <!-- 选择校区 -->
@@ -20,11 +20,11 @@
                 <image src="/images/p_icon_2.png" />
             </view>
             <view class="content">
-                <text wx:if="{{locationValue === ''}}" class="placeHolder">请选择校区</text>
-                <text wx:else>安架</text>
+                <text wx:if="{{selectLocationInfo.campusName}}" >{{selectLocationInfo.campusName}}</text>
+                <text wx:else class="placeHolder">请选择校区</text>
             </view>
-            <view bindtap="locationPickerSwitch" class="btn {{locationValue === '' ?'':'change-btn' }}">
-                {{locationValue === '' ? '选择':'更改'}}
+            <view bindtap="locationPickerSwitch" class="btn {{selectLocationInfo.campusName?'change-btn':'' }}">
+                {{selectLocationInfo.campusName? '更改':'选择'}}
             </view>
         </view>
         <!-- 选择科目 -->
@@ -33,11 +33,11 @@
                 <image src="/images/p_icon_3.png" />
             </view>
             <view class="content">
-                <text wx:if="{{subjectsValue === ''}}" class="placeHolder">请选择科目</text>
-                <text wx:else>安架</text>
+                <text wx:if="{{selectCourseInfo.courseName}}">{{selectCourseInfo.courseName}}</text>
+                <text wx:else class="placeHolder">请选择科目</text>
             </view>
-            <view bindtap="subjectsPickerSwitch" class="btn {{subjectsValue === '' ?'':'change-btn' }}">
-                {{subjectsValue === '' ? '选择':'更改'}}
+            <view bindtap="subjectsPickerSwitch" class="btn {{selectCourseInfo.courseName?'change-btn':'' }}">
+                {{selectCourseInfo.courseName? '更改':'选择'}}
             </view>
         </view>
         <!-- 选择时间段 -->
@@ -66,21 +66,23 @@
         <!-- 类型列表 -->
         <view class="select-content">
             <!-- 校区 -->
-            <view class="type-list-item">
-                <view class="name">安驾</view>
-                <view class="radio">
+            <view
+              class="type-list-item"
+              bindtap="selectTypeClick"
+              wx:for="{{typeList}}"
+              data-item="{{item}}"
+              wx:key="memberType"
+            >
+                <view class="name">{{item.memberTypeName}}</view>
+                <view class="radio" wx:if="{{preSelectTypeInfo.memberType === item.memberType}}">
                     <image src="/images/radio-checked.png" />
                 </view>
-            </view>
-            <view class="type-list-item">
-                <view class="name">考试</view>
-
             </view>
         </view>
         <!-- 按钮 -->
         <view class="picker-btn">
-            <view class="cancel" bindtap="typePickerSwitch">取消</view>
-            <view class="confirm" bindtap="typePickerSwitch">确定</view>
+            <view class="cancel" data-type="cancel" bindtap="typePickerSwitch">取消</view>
+            <view class="confirm" data-type="confirm" bindtap="typePickerSwitch">确定</view>
         </view>
     </view>
 </view>
@@ -96,21 +98,23 @@
         <!-- 类型列表 -->
         <view class="select-content">
             <!-- 校区 -->
-            <view class="type-list-item">
-                <view class="name">房山校区</view>
-                <view class="radio">
+            <view
+              class="type-list-item"
+              wx:for="{{locationList}}"
+              data-item="{{item}}"
+              bindtap="selectLocationClick"
+              wx:key="campusId"
+            >
+                <view class="name">{{item.campusName}}</view>
+                <view class="radio" wx:if="{{preSelectLocationInfo.campusId === item.campusId}}">
                     <image src="/images/radio-checked.png" />
                 </view>
-            </view>
-            <view class="type-list-item">
-                <view class="name">房山校区</view>
-
             </view>
         </view>
         <!-- 按钮 -->
         <view class="picker-btn">
-            <view class="cancel" bindtap="locationPickerSwitch">取消</view>
-            <view class="confirm" bindtap="locationPickerSwitch">确定</view>
+            <view class="cancel" data-type="cancel" bindtap="locationPickerSwitch">取消</view>
+            <view class="confirm" data-type="confirm" bindtap="locationPickerSwitch">确定</view>
         </view>
     </view>
 </view>
@@ -126,27 +130,29 @@
         <!-- 类型列表 -->
         <view class="select-content">
             <!-- 校区 -->
-            <view class="type-list-item">
-                <view class="name">科目一：上下车及正确骑姿</view>
-                <view class="radio">
+            <view
+              class="type-list-item"
+              bindtap="selectCourseClick"
+              data-item="{{item}}"
+              wx:for="{{courseList}}"
+              wx:key="courseId"
+            >
+                <view class="name">{{item.courseName}}</view>
+                <view class="radio" wx:if="{{item.courseId === preSelectCourseInfo.courseId}}">
                     <image src="/images/radio-checked.png" />
                 </view>
-            </view>
-            <view class="type-list-item">
-                <view class="name">科目二：油离配合姿</view>
-
             </view>
         </view>
         <!-- 按钮 -->
         <view class="picker-btn">
-            <view class="cancel" bindtap="subjectsPickerSwitch">取消</view>
-            <view class="confirm" bindtap="subjectsPickerSwitch">确定</view>
+            <view class="cancel" data-type="cancel" bindtap="subjectsPickerSwitch">取消</view>
+            <view class="confirm" data-type="confirm" bindtap="subjectsPickerSwitch">确定</view>
         </view>
     </view>
 </view>
 
 <!-- picker 请选择上课时间 选择 -->
-<view class="picker-select" wx:if="{{false}}">
+<view class="picker-select" wx:if="{{timePicker}}">
     <!-- picker-select-content -->
     <view class="picker-select-content">
         <!-- 标题 -->
@@ -156,12 +162,12 @@
         <!-- 类型列表 -->
         <view class="time-content">
             <!-- 时间段 -->
-            <view class="day-picker">
-               
+            <view class="day-picker" >
+                <picker-view-column>
+                    <view></view>
+                  </picker-view-column>
             </view>
-            <view class="time-picker">
-
-            </view>
+            <view class="time-picker" />
 
         </view>
         <!-- 按钮 -->

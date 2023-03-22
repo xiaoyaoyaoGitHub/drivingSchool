@@ -5,7 +5,7 @@
     <!-- statusbar占位 -->
     <view class="statusBar" style="height:{{transparentHeight}}px" />
     <!-- 预约列表 -->
-    <block wx:if="{{false}}">
+    <block wx:if="{{showReservationList}}">
         <view class="switch-tab">
             <!-- tab -->
             <view class="swiper-tab">
@@ -61,22 +61,22 @@
             </swiper>
         </view>
         <!-- 预约按钮 -->
-        <view class="reservation-btn">
+        <view class="reservation-btn" bindtap="addNewReservation">
             添加新预约
         </view>
     </block>
     <!-- 没有预约课程 -->
-    <block wx:if="{{false}}">
+    <block wx:elif="{{noReservation}}">
         <view class="none-appointment-list">
             <image class="none-appointment" src="/images/none-appointment.png"></image>
             <view class="desc">您还没有预约过课程，马上去预约吧！</view>
-            <view class="reservation-btn">
+            <view class="reservation-btn" bindtap="addNewReservation">
                 去预约
             </view>
         </view>
     </block>
     <!-- 去预约 -->
-    <block>
+    <block wx:else>
         <view class="reservation">
             <reservation></reservation>
         </view>

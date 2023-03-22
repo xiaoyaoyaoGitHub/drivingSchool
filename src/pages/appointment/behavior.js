@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 15:43:02
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-15 21:03:35
+ * @LastEditTime: 2023-03-22 10:42:56
  * @FilePath: /wxapp-boilerplate/src/pages/appointment/behavior.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,4 +16,19 @@ export const behavior = BehaviorWithStore({
 		fields: ['tabBarHeight', 'transparentHeight', 'statusBarHeight', 'totalHeight'],
 		actions: ['getTabBarHeight'],
 	}],
+	data: {
+		showReservationList: true, // 是否展示预约列表
+		noReservation: false, // 没有预约列表
+	},
+	methods: {
+		/**
+		 * 添加新预约
+		 */
+		addNewReservation() {
+			this.setData({
+				showReservationList: false,
+				noReservation: false,
+			});
+		},
+	},
 });

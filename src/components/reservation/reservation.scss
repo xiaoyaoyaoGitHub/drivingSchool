@@ -125,8 +125,9 @@
         }
         // 选择列表
         .select-content{
-            flex: 1 0 auto;
+            flex: 1 1 auto;
             width: 100%;
+            overflow-y: auto;
         }
         // 时间段列表
         .time-content {

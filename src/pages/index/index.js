@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 16:21:28
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-14 20:43:04
+ * @LastEditTime: 2023-03-22 16:11:07
  * @FilePath: /wxapp-boilerplate/src/pages/index/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -10,7 +10,7 @@ import { indexBehavior } from "./behavior";
 
 // 获取应用实例
 const app = getApp(); //  eslint-disable-line no-undef
-
+const apis = app.apis;
 
 Page({
 	data: {
@@ -32,6 +32,7 @@ Page({
 		});
 	},
 	async onLoad() {
+		this.getModuleBanner()
 		if (typeof this.getTabBar === 'function' &&
 			this.getTabBar()) {
 			this.getTabBar().setData({
@@ -74,6 +75,10 @@ Page({
 		});
 		this.setSwiperHeight(swiperTabCheckIndex)
 	},
+	/**
+	 * 滑动底部swiper
+	 * @param {*} e 
+	 */
 	changeSwiperCurrent(e) {
 		const { detail: { current: swiperTabCheckIndex } = {} } = e || {};
 		this.setData({
@@ -81,4 +86,11 @@ Page({
 		})
 		this.setSwiperHeight(swiperTabCheckIndex)
 	},
+	/**
+	 * 获取banner图（首页解摩羯座，安驾科目，会员商品，二手好车的banner图从这里获取）									
+	 */
+	async getModuleBanner(){
+		const res = await apis.GET_MODULE_BANNER({moduleCodes:'CAPRICORN_INTRO,SAFE_DRIVING_SUBJECT,MEMBER_PRODUCT,USED_CAR'});
+		console.log(res);
+	}
 });
