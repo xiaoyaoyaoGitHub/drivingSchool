@@ -1,0 +1,5 @@
+<!-- 公告 -->
+<view
+  class='notice-container'>
+  <text wx:for="{{anouncementList}}" wx:key="anuuncementId">{{item.content}}</text>
+</view>

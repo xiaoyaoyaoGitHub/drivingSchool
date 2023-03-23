@@ -1,0 +1,29 @@
+
+   
+  .notice-container{
+    height: 48rpx;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 20rpx 32rpx;
+    &>text {
+        font-size: 32rpx;
+        line-height: 48rpx;
+        color: #fff;
+        font-weight: 400;
+        white-space: nowrap;
+        display: inline-block;
+        animation: 10s wordsLoop linear infinite normal;
+    }
+  }   
+  @keyframes wordsLoop {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
