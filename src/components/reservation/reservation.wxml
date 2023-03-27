@@ -46,11 +46,14 @@
                 <image src="/images/p_icon_4.png" />
             </view>
             <view class="content">
-                <text wx:if="{{true}}" class="placeHolder">请选择日期/时段</text>
-                <text wx:else>安架</text>
+                <text wx:if="{{selectTimeList.length === 0}}" class="placeHolder">请选择日期/时段</text>
+                <text wx:else>{{selectScheduleInfo.scheduleDate}}
+                    <block wx:for="{{selectTimeList}}" wx:key="*this">{{item.startDate}}-{{item.endDate}}(已约{{item.reservationNum}}人),</block>
+                </text>
             </view>
-            <view class="btn">
-                选择
+            
+            <view class="btn {{selectTimeList.length !== 0?'change-btn':'' }}" bindtap="schedulePickerSwitch">
+                {{selectTimeList.length !== 0? '更改':'选择'}}
             </view>
         </view>
     </view>
@@ -162,18 +165,29 @@
         <!-- 类型列表 -->
         <view class="time-content">
             <!-- 时间段 -->
-            <view class="day-picker" >
-                <picker-view-column>
-                    <view></view>
-                  </picker-view-column>
+            <view class="day-picker">
+                <picker-view
+                  indicator-style="height: 50px;"
+                  style="height: 100%;"
+                  value="{{value}}"
+                  bindchange="bindDayPickerChange"
+                >
+                    <picker-view-column>
+                        <view wx:for="{{scheduleList}}" wx:key="scheduleId" style="line-height: 50px">{{item.scheduleDate}}</view>
+                    </picker-view-column>
+                </picker-view>
             </view>
-            <view class="time-picker" />
+            <view class="time-picker">
+                <view class="time-list-item"  wx:for="{{timeList}}" wx:key="timeIntervalId">
+                    <view data-item="{{item}}" bindtap="addTimeList" class="name {{preSelectTimeIdList.includes(item.timeIntervalId) ? 'selected':''}}">{{item.startDate}}-{{item.endDate}}(已约{{item.reservationNum}}人)</view>
+                </view>
+            </view>
 
         </view>
         <!-- 按钮 -->
         <view class="picker-btn">
-            <view class="cancel" bindtap="subjectsPickerSwitch">取消</view>
-            <view class="confirm" bindtap="subjectsPickerSwitch">确定</view>
+            <view class="cancel" data-type="cancel" bindtap="schedulePickerSwitch">取消</view>
+            <view class="confirm" data-type="confirm" bindtap="schedulePickerSwitch">确定</view>
         </view>
     </view>
 </view>

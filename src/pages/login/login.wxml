@@ -5,7 +5,7 @@
   <image src="/images/login-bg.png" class="bg" />
   <!-- container -->
   <view class="login-container">
-    <block wx:if="{{false}}">
+    <block wx:if="{{showLogo}}">
       <!-- logo -->
       <view class="logo">
         <image src="/images/login-logo.png" />
@@ -26,44 +26,50 @@
           <view class="pre-phone">中国+86</view>
           <!-- 手机号输入框 -->
           <view class="input-phone">
-            <input type="number" placeholder="请输入手机号" />
+            <input type="number" maxlength="11" value="{{phoneInput}}" bindblur="verifyPhone" bindinput="bindPhoneInput" placeholder="请输入手机号" />
           </view>
           <!-- 清除 -->
           <view class="clearfix">
-            <image src="/images/close.png"></image>
+            <image src="/images/close.png" bindtap="clearPhoneInput"  />
           </view>
         </view>
         <!-- 验证码 -->
         <view class="verification">
           <view class="input-code">
-            <input type="number" value="676767" />
+            <input type="number" value="{{verifyCode}}" bindinput="verifyCodeInput" />
           </view>
           <!-- 获取验证码 -->
-          <view class="get-verification-code">
+          <view class="get-verification-code" bindtap="getVerifyCode">
             获取验证码
           </view>
         </view>
       </view>
     </block>
     <!-- 按钮 -->
-    <view class="btn enable" >
+    <view class="btn {{checkAgreementStatus ? 'enable':''}}" wx:if="{{showLogo}}" bindtap="showLogin">
       使用手机号登录
+    </view>
+    <view class="btn enable" wx:else bindtap="login">
+      登录
     </view>
     <!-- 声明 -->
     <view class="statement">
       <view class="check-status">
-        <image wx:if="{{true}}" src="/images/login-unchecked.png"></image>
-        <image wx:else src="/images/login-checked.png"></image>
-        <view class="tips">
-          <image src="/images/tip-bg.png" class="bg"></image>
+        <image wx:if="{{checkAgreementStatus}}" src="/images/login-checked.png" bindtap="checkAgreement" />
+        <image wx:else src="/images/login-unchecked.png" bindtap="checkAgreement" />
+        <view class="tips" wx:if="{{tipsShow}}">
+          <image src="/images/tip-bg.png" class="bg" />
           请先阅读并勾选用户协议
-          <image class="close" src="/images/close.png"></image>
+          <image class="close" src="/images/close.png" bindtap="closeTips" />
         </view>
       </view>
       <view class="desc">
 
-        我已阅读并同意<text style="color:rgba(227, 87, 0, 1)">《摩杰座用户服务协议》</text>和<text style="color:rgba(0, 103, 247, 1)">疑似政策</text>
-        
+        我已阅读并同意
+        <text style="color:rgba(227, 87, 0, 1)">《摩杰座用户服务协议》</text>
+        和
+        <text style="color:rgba(0, 103, 247, 1)">疑似政策</text>
+
       </view>
     </view>
   </view>

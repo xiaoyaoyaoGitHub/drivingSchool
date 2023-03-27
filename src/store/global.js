@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 14:04:24
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-15 21:05:42
+ * @LastEditTime: 2023-03-27 15:37:42
  * @FilePath: /wxapp-boilerplate/src/store/global.js
  * @Description: 全局状态数据
  */
@@ -13,6 +13,7 @@ export const global = observable({
 	titleHeight:0, // 标题栏高度
 	statusBarHeight: 0, // 状态栏高度
 	systemInfo:{}, // 系统信息
+	token:'',
 	/**
      * 获取底部自定义tabBar高度
 	 * @param {callee} 当前页面实例
@@ -52,5 +53,18 @@ export const global = observable({
 		this.titleHeight = titleHeight;
 		// 状态栏高度
 		this.statusBarHeight = statusBarHeight;
+	},
+	/**
+	 * 获取用户信息
+	 */
+	getUserInfo(){
+		
+	},
+	/**
+	 * 更新token
+	 */
+	refreshToken(token){
+		console.log(`token`,token);
+		this.token = token
 	},
 });

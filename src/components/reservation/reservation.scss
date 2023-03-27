@@ -164,9 +164,32 @@
         height: 100%;
         flex: 1;
         
+        .schedule {
+            font-size: 32rpx;
+            line-height: 50rpx;
+        }
     }
+    .dayPicked {
+        height: 100rpx;
+    }
+    
     .time-picker {
         height: 100%;
         flex: 1;
+        .time-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 20rpx 0;
+            .name {
+                font-size: 32rpx;
+                line-height: 48rpx;
+                color: rgba(29, 29, 31, 1);
+                &.selected {
+                    color: rgba(0, 103, 247, 1);
+                }
+            }
+        }
     }
 }

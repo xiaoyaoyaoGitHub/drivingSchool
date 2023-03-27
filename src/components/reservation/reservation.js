@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 16:45:45
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-22 16:03:22
+ * @LastEditTime: 2023-03-27 21:19:33
  * @FilePath: /wxapp-boilerplate/src/components/reservation/reservation.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -33,9 +33,14 @@ Component({
 
 		// 时间段
 		timePicker: false,
-		selectTimeInfo: [], //  选择时间列表
-		preSelectTimeInfo: [], // 预选择时间列表
+		selectScheduleInfo: {}, //  选择时间列表
+		preSelectScheduleInfo: {}, // 预选择时间列表
+		selectTimeList: [],
+		preSelectTimeList: [],
+		scheduleList: [], // 可选天列表
 		timeList: [], // 可选时间列表
+		selectDayIndex: 0, // 时间默认选择
+		preSelectTimeIdList: [],
 	},
 	attached() {
 		this.getTypeList();
@@ -44,12 +49,12 @@ Component({
 		// 监听类型变化,根据新值获取校区列表和课程列表
 		'selectTypeInfo.memberType': function (memberType) {
 			this.getLocationList({ memberType });
-			this.getCourseList({memberType, memberId: ''});
+			this.getCourseList({ memberType, memberId: '' });
 		},
 		// 监听校区变化,根据新值获取科目列表
 		'selectLocationInfo.campusId': function (campusId) {
-			const { selectTypeInfo: {memberType} = {}, memberId = '' } = this.data || {};
-			this.getTimeIntervalList({campusId, memberType, memberId});
+			const { selectTypeInfo: { memberType } = {}, memberId = '' } = this.data || {};
+			this.getTimeIntervalList({ campusId, memberType, memberId });
 		},
 	},
 	methods: {
@@ -110,7 +115,6 @@ Component({
 		 */
 		locationPickerSwitch: throttle(function (e) {
 			const { target: { dataset: { type = '' } } = {} } = e || {};
-			console.log(this.data);
 			if (type === 'confirm') { // 确定
 				this.setData({
 					selectLocationInfo: this.data.preSelectLocationInfo,
@@ -187,13 +191,91 @@ Component({
 		 * @param {*} params.memberType 会员类型
 		 */
 		async getTimeIntervalList(params) {
-			const { code, data: timeList = [] } = await apis.GET_TIME_INTERVAL_LIST(params);
+			const { code, data: scheduleList = [] } = await apis.GET_TIME_INTERVAL_LIST(params);
 			if (code === 200) {
 				this.setData({
-					timeList,
+					scheduleList,
 				});
+				if (scheduleList.length > 0) {
+					this.setData({
+						timeList: scheduleList[0].timeIntervalList,
+					});
+				}
 			}
 		},
+		/**
+		 * 选择时间段
+		 */
+		schedulePickerSwitch: throttle(function (e) {
+			const { target: { dataset: { type = '' } } = {} } = e || {};
+			const { selectDayIndex, preSelectTimeList,scheduleList } = this.data || {};
+			if (type === 'confirm') { // 确定
+				console.log(`preSelectTimeList`,preSelectTimeList);
+				this.setData({
+					selectScheduleInfo: scheduleList[selectDayIndex],
+					selectTimeList: preSelectTimeList
+				});
+			}
+			if (type === 'cancel') { // 取消
+				this.setData({
+					preSelectCourseInfo: this.data.selectCourseInfo,
+				});
+			}
+			console.log(this.data);
 
+			this.setData({
+				timePicker: !this.data.timePicker,
+			});
+		}),
+		/**
+		 * 天选择
+		 */
+		bindDayPickerChange(e) {
+			console.log(e);
+			const { detail: { value: selectDayIndex = [] } = {} } = e || {};
+			this.setData({
+				selectDayIndex: selectDayIndex[0],
+			}, () => {
+				this.setData({
+					timeList: this.data.scheduleList[selectDayIndex].timeIntervalList,
+				});
+			});
+		},
+		/**
+		 * 选择天下面的时间段
+		 */
+		addTimeList: throttle(function (e) {
+			console.log(e);
+			const { target: { dataset: { item: curTimeInterval } } = {} } = e || {};
+			console.log(`curTimeInterval`, curTimeInterval);
+			const curSelectTimeList = this.data.preSelectTimeList.concat();
+			// 是否存在当前选中的时间段
+			const isExist = curSelectTimeList.filter((item) => item.timeIntervalId === curTimeInterval.timeIntervalId).length > 0;
+			console.log(`isExist`, isExist);
+			// 不存在则追加
+			if (!isExist) {
+				curSelectTimeList.push(curTimeInterval);
+			}
+			else {
+				// 否则删除
+				const existIndex = curSelectTimeList.findIndex((item) => item.timeIntervalId === curTimeInterval.timeIntervalId);
+				console.log(`existIndex`, existIndex);
+				curSelectTimeList.splice(existIndex, 1);
+			}
+
+			this.setData({
+				preSelectTimeList: curSelectTimeList,
+			});
+
+			const preSelectTimeIdList = [];
+			curSelectTimeList.forEach(item => {
+				preSelectTimeIdList.push(item.timeIntervalId)
+			})
+			this.setData({
+				preSelectTimeIdList
+			})
+			console.log(`preSelectTimeIdList`, preSelectTimeIdList);
+			console.log(`curSelectTimeList`, this.data.preSelectTimeList);
+		}),
 	},
 });

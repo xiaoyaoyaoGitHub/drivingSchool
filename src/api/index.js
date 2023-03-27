@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 17:07:13
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-23 15:00:49
+ * @LastEditTime: 2023-03-27 15:34:36
  * @FilePath: /wxapp-boilerplate/src/api/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -234,7 +234,7 @@ const init = () => {
 			return getInstance.http({
 				baseURL: hostConfig.url,
 				url: '/mobile/courseReservationDetail',
-				methods: 'GET',
+				method: 'GET',
 				data,
 				...options,
 			});
@@ -249,7 +249,7 @@ const init = () => {
 			return getInstance.http({
 				baseURL: hostConfig.url,
 				url: '/mobile/module/getModuleBanner',
-				methods: 'GET',
+				method: 'GET',
 				data,
 				...options,
 			});
@@ -264,7 +264,7 @@ const init = () => {
 			return getInstance.http({
 				baseURL: hostConfig.url,
 				url: '/mobile/module/getModuleContent',
-				methods: 'GET',
+				method: 'GET',
 				data,
 				...options,
 			});
@@ -279,7 +279,52 @@ const init = () => {
 			return getInstance.http({
 				baseURL: hostConfig.url,
 				url: '/mobile/getAnouncementsList',
-				methods: 'GET',
+				method: 'GET',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 获取公告
+		 * @param {*} data
+		 * @param {*} options
+		 * @returns
+		 */
+		RESERVATION_RECORD(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/mobile/reservation/record',
+				method: 'GET',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 获取验证码
+		 * @param {*} data
+		 * @param {*} options
+		 * @returns
+		 */
+		VERIFY_CODE(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/mobile/motorMessageVerify/verifyCode',
+				method: 'POST',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 登录注册
+		 * @param {*} data
+		 * @param {*} options
+		 * @returns
+		 */
+		MEMBER_LOGIN(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/memberLogin',
+				method: 'POST',
 				data,
 				...options,
 			});
