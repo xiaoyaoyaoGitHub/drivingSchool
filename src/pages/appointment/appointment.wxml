@@ -24,37 +24,81 @@
                 <block wx:for="{{[1,2]}}" wx:key="*this">
                     <swiper-item class="swiper-content-item">
                         <view class="swiper-{{index}}">
-                            <view wx:for="{{[1,2,3,4]}}" wx:key="*this" class="swiper-item done">
-                                <!-- 预约类型 -->
-                                <view class="type">
-                                    预约类型:
-                                    <text>练车</text>
+                            <block wx:if="{{index === 0}}">
+                                <view wx:for="{{doneReserList}}" wx:key="*this" class="swiper-item done">
+                                    <!-- 预约类型 -->
+                                    <view class="type">
+                                        预约类型:
+                                        <text>{{item.memberType}}</text>
+                                    </view>
+                                    <!-- 校区 -->
+                                    <view class="address">
+                                        校区:
+                                        <text>{{item.campusName}}</text>
+                                    </view>
+                                    <!-- 学习 -->
+                                    <view class="project">
+                                        学习:
+                                        <text>{{item.courseName}}</text>
+                                    </view>
+                                    <!-- 日期 -->
+                                    <view class="date">
+                                        日期:
+                                        <text>{{item.scheduleDate}}({{item.weekDate}})</text>
+                                    </view>
+                                    <!-- 学习时间 -->
+                                    <view class="time">
+                                        学习:
+                                        <text><block wx:for="{{item.timeIntervalList}}" wx:key="*this">{{item.startDate}}~{{item.endDate}}</block></text>
+                                    </view>
+                                    <!-- 取消预约 -->
+                                    <view class="cancel" bindtap="cancelReservation" data-item="{{item}}">
+                                        取消预约
+                                    </view>
                                 </view>
-                                <!-- 校区 -->
-                                <view class="address">
-                                    校区:
-                                    <text>顺义驾校</text>
+                            </block>
+                            <block wx:else>
+                                <view wx:for="{{cancelReserList}}" wx:key="*this" class="swiper-item done">
+                                    <!-- 预约类型 -->
+                                    <view class="type">
+                                        预约类型:
+                                        <text>练车</text>
+                                    </view>
+                                    <!-- 校区 -->
+                                    <view class="address">
+                                        校区:
+                                        <text>顺义驾校</text>
+                                    </view>
+                                    <!-- 学习 -->
+                                    <view class="project">
+                                        学习:
+                                        <text>科目二油离配合</text>
+                                    </view>
+                                    <!-- 日期 -->
+                                    <view class="date">
+                                        日期:
+                                        <text>3月1日（星期一）</text>
+                                    </view>
+                                    <!-- 学习时间 -->
+                                    <view class="time">
+                                        学习:
+                                        <text>9:30 ～ 12:00     13:30 ～ 17:00</text>
+                                    </view>
+                                    <!-- 取消预约 -->
+                                    <view wx:if="{{item.reservationStatus === 0}}" class="cancel disabled">
+                                        未签到
+                                    </view>
+                                    <view wx:elif="{{item.reservationStatus === 1}}" class="cancel disabled">
+                                        已完成
+                                    </view>
+                                    <view wx:elif="{{item.reservationStatus === 2}}" class="cancel disabled">
+                                        已退订
+                                    </view>
+                                    <view wx:elif="{{item.reservationStatus === 3}}" class="cancel disabled">
+                                        已过期
+                                    </view>
                                 </view>
-                                <!-- 学习 -->
-                                <view class="project">
-                                    学习:
-                                    <text>科目二油离配合</text>
-                                </view>
-                                <!-- 日期 -->
-                                <view class="date">
-                                    日期:
-                                    <text>3月1日（星期一）</text>
-                                </view>
-                                <!-- 学习时间 -->
-                                <view class="time">
-                                    学习:
-                                    <text>9:30 ～ 12:00     13:30 ～ 17:00</text>
-                                </view>
-                                <!-- 取消预约 -->
-                                <view class="cancel">
-                                    取消预约
-                                </view>
-                            </view>
+                            </block>
                         </view>
                     </swiper-item>
                 </block>

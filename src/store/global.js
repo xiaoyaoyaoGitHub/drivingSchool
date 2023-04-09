@@ -1,8 +1,9 @@
+
 /*
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 14:04:24
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-27 15:37:42
+ * @LastEditTime: 2023-04-04 09:38:43
  * @FilePath: /wxapp-boilerplate/src/store/global.js
  * @Description: 全局状态数据
  */
@@ -13,7 +14,7 @@ export const global = observable({
 	titleHeight:0, // 标题栏高度
 	statusBarHeight: 0, // 状态栏高度
 	systemInfo:{}, // 系统信息
-	token:'',
+	userInfo:{token:"eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjM5NGQ1YTk2LTQ0NDktNGU4MC04NjFkLWRmMTE0YzEyZTNhZCJ9.1QchqwzQUAf01H6WMWoOhV_XiUIxNm_L5BTVb-dBIgky6iebSQbyK6OUMH91oFKn4H2iXc8QcD_F6DlkRgjv6A",memberId:5},
 	/**
      * 获取底部自定义tabBar高度
 	 * @param {callee} 当前页面实例
@@ -63,8 +64,9 @@ export const global = observable({
 	/**
 	 * 更新token
 	 */
-	refreshToken(token){
+	refreshToken({token, memberId}){
 		console.log(`token`,token);
-		this.token = token
+		this.userInfo = {token, memberId}
 	},
+	
 });

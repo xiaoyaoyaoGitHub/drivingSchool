@@ -1,5 +1,6 @@
 <!-- 约课流程 -->
 <view class="reservation-process">
+    <!-- 预约列表 -->
     <view class="process-list">
         <!-- 类型名称 -->
         <view class="list-item">
@@ -56,6 +57,11 @@
                 {{selectTimeList.length !== 0? '更改':'选择'}}
             </view>
         </view>
+       
+    </view>
+     <!-- 提交按钮 -->
+     <view class="reservation-btn" bindtap="reservation">
+        提交
     </view>
 </view>
 <!-- picker 类型 选择 -->

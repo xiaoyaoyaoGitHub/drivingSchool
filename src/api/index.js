@@ -2,12 +2,13 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 17:07:13
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-27 15:34:36
+ * @LastEditTime: 2023-04-04 09:42:34
  * @FilePath: /wxapp-boilerplate/src/api/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 
 import Ajax from './AjaxUtil';
+import { global } from '@/store/index';
 
 const hostConfig = {
 	url: 'http://39.98.207.154:9000',
@@ -22,82 +23,16 @@ const init = () => {
 		baseURL: '',
 		timeout: 30000,
 	});
-	/**
-	 * 请求静默授权的authcode
-	 * @returns
-	 */
-	const getBaseAuthCode = () => {
-		return new Promise((resolve, reject) => {
-			wx.login({
-				success(res) {
-					if (res.code) {
-						resolve(res.code);
-					}
-					else {
-						my.showToast({
-							content: '授权失败，请稍后重试',
-						});
-						reject(res);
-					}
-				},
-				fail(err) {
-					reject(err);
-				},
-			});
-		});
-	};
-
-	/**
-	 * 请求指定scopes的授权authcode
-	 * @param scopes
-	 * @returns
-	 */
-	const getAuthCode = (scopes = 'auth_base') => {
-		return new Promise((resolve, reject) => {
-			my.getAuthCode({
-				scopes: scopes,
-				success: (res = {}) => {
-					const { authCode } = res;
-					if (!authCode || typeof authCode !== 'string') {
-						my.showToast({
-							content: '授权失败，请稍后重试',
-						});
-						reject(res);
-					}
-					else {
-						resolve(authCode);
-					}
-				},
-				fail: (err = {}) => {
-					console.log(err);
-
-					if (err.error === 11) {
-
-						console.log('用户取消授权');
-					}
-					else {
-						my.showToast({
-							content: '授权失败，请稍后重试',
-						});
-					}
-					reject(err);
-				},
-			});
-		});
-	};
 
 	const requestInterceptorFunc = (config = {}) => {
-		const authCode = config.headers.authCode;
 
 		if (config.baseURL == null || config.baseURL === '') {
 			config.baseURL = hostConfig.url;
 		}
-		config.data.authcode = authCode;
-
 		// 转换formData
 		if (config.method === 'POST' && config.dataType === 'formData') {
-			config.headers = {
-				...config.headers,
+			config.header = {
+				...config.header,
 				'content-type': 'application/x-www-form-urlencoded',
 			};
 			delete config.dataType;
@@ -106,45 +41,32 @@ const init = () => {
 		return config;
 	};
 	const requestInterceptorFuncWrapper = (config = {}) => {
-		const gloalData = getApp().globalData;
+		console.log('global', global);
+		const { userInfo = {} } = global || {};
 
-		const { urlParams, version, token } = gloalData;
-		const { userId = '' } = urlParams || {};
+		const { token: Authorization, memberId } = userInfo;
+		config.header = { ...config.header, Authorization };
 		config.data = {
-			userId,
-			version: version,
-			token: token,
+			memberId,
 			...config.data,
 		};
-
-		if (config.data.authcode) {
-			// 特殊scopes授权的自己请求authCode传入
-			config.headers.authCode = config.data.authcode;
-			return requestInterceptorFunc(config);
-		}
-		else {
-			// 大部分接口从缓存读取基本authCode
-			return getBaseAuthCode()
-				.then((authCode) => {
-					config.headers.authCode = authCode;
-					return requestInterceptorFunc(config);
-				})
-				.catch((err) => {
-					return Promise.reject(err);
-				});
-		}
+		return requestInterceptorFunc(config);
 	};
 	instance.interceptors.request.use(requestInterceptorFuncWrapper);
 
 	const responseInterceptorFunc = (response = { code: '', msg: '' }, config = {}) => {
-		console.log(response);
+		if (response.code === 401) { // 需要登录
+			wx.navigateTo({
+				url: '/pages/login/login',
+			});
+		}
 		return Promise.resolve(response);
 	};
 	const responseInterceptorFuncWrapper = (response = {}, config) => {
 		return responseInterceptorFunc(response, config);
 	};
 	const responseInterceptorErrFunc = (err, config = {}) => {
-		getApp().logError(config, null, err);
+		// getApp().logError(config, null, err);
 		return Promise.reject(err);
 	};
 	instance.interceptors.response.use(
@@ -324,6 +246,83 @@ const init = () => {
 			return getInstance.http({
 				baseURL: hostConfig.url,
 				url: '/memberLogin',
+				method: 'POST',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 预约(json格式请求)
+		 * @param {*} data
+		 * @param {*} options
+		 * @returns
+		 */
+		RESERVATION_RESERVATE(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/mobile/reservation/reservate',
+				method: 'POST',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 预约(json格式请求)
+		 * @param {*} data
+		 * @param {*} options
+		 * @returns
+		 */
+		CANCEL_RESERVATE(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/mobile/reservation/cancelReservate',
+				method: 'POST',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 获取单个会员详情
+		 * @param {*} data
+		 * @param {*} options
+		 */
+		GET_MEMBER_DETAIL(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/mobile/getMemberDetail',
+				method: 'GET',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 新增投诉
+		 * @param {*} data.memberId 会员ID
+		 * @param {*} data.description 内容
+		 * @param {*} data.createDate 日期
+		 * @param {*} options
+		 * @returns
+		 */
+		ADD_COMPLAIN(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/addComplain',
+				method: 'POST',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 新增车牌
+		 * @param {*} data.memberId 会员ID
+		 * @param {*} data.carNumber 车牌列表
+		 * @param {*} options
+		 * @returns
+		 */
+		ADD_CAR_NUMBER(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/addCarNumber',
 				method: 'POST',
 				data,
 				...options,

@@ -43,15 +43,14 @@ AjaxUtil.prototype.http = function (options = {}) {
 	if (options.data == null) {
 		options.data = {};
 	}
-	if (options.headers == null) {
-		options.headers = {};
+	if (options.header == null) {
+		options.header = {};
 	}
 	/* eslint no-undef: "off"*/
 	const page = getCurrentPages().pop();
 	if (page) {
-		options.headers.rawPage = page.route;
+		options.header.rawPage = page.route;
 	}
-	console.log('options', options);
 	return new Promise((resolve, reject) => {
 		this.request(options).then(resolve).catch(reject);
 	});
@@ -60,6 +59,7 @@ AjaxUtil.prototype.http = function (options = {}) {
 
 
 const wxRequestPromise = function (options) {
+	console.log('options', options);
 	return new Promise((resolve, reject) => {
 		wx.request({
 			...options,
@@ -76,12 +76,17 @@ AjaxUtil.prototype.request = async function (options) {
 	options = {
 		method: 'GET',
 		data: {},
-		headers: {},
+		header: {},
 		baseURL: this.baseURL,
 		timeout: this.timeout,
 		...options,
 	};
+
 	if (wx && wx.request) {
+		if (this.requestConfig.cb) {
+			options = await this.requestConfig.cb(options);
+		}
+		console.log('options', options);
 		const {
 			url,
 			baseURL,
@@ -94,7 +99,9 @@ AjaxUtil.prototype.request = async function (options) {
 			});
 			let data = res.data;
 			console.log('data', data);
-
+			if (this.responseConfig.cb) {
+				return this.responseConfig.cb(data, options);
+			}
 			return data;
 		}
 		catch (err) {

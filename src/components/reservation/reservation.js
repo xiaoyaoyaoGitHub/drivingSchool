@@ -2,11 +2,13 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 16:45:45
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-27 21:19:33
+ * @LastEditTime: 2023-03-28 20:32:24
  * @FilePath: /wxapp-boilerplate/src/components/reservation/reservation.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { throttle } from '@/utils/lodash-fix';
+import { createStoreBindings } from 'mobx-miniprogram-bindings';
+import { reservationStore } from "@/store/index"
 
 const app = getApp();
 const apis = app.apis;
@@ -43,6 +45,10 @@ Component({
 		preSelectTimeIdList: [],
 	},
 	attached() {
+		this.storeBindings = createStoreBindings(this, {
+			store: reservationStore,
+			actions: ['hideAddReservation']
+		})
 		this.getTypeList();
 	},
 	observers: {
@@ -208,9 +214,9 @@ Component({
 		 */
 		schedulePickerSwitch: throttle(function (e) {
 			const { target: { dataset: { type = '' } } = {} } = e || {};
-			const { selectDayIndex, preSelectTimeList,scheduleList } = this.data || {};
+			const { selectDayIndex, preSelectTimeList, scheduleList } = this.data || {};
 			if (type === 'confirm') { // 确定
-				console.log(`preSelectTimeList`,preSelectTimeList);
+				console.log(`preSelectTimeList`, preSelectTimeList);
 				this.setData({
 					selectScheduleInfo: scheduleList[selectDayIndex],
 					selectTimeList: preSelectTimeList
@@ -277,5 +283,37 @@ Component({
 			console.log(`preSelectTimeIdList`, preSelectTimeIdList);
 			console.log(`curSelectTimeList`, this.data.preSelectTimeList);
 		}),
+		/**
+		 * 提交预约
+		 */
+		reservation: throttle(async function (e) {
+			try {
+				const { selectTypeInfo, selectCourseInfo, selectLocationInfo, selectScheduleInfo, selectTimeList: timeIntervalList = [] } = this.data || {};
+				const { memberType } = selectTypeInfo || {}; // 会员类型ID	
+				const { campusId } = selectLocationInfo || {}; // 校区ID	
+				const { courseId } = selectCourseInfo || {}; // 课程ID	
+				const { scheduleId, scheduleDate } = selectScheduleInfo || {}; // 课程日期id	 上课日期	
+				const { code } = await apis.RESERVATION_RESERVATE({ memberType, campusId, courseId, scheduleId, scheduleDate, timeIntervalList })
+				if (code === 200) { // 预约成功
+					wx.showToast({
+						type: 'success',
+						title: '预约成功'
+					});
+					this.hideAddReservation()
+				} else {
+					// 预约失败
+					wx.showToast({
+						type: 'fail',
+						title: '预约失败'
+					})
+				}
+			}catch(err){
+				console.log(`err`,err);
+				wx.showToast({
+					type: 'fail',
+					title: '预约失败'
+				})
+			}
+		})
 	},
 });
