@@ -100,9 +100,13 @@ page {
                         font-size: 20rpx;
                         line-height: 30rpx;
                         font-weight: 400;
-                        color: rgba(29, 29, 31, 1);
-                        background-color: rgba(255, 255, 255, 0.6);
+                        color: #fff;
+                        background-color: $btnColor;
                         border-radius: 74rpx;
+                        &.disabled {
+                            color: rgba(29, 29, 31, 1);
+                            background-color: rgba(255, 255, 255, 0.6);
+                        }
                     }
                 }
             }

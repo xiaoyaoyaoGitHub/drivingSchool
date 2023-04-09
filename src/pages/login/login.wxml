@@ -39,8 +39,11 @@
             <input type="number" value="{{verifyCode}}" bindinput="verifyCodeInput" />
           </view>
           <!-- 获取验证码 -->
-          <view class="get-verification-code" bindtap="getVerifyCode">
+          <view wx:if="{{!countdown}}" class="get-verification-code" bindtap="getVerifyCode">
             获取验证码
+          </view>
+          <view wx:else class="get-verification-code disabled" >
+            重新获取{{countdownTime}}s
           </view>
         </view>
       </view>
