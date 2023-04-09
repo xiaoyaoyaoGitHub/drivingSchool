@@ -101,7 +101,7 @@
     </view>
 </view>
 <!-- 添加车牌号 -->
-<view class="emergency-contcat">
+<view class="emergency-contcat" wx:if="{{false}}">
     <view class="content">
         <view class="title">
             · 紧急联系人 ·

@@ -3,7 +3,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 14:04:24
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-09 09:46:59
+ * @LastEditTime: 2023-04-09 13:26:53
  * @FilePath: /wxapp-boilerplate/src/store/global.js
  * @Description: 全局状态数据
  */
@@ -14,6 +14,7 @@ export const global = observable({
 	titleHeight:0, // 标题栏高度
 	statusBarHeight: 0, // 状态栏高度
 	systemInfo:{}, // 系统信息
+	// userInfo:{},
 	userInfo:{token:"eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijg4MDZjNDk3LTFiNjQtNGU3ZS1hMzVmLTNlYjk3MjQ3NWQ5NSJ9.M2rYIZVzNgUaBUIHe34TbaOsxBtOkoxXEmE4tXFrCVvxmtOWK1QFU4SVd6F-qOPIuylOkNRNKchET1EWZ7zh4Q",memberId:35},
 	/**
      * 获取底部自定义tabBar高度

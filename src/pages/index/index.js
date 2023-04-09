@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 16:21:28
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-27 11:22:49
+ * @LastEditTime: 2023-04-09 13:15:12
  * @FilePath: /wxapp-boilerplate/src/pages/index/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -36,20 +36,41 @@ Page({
 		swiperTabCheckIndex: 0,
 		modulesInfo: {}, // 首页模块信息
 		moduleContent: [], // 模块内容信息
-		anouncementList:[], // 公告
+		anouncementList: [], // 公告
 	},
 	behaviors: [indexBehavior],
 	// 事件处理函数
-	loginTap:throttle(function() {
+	loginTap: throttle(function () {
 		wx.navigateTo({
-			url: '/pages/login/login',
+			url: '/pages/costs/costs',
 		});
 	}),
+	/**
+	 * 会员商品
+	 */
+	productList: throttle(function(){
+		wx.navigateTo({
+			url: '/pages/products/products',
+		});
+	}),
+	/**
+	 * 安架科目
+	 */
+	subjectList: throttle(function(){
+		wx.navigateTo({
+			url: '/pages/subjects/subjects',
+		});
+	}),
+	/**
+	 * 二手车
+	 */
+	productByUsed: throttle(function(){
+		wx.navigateTo({
+			url:'/pages/productsByUsed/productsByUsed'
+		})
+	}),
 	async onLoad() {
-		// 上部区域模块
-		this.getModuleBanner();
-		// 摩旅路书
-		this.getModuleContent();
+
 		if (typeof this.getTabBar === 'function' &&
 			this.getTabBar()) {
 			this.getTabBar().setData({
@@ -65,7 +86,10 @@ Page({
 			});
 			this.getTabBarHeight(this)
 		};
-
+		// 上部区域模块
+		this.getModuleBanner();
+		// 摩旅路书
+		this.getModuleContent();
 	},
 	/**
 	 * 动态设置swiper高度
@@ -148,16 +172,16 @@ Page({
 	/**
 	 * 获取公告
 	 */
-	async getAnouncementsList(){
+	async getAnouncementsList() {
 		try {
 			const { code, anouncementList = [] } = await apis.GET_ANOUNCEMENTS_LIST();
-			if(code === 200){
+			if (code === 200) {
 				this.setData({
 					anouncementList
 				})
 			}
-		}catch(err){
-			console.log(`获取公告err:`,err);
+		} catch (err) {
+			console.log(`获取公告err:`, err);
 		}
 	},
 });

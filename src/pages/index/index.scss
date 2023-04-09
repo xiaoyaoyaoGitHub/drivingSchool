@@ -78,6 +78,17 @@
 						text-align: left;
 						vertical-align: top;
 					}
+					.tag {
+						display: flex;
+						justify-content: flex-start;
+						align-items: center;
+						flex-wrap: wrap;
+						&>image {
+							width: 112rpx;
+							height: 32rpx;
+							margin-right: 10rpx;
+						}
+					}
 				}
 			}
 		}

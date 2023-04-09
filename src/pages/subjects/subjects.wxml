@@ -1,18 +1,18 @@
 <scroll-view class="subjects" scroll-y="true">
   <!-- 列表 -->
   <view class="subjects-lists">
-    <view class="list-item" wx:for="{{[1,2,4,5]}}" wx:key="*this">
+    <view class="list-item" data-item="{{item}}" bindtap="toPlayer" wx:for="{{modulesInfo}}" wx:key="*this">
       <!-- 顺序 -->
-      <view class="order">1</view>
+      <view class="order">{{index - 0 + 1}}</view>
       <!-- 主标题副标题 -->
       <view class="titles">
-        <view class="main-title">上下车计正确骑姿</view>
-        <view class="sub-title">科目详细说明</view>
+        <view class="main-title">{{item.title}}</view>
+        <view class="sub-title">{{item.fistText}}</view>
       </view>
       <!-- video -->
-      <view class="video">
+      <view class="video-container">
         <!-- 画面 -->
-        <image src="" class=""></image>
+        <image src="{{item.fistImage}}" class=""></image>
       </view>
     </view>
   </view>

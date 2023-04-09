@@ -14,14 +14,14 @@
     <view class="business">
         <!-- 左侧 -->
         <view class="left">
-            <image src="{{modulesInfo['SAFE_DRIVING_SUBJECT'].image}}" />
+            <image bindtap="subjectList" src="{{modulesInfo['SAFE_DRIVING_SUBJECT'].image}}" />
         </view>
         <!-- 右侧 -->
         <view class="right">
             <!-- 右侧上方 -->
-            <image src="{{modulesInfo['MEMBER_PRODUCT'].image}}" />
+            <image bindtap="productList" src="{{modulesInfo['MEMBER_PRODUCT'].image}}" />
             <!-- 右侧下方 -->
-            <image src="{{modulesInfo['USED_CAR'].image}}" />
+            <image bindtap="productByUsed" src="{{modulesInfo['USED_CAR'].image}}" />
         </view>
     </view>
     <!-- switch tab -->
@@ -50,7 +50,7 @@
                         <view class="desc">{{item.fistText}}</view>
                         <!-- 标签 -->
                         <view class="tag">
-                            <image src="" wx:for="{{item.tagList}}" wx:key="*this"></image>
+                            <image src="{{item.itemImage}}" wx:for="{{item.tagList}}" wx:key="*this"></image>
                         </view>
                     </view>
                 </view>

@@ -2,13 +2,15 @@
   "pages":[
     "pages/index/index",
     "pages/productDetail/productDetail",
+    "pages/productsByUsed/productsByUsed",
+    "pages/productUsedDetail/productUsedDetail",
     "pages/products/products",
     "pages/subjects/subjects",
     "pages/login/login",
     "pages/costs/costs",
     "pages/my/my",
+    "pages/player/player",
     "pages/appointment/appointment"
-    
   ],
   "window":{
     "backgroundTextStyle":"light",

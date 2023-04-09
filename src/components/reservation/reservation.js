@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 16:45:45
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-28 20:32:24
+ * @LastEditTime: 2023-04-09 10:16:49
  * @FilePath: /wxapp-boilerplate/src/components/reservation/reservation.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -49,15 +49,14 @@ Component({
 			store: reservationStore,
 			actions: ['hideAddReservation']
 		})
-		this.getTypeList();
 	},
 	observers: {
 		// 监听类型变化,根据新值获取校区列表和课程列表
 		'selectTypeInfo.memberType': function (memberType) {
-			this.getLocationList({ memberType });
-			this.getCourseList({ memberType, memberId: '' });
+			// this.getLocationList({ memberType });
+			// this.getCourseList({ memberType, memberId: '' });
 		},
-		// 监听校区变化,根据新值获取科目列表
+		// 监听校区变化,根据新值获取时间列表
 		'selectLocationInfo.campusId': function (campusId) {
 			const { selectTypeInfo: { memberType } = {}, memberId = '' } = this.data || {};
 			this.getTimeIntervalList({ campusId, memberType, memberId });
@@ -68,11 +67,23 @@ Component({
 		 * 获取类型列表
 		 */
 		async getTypeList() {
+			wx.showLoading({
+				title:'获取驾校列表中...'
+			})
 			const { code, data: typeList = [] } = await apis.GET_MEMBER_TYPE_LIST();
+			wx.hideLoading()
 			if (code === 200) {
+				this.setData({
+					showTypePicker: !this.data.showTypePicker,
+				});
 				this.setData({
 					typeList,
 				});
+			}else{
+				wx.showToast({
+					icon:'none',
+					title:'获取驾校列表失败'
+				})
 			}
 		},
 		/**
@@ -90,6 +101,10 @@ Component({
 				this.setData({
 					preSelectTypeInfo: this.data.selectTypeInfo,
 				});
+			};
+			if(!this.data.showTypePicker){
+				this.getTypeList();
+				return
 			}
 			this.setData({
 				showTypePicker: !this.data.showTypePicker,
@@ -108,12 +123,32 @@ Component({
 		 * 获取校区列表
 		 * @param {Object} params.memberType 会员类型
 		 */
-		async getLocationList(params) {
+		async getLocationList(params = {}) {
+			params.memberType = this.data.selectTypeInfo.memberType;
+			if(!params.memberType){
+				wx.showToast({
+					icon:'none',
+					title:'请选择驾校'
+				})
+				return
+			}
+			wx.showLoading({
+				title:'获取校区列表中...'
+			})
 			const { code, data: locationList = [] } = await apis.GET_CAMPUS_LIST(params);
+			wx.hideLoading()
 			if (code === 200) {
+				this.setData({
+					showLocationPicker: !this.data.showLocationPicker,
+				});
 				this.setData({
 					locationList,
 				});
+			}else{
+				wx.showToast({
+					icon:'none',
+					title:'获取校区列表失败'
+				})
 			}
 		},
 		/**
@@ -130,6 +165,10 @@ Component({
 				this.setData({
 					preSelectLocationInfo: this.data.selectLocationInfo,
 				});
+			};
+			if(!this.data.showLocationPicker){
+				this.getLocationList();
+				return
 			}
 			this.setData({
 				showLocationPicker: !this.data.showLocationPicker,
@@ -150,25 +189,34 @@ Component({
 		 * @param {*} params.memberType 会员类型
 		 * @param {*} params.memberId 会员id
 		 */
-		async getCourseList(params) {
+		async getCourseList(params = {}) {
+			params.memberType = this.data.selectTypeInfo.memberType;
+			if(!params.memberType){
+				wx.showToast({
+					icon:'none',
+					title:'请选择驾校'
+				})
+				return
+			}
+			wx.showLoading({
+				title:'获取课程列表中...'
+			})
 			const { code, data: courseList = [] } = await apis.GET_COURSE_LIST(params);
+			wx.hideLoading();
 			if (code === 200) {
 				this.setData({
 					courseList,
 				});
+				this.setData({
+					subjectsPicker: !this.data.subjectsPicker,
+				});
+			}else{
+				wx.showToast({
+					icon:'none',
+					title:'获取课程列表失败'
+				})
 			}
 		},
-		/**
-		 * 选择科目
-		 */
-		selectCourseClick: throttle(function (e) {
-			console.log(e);
-			const { target: { dataset: { item: preSelectCourseInfo } = {} } = {} } = e || {};
-			this.setData({
-				preSelectCourseInfo,
-			});
-		}),
-
 		/**
 		 * 选择科目 弹出picker
 		 */
@@ -185,19 +233,58 @@ Component({
 					preSelectCourseInfo: this.data.selectCourseInfo,
 				});
 			}
+			if(!this.data.subjectsPicker){
+				this.getCourseList();
+				return 
+			}
 			this.setData({
 				subjectsPicker: !this.data.subjectsPicker,
 			});
 		}),
-
+		/**
+		 * 选择科目
+		 */
+		selectCourseClick: throttle(function (e) {
+			console.log(e);
+			const { target: { dataset: { item: preSelectCourseInfo } = {} } = {} } = e || {};
+			this.setData({
+				preSelectCourseInfo,
+			});
+		}),
 		/**
 		 * 获取时间列表
 		 * @param {*} params.campusId 校区ID
 		 * @param {*} params.memberId 会员ID
 		 * @param {*} params.memberType 会员类型
 		 */
-		async getTimeIntervalList(params) {
-			const { code, data: scheduleList = [] } = await apis.GET_TIME_INTERVAL_LIST(params);
+		async getTimeIntervalList(params = {}) {
+			const { selectTypeInfo: { memberType } = {}, memberId = '',selectLocationInfo:{campusId  = ''} = {}, selectCourseInfo:{courseId = ''} = {}  } = this.data || {};
+			if(!memberType){
+				wx.showToast({
+					icon:'none',
+					title:'请选择驾校'
+				})
+				return
+			}
+			if(!campusId){
+				wx.showToast({
+					icon:'none',
+					title:'请选择校区'
+				})
+				return
+			}
+			if(!courseId){
+				wx.showToast({
+					icon:'none',
+					title:'请选择课程'
+				})
+				return
+			}
+			wx.showLoading({
+				title:'获取时间列表中...'
+			})
+			const { code, data: scheduleList = [] } = await apis.GET_TIME_INTERVAL_LIST({memberType, memberId, campusId,courseId});
+			wx.hideLoading()
 			if (code === 200) {
 				this.setData({
 					scheduleList,
@@ -207,6 +294,11 @@ Component({
 						timeList: scheduleList[0].timeIntervalList,
 					});
 				}
+			}else{
+				wx.showToast({
+					icon:'none',
+					title:'获取列表失败'
+				})
 			}
 		},
 		/**
@@ -228,7 +320,10 @@ Component({
 				});
 			}
 			console.log(this.data);
-
+			if(!this.data.timePicker){
+				this.getTimeIntervalList();
+				return
+			}
 			this.setData({
 				timePicker: !this.data.timePicker,
 			});

@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 17:07:13
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-04 09:42:34
+ * @LastEditTime: 2023-04-09 11:28:41
  * @FilePath: /wxapp-boilerplate/src/api/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -289,7 +289,7 @@ const init = () => {
 		GET_MEMBER_DETAIL(data = {}, options = {}) {
 			return getInstance.http({
 				baseURL: hostConfig.url,
-				url: '/mobile/getMemberDetail',
+				url: `/mobile/member/${data.memberId}`,
 				method: 'GET',
 				data,
 				...options,
@@ -323,6 +323,22 @@ const init = () => {
 			return getInstance.http({
 				baseURL: hostConfig.url,
 				url: '/addCarNumber',
+				method: 'POST',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 设置紧急联系人
+		 * @param {*} data.memberId 会员ID
+		 * @param {*} data.phoneNumber 手机号码
+		 * @param {*} options
+		 * @returns
+		 */
+		SET_EMERGENCY_PHONE(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/setEmergencyPhone',
 				method: 'POST',
 				data,
 				...options,
