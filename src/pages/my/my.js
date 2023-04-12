@@ -2,11 +2,12 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 16:21:28
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-09 11:29:09
+ * @LastEditTime: 2023-04-11 16:45:19
  * @FilePath: /wxapp-boilerplate/src/pages/logs/logs.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { behavior } from './behavior';
+import { throttle } from '@/utils/lodash-fix';
 
 const app = getApp();
 const apis = app.apis;
@@ -14,10 +15,17 @@ const apis = app.apis;
 Page({
 	data: {
 		logs: [],
+		info: {},
 	},
 	behaviors: [behavior],
 	onLoad() {
-		this.getTabBarHeight();
+		try {
+			this.getTabBarHeight();
+			this.getUserInfo();
+		}
+		catch (err) {
+			console.log(err);
+		}
 
 	},
 	onShow() {
@@ -26,23 +34,16 @@ Page({
 				selected: 2,
 			});
 		}
-		this.getMemberDetail();
 		apis.ADD_COMPLAIN();
 		apis.ADD_CAR_NUMBER();
 		apis.SET_EMERGENCY_PHONE();
 	},
 	/**
-	 * 获取用户详情
+	 * 登录
 	 */
-	async getMemberDetail() {
-		const { memberId } = this.data.userInfo || {};
-		const {code, msg} = await apis.GET_MEMBER_DETAIL({memberId});
-		if (code === 200) {
-
-		}
-		else {
-
-		}
-		console.log(res);
-	},
+	login: throttle(function (e) {
+		my.navigateTo({
+			url: '/pages/login/login',
+		});
+	}),
 });

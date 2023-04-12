@@ -1,42 +1,84 @@
 <!--my.wxml-->
-<view class="profile" >
+<view class="profile">
     <!-- bg -->
-    <image class="bg" src="/images/my-bg.png"></image>
+    <image class="bg" src="/images/my-bg.png" />
     <!-- statusbar占位 -->
     <view class="statusBar" style="height:{{transparentHeight}}px" />
     <!-- 用户信息 -->
     <view class="user-info">
-        <!-- 头像 -->
-        <view class="avatar">
-            <image src=""></image>
-        </view>
-        <!-- 用户名称 -->
-        <view class="info">
-            <view class="info-top">
-                注册/登录
+        <block wx:if="{{!userInfo.memberId}}" bindtap="login">
+            <!-- 头像 -->
+            <view class="avatar" >
+                <image src="" />
             </view>
-            <!-- 标签 -->
-            <view class="tag">登录更精彩...</view>
-        </view>
+            <!-- 用户名称 -->
+            <view class="info">
+                <view class="info-top">
+                    注册/登录
+                </view>
+                <!-- 标签 -->
+                <view class="tag">登录更精彩...</view>
+            </view>
+        </block>
+        <block wx:else>
+            <!-- 头像 -->
+            <view class="avatar" >
+                <image src="" />
+            </view>
+            <!-- 用户名称 -->
+            <view class="info">
+                <view class="info-top">
+                    {{userInfo.phoneNumber}}
+                </view>
+                <!-- 标签 -->
+                <view class="tag">
+                    <view wx:if="{{userInfo.safeDriverStartDate}}" class="tag-info">安驾学员</view>
+                    <view  wx:if="{{userInfo.trackMemberStartDate}}" class="tag-info">赛道学员</view>
+                    <view wx:if="{{userInfo.rentalStartDate}}" class="tag-info">安驾学员</view>
+                </view>
+            </view>
+        </block>
         <!-- 设置 -->
         <view class="setting">
-            <image src="/images/setting.png"></image>
+            <image src="/images/setting.png" />
         </view>
     </view>
     <!-- 会员积分 -->
-    <view class="points">
-        <image src="/images/points.png"></image>
+    <view class="points" wx:if="{{userInfo.memberId}}">
+        <view class="point">
+            {{userInfo.memberPoint}}<text class="unit">分</text>
+        </view>
+    </view>
+    <view class="points" wx:else>
+        <image src="/images/points.png" />
     </view>
     <!-- about -->
-    <view class="about">
-        <image src="/images/about.png"></image>
+    <view class="member-list" wx:if="{{userInfo.memberId}}">
+        <view class="member-info" wx:if="{{userInfo.safeDriverStartDate}}" >
+            <view class="rest">
+                <view class="rest-value">{{userInfo.safeDriverMemberTotal}}<text class="unit">天</text></view>
+                <view class="desc">剩余有效天数</view>
+            </view>
+        </view>
+        <view class="member-info" wx:if="{{userInfo.trackMemberStartDate}}" >
+            <view class="rest">
+                <view class="rest-value">{{userInfo.trackMemberTotal}}<text class="unit">次</text></view>
+                <view class="desc">截止日期{{userInfo.trackMemberEndDate}}</view>
+            </view>
+        </view>
+        <view class="member-info">
+            <image src="/images/anjia_vip.png" />
+        </view>
+    </view>
+    <view class="about" wx:else>
+        <image src="/images/about.png" />
     </view>
     <!-- my-servies -->
     <view class="services">
         <view class="list-item" wx:for="{{[1,3,4]}}" wx:key="*this">
             <!-- icon -->
             <view class="list-item-icon">
-                <image src=""></image>
+                <image src="" />
             </view>
             <!-- name -->
             <view class="list-item-name">
@@ -55,31 +97,29 @@
             我的摩托车
         </view>
         <view class="cars-list">
-            <view class="cars-list-item" wx:for="{{[1,3,4]}}" wx:key="*this">
-
-            </view>
+            <view class="cars-list-item" wx:for="{{[1,3,4]}}" wx:key="*this" />
         </view>
     </view>
     <!-- 功能 -->
     <view class="func-lists">
         <view class="list-item">
             <view class="icon">
-                <image src="/images/jjlxr.png"></image>
+                <image src="/images/jjlxr.png" />
             </view>
             <view class="desc">紧急联系人</view>
             <view class="operate">
                 <text>添加</text>
-                <image src="/images/triangle-right.png"></image>
+                <image src="/images/triangle-right.png" />
             </view>
         </view>
         <view class="list-item">
             <view class="icon">
-                <image src="/images/tsyjy.png"></image>
+                <image src="/images/tsyjy.png" />
             </view>
             <view class="desc">投诉与建议</view>
             <view class="operate">
                 <text>输入</text>
-                <image src="/images/triangle-right.png"></image>
+                <image src="/images/triangle-right.png" />
             </view>
         </view>
     </view>
@@ -92,7 +132,7 @@
         </view>
         <!-- 输入框 -->
         <view class="car-license">
-            <input class="license" auto-focus placeholder="请输入车牌号"/>
+            <input class="license" auto-focus placeholder="请输入车牌号" />
         </view>
         <!-- 确认按钮 -->
         <view class="btn">
@@ -108,10 +148,10 @@
         </view>
         <!-- 输入框 -->
         <view class="emergency-contcat-input">
-            <input class="name" auto-focus placeholder="请输入联系人姓名"/>
+            <input class="name" auto-focus placeholder="请输入联系人姓名" />
         </view>
         <view class="emergency-contcat-input" style="margin-top: 24rpx">
-            <input class="phone" auto-focus placeholder="请输入联系人手机号"/>
+            <input class="phone" auto-focus placeholder="请输入联系人手机号" />
         </view>
         <!-- 确认按钮 -->
         <view class="btn">
