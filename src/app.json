@@ -1,5 +1,6 @@
 {
   "pages":[
+    
     "pages/index/index",
     "pages/productDetail/productDetail",
     "pages/productsByUsed/productsByUsed",
@@ -10,7 +11,9 @@
     "pages/costs/costs",
     "pages/my/my",
     "pages/player/player",
+    "pages/recommendations/recommendations",
     "pages/appointment/appointment"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",

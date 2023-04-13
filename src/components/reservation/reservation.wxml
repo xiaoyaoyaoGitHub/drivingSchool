@@ -52,15 +52,15 @@
                     <block wx:for="{{selectTimeList}}" wx:key="*this">{{item.startDate}}-{{item.endDate}}(已约{{item.reservationNum}}人),</block>
                 </text>
             </view>
-            
+
             <view class="btn {{selectTimeList.length !== 0?'change-btn':'' }}" bindtap="schedulePickerSwitch">
                 {{selectTimeList.length !== 0? '更改':'选择'}}
             </view>
         </view>
-       
+
     </view>
-     <!-- 提交按钮 -->
-     <view class="reservation-btn" bindtap="reservation">
+    <!-- 提交按钮 -->
+    <view class="reservation-btn" bindtap="reservation">
         提交
     </view>
 </view>
@@ -184,8 +184,13 @@
                 </picker-view>
             </view>
             <view class="time-picker">
-                <view class="time-list-item"  wx:for="{{timeList}}" wx:key="timeIntervalId">
-                    <view data-item="{{item}}" bindtap="addTimeList" class="name {{preSelectTimeIdList.includes(item.timeIntervalId) ? 'selected':''}}">{{item.startDate}}-{{item.endDate}}(已约{{item.reservationNum}}人)</view>
+                <view
+                  class="time-list-item"
+                  bindtap="addTimeList"
+                  wx:for="{{timeList}}"
+                  wx:key="timeIntervalId"
+                >
+                    <view data-item="{{item}}" data-index="{{index}}" class="name {{item.selected ? 'selected':''}}">{{item.startDate}}-{{item.endDate}}(已约{{item.reservationNum}}人)</view>
                 </view>
             </view>
 

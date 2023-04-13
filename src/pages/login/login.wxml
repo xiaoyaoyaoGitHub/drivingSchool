@@ -1,6 +1,10 @@
 <view class="login">
-  <!-- 透明顶部占位 -->
-  <view class="trans-placeholder" style="height:{{transparentHeight}}px" />
+  <!-- statusbar占位 -->
+  <view class="statusBar" style="height:{{statusBarHeight}}px" />
+  <!-- 标题栏占位 -->
+  <view class="navigate" style="height:{{titleHeight}}rpx" >
+      <!-- 标题栏 -->
+  </view>
   <!-- 底部背景图 -->
   <image src="/images/login-bg.png" class="bg" />
   <!-- container -->

@@ -1,0 +1,11 @@
+<view class="container">
+ <view class="title">
+  请输入您要投诉/建议的内容，收到后我们会第一时间与您联系。
+ </view>
+ <view class="text-input">
+  <textarea bindblur="bindTextAreaBlur"  placeholder="请输入200字以内的内容｜"></textarea>
+ </view>
+ <view class="btn" bindtap="addRecommend">
+  提交
+ </view>
+</view>

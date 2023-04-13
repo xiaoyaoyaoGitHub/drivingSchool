@@ -3,7 +3,11 @@
     <!-- bg -->
     <image mode="top" class="appointment-bg" src="/images/bg.png" />
     <!-- statusbar占位 -->
-    <view class="statusBar" style="height:{{transparentHeight}}px" />
+    <view class="statusBar" style="height:{{statusBarHeight}}px" />
+    <!-- 标题栏占位 -->
+    <view class="navigate" style="height:{{titleHeight}}rpx" >
+        <!-- 标题栏 -->
+    </view>
     <!-- 预约列表 -->
     <block wx:if="{{showReservationList}}">
         <view class="switch-tab">

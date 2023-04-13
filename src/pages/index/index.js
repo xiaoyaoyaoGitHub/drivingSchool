@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 16:21:28
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-09 14:43:04
+ * @LastEditTime: 2023-04-13 22:13:12
  * @FilePath: /wxapp-boilerplate/src/pages/index/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -76,7 +76,8 @@ Page({
 			this.getTabBar().setData({
 				selected: 0,
 			});
-			this.getTabBarHeight(this);
+			// this.getTabBarHeight(this);
+			this.getTabBarFirst()
 		}
 	},
 	async onShow() {
@@ -84,12 +85,14 @@ Page({
 			this.getTabBar().setData({
 				selected: 0,
 			});
-			this.getTabBarHeight(this)
+			// this.getTabBarHeight(this)
+			this.getTabBarFirst()
 		};
 		// 上部区域模块
 		await this.getModuleBanner();
 		// 摩旅路书
 		this.getModuleContent();
+		this.getAnouncementsList()
 	},
 	/**
 	 * 动态设置swiper高度
@@ -184,4 +187,14 @@ Page({
 			console.log(`获取公告err:`, err);
 		}
 	},
+	getTabBarFirst(){
+		var obj = this.getTabBar().createSelectorQuery();
+		console.log(`obj`,obj);
+		obj.select('.tab-bar').boundingClientRect((rect) => {
+			console.log(`rect`,rect);
+			console.log('获取tabBar元素的高度', rect.height);
+			const tabBarHeight = rect.height;
+			this.updateTabbarHeight(tabBarHeight);
+		}).exec();
+	}
 });

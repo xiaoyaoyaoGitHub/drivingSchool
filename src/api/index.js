@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 17:07:13
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-11 16:27:49
+ * @LastEditTime: 2023-04-13 22:29:23
  * @FilePath: /wxapp-boilerplate/src/api/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,7 +11,8 @@ import Ajax from './AjaxUtil';
 import { global } from '@/store/index';
 
 const hostConfig = {
-	url: 'http://39.98.207.154:9000',
+	// url: 'http://39.98.207.154:9000',
+	url: 'http://www.mojiezuo.store:9000',
 };
 
 /**
@@ -30,10 +31,10 @@ const init = () => {
 			config.baseURL = hostConfig.url;
 		}
 		// 转换formData
-		if (config.method === 'POST' && config.dataType === 'formData') {
+		if (config.method === 'POST' && config.dataType === 'form') {
 			config.header = {
-				...config.header,
 				'content-type': 'application/x-www-form-urlencoded',
+				...config.header,
 			};
 			delete config.dataType;
 		}
@@ -56,6 +57,8 @@ const init = () => {
 
 	const responseInterceptorFunc = (response = { code: '', msg: '' }, config = {}) => {
 		if (response.code === 401) { // 需要登录
+			const routes = getCurrentPages();
+			if (routes.pop().route === 'pages/login/login') return;
 			wx.navigateTo({
 				url: '/pages/login/login',
 			});
@@ -278,6 +281,7 @@ const init = () => {
 				url: '/mobile/reservation/cancelReservate',
 				method: 'POST',
 				data,
+				dataType: 'form',
 				...options,
 			});
 		},
@@ -307,14 +311,14 @@ const init = () => {
 		ADD_COMPLAIN(data = {}, options = {}) {
 			return getInstance.http({
 				baseURL: hostConfig.url,
-				url: '/addComplain',
+				url: '/mobile/complaint',
 				method: 'POST',
 				data,
 				...options,
 			});
 		},
 		/**
-		 * 新增车牌
+		 * 设置车牌或者紧急联系人
 		 * @param {*} data.memberId 会员ID
 		 * @param {*} data.carNumber 车牌列表
 		 * @param {*} options
@@ -323,8 +327,8 @@ const init = () => {
 		ADD_CAR_NUMBER(data = {}, options = {}) {
 			return getInstance.http({
 				baseURL: hostConfig.url,
-				url: '/addCarNumber',
-				method: 'POST',
+				url: '/mobile/member',
+				method: 'PUT',
 				data,
 				...options,
 			});
@@ -339,8 +343,8 @@ const init = () => {
 		SET_EMERGENCY_PHONE(data = {}, options = {}) {
 			return getInstance.http({
 				baseURL: hostConfig.url,
-				url: '/setEmergencyPhone',
-				method: 'POST',
+				url: '/mobile/member',
+				method: 'PUT',
 				data,
 				...options,
 			});

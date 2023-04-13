@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 14:48:46
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-03-14 20:54:29
+ * @LastEditTime: 2023-04-13 21:50:32
  * @FilePath: /wxapp-boilerplate/src/pages/index/behavior.js
  * @Description: 首页behavior
  */
@@ -15,7 +15,8 @@ export const indexBehavior = BehaviorWithStore({
 		store: global,
 		fields: {
 			tabBarHeight: (store) => store.tabBarHeight,
+			totalHeight: (store) => store.totalHeight,
 		},
-		actions: ['getTabBarHeight'],
+		actions: ['getTabBarHeight', 'updateTabbarHeight'],
 	}],
 });
