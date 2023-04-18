@@ -60,9 +60,15 @@
 
     </view>
     <!-- 提交按钮 -->
-    <view class="reservation-btn" bindtap="reservation">
-        提交
+    <view class="btns">
+        <view class="cancel-btn" bindtap="cancelReservation">
+            取消
+        </view>
+        <view class="reservation-btn" bindtap="reservation">
+            提交
+        </view>
     </view>
+  
 </view>
 <!-- picker 类型 选择 -->
 <view class="picker-select" wx:if="{{showTypePicker}}">
@@ -141,15 +147,26 @@
             <!-- 校区 -->
             <view
               class="type-list-item"
-              bindtap="selectCourseClick"
+              bindtap="{{item.examStatus === 2 ? 'selectCourseClick':''}}"
               data-item="{{item}}"
               wx:for="{{courseList}}"
               wx:key="courseId"
             >
                 <view class="name">{{item.courseName}}</view>
-                <view class="radio" wx:if="{{item.courseId === preSelectCourseInfo.courseId}}">
-                    <image src="/images/radio-checked.png" />
-                </view>
+                <block wx:if="{{item.examStatus !== 2}}">
+                    <view class="process-status" wx:if="{{item.examStatus === 0}} ">
+                        考过
+                    </view>
+                    <view class="process-status" wx:else>
+                        预约中
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class="radio" wx:if="{{item.courseId === preSelectCourseInfo.courseId}}">
+                        <image src="/images/radio-checked.png" />
+                    </view>
+                </block>
+                
             </view>
         </view>
         <!-- 按钮 -->

@@ -52,19 +52,40 @@
             
         }
     }
-    // 预约提交按钮
-    .reservation-btn {
-        width: 622rpx;
-        border-radius: 44rpx;
-        font-size: 32rpx;
-        line-height: 48rpx;
-        padding: 20rpx;
-        text-align: center;
-        margin: 48rpx auto 48rpx;
-        background: $btnColor;
-        color: #fff;
+    .btns {
+        padding: 0 32rpx;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .cancel-btn {
+            flex: 1;
+            border-radius: 44rpx;
+            font-size: 32rpx;
+            line-height: 48rpx;
+            padding: 20rpx;
+            text-align: center;
+            margin: 48rpx auto 48rpx;
+            background: transparent;
+            border: 1px solid $btnColor;
+            box-sizing: border-box;
+            color: $btnColor;
+            margin-right: 15rpx;
+        }
+        // 预约提交按钮
+        .reservation-btn {
+            flex: 1;
+            border-radius: 44rpx;
+            font-size: 32rpx;
+            line-height: 48rpx;
+            padding: 20rpx;
+            text-align: center;
+            margin: 48rpx auto 48rpx;
+            background: $btnColor;
+            color: #fff;
 
+        }
     }
+    
 }
 // 底部选择picker
 .picker-select {
@@ -166,6 +187,16 @@
     .radio {
         width: 40rpx;
         height: 40rpx;
+    }
+    .process-status {
+        display: inline-block;
+        font-size: 24rpx;
+        line-height: 36rpx;
+        font-weight: 500;
+        color: rgba(0, 199, 96, 1);
+        padding: 2rpx 32rpx;
+        background: rgba(214, 253, 224, 1);
+        border-radius: 74rpx;
     }
     @include border-1(rgba(241, 241, 243, 1))
 }

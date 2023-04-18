@@ -5,10 +5,10 @@
       <text class="unit">¥</text>
       {{productDetail.price}}
     </view>
-    <view class="points">
+    <!-- <view class="points">
       <text class="unit">可用积分</text>
       <text class="value">{{productDetail.integral}}</text>
-    </view>
+    </view> -->
   </view>
   <!-- 标题 -->
   <view class="title">

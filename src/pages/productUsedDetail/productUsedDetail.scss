@@ -52,7 +52,14 @@
     .images {
         width: 100%;
         height: 374rpx;
-
+        margin-top: 16rpx;
+    }
+    .video {
+        width: 100%;
+        margin-top: 16rpx;
+        &>video {
+            width: 100%;
+        }
     }
     .btn {
         position: fixed;

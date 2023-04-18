@@ -33,42 +33,12 @@
                 </view>
                 <!-- 收费列表 -->
                 <view class="cost-list">
-                  <view class="cost-list-item">
+                  <view class="cost-list-item" wx:for="{{COLLECT_FEES}}" wx:key="itemId">
                     <view class="name">
-                      次卡
+                      {{item.itemText}}
                     </view>
                     <view class="price">
-                      888
-                      <text class="unit">元</text>
-                    </view>
-                  </view>
-                  <!-- 月卡 -->
-                  <view class="cost-list-item">
-                    <view class="name">
-                      月卡
-                    </view>
-                    <view class="price">
-                      2888
-                      <text class="unit">元</text>
-                    </view>
-                  </view>
-                  <!-- 季度卡 -->
-                  <view class="cost-list-item">
-                    <view class="name">
-                      季度卡
-                    </view>
-                    <view class="price">
-                      2888
-                      <text class="unit">元</text>
-                    </view>
-                  </view>
-                   <!-- 年卡 -->
-                   <view class="cost-list-item">
-                    <view class="name">
-                      年卡
-                    </view>
-                    <view class="price">
-                      2888
+                      <!-- {{item.}} -->
                       <text class="unit">元</text>
                     </view>
                   </view>
@@ -83,57 +53,26 @@
                 </view>
                 <!-- 收费列表 -->
                 <view class="cost-list">
-                  <view class="cost-list-item">
+                  <view class="cost-list-item" wx:for="{{TRAIN_FEES}}" wx:key="itemId">
                     <view class="name">
-                      次卡
+                      {{item.itemText}}
                     </view>
                     <view class="price">
-                      888
+                      <!-- {{item.}} -->
                       <text class="unit">元</text>
                     </view>
                   </view>
-                  <!-- 月卡 -->
-                  <view class="cost-list-item">
-                    <view class="name">
-                      月卡
-                    </view>
-                    <view class="price">
-                      2888
-                      <text class="unit">元</text>
-                    </view>
-                  </view>
-                  <!-- 季度卡 -->
-                  <view class="cost-list-item">
-                    <view class="name">
-                      季度卡
-                    </view>
-                    <view class="price">
-                      2888
-                      <text class="unit">元</text>
-                    </view>
-                  </view>
-                   <!-- 年卡 -->
-                   <view class="cost-list-item">
-                    <view class="name">
-                      年卡
-                    </view>
-                    <view class="price">
-                      2888
-                      <text class="unit">元</text>
-                    </view>
-                  </view>
+                
                 </view>
             </view>
           </block>
           <!-- 场地 列表 -->
-          <block wx:if="{{index === 3}}">
+          <block wx:if="{{index === 3}}" >
             <view class="venue">
-              <view class="venue-item">
-
+              <view class="venue-item" wx:for="{{SITE_LIST}}" wx:key="itemId">
+                {{item.itemText}}
               </view>
-              <view class="venue-item">
-                
-              </view>
+             
             </view>
           </block>
         </view>

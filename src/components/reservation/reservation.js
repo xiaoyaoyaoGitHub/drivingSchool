@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 16:45:45
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-13 21:06:50
+ * @LastEditTime: 2023-04-18 21:04:25
  * @FilePath: /wxapp-boilerplate/src/components/reservation/reservation.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -464,27 +464,33 @@ Component({
 					})
 					return
 				}
-				const { code } = await apis.RESERVATION_RESERVATE({ memberType, campusId, courseId, scheduleId, scheduleDate, timeIntervalList })
+				const { code, msg } = await apis.RESERVATION_RESERVATE({ memberType, campusId, courseId, scheduleId, scheduleDate, timeIntervalList })
 				if (code === 200) { // 预约成功
 					wx.showToast({
-						type: 'success',
+						icon: 'success',
 						title: '预约成功'
 					});
 					this.hideAddReservation()
 				} else {
 					// 预约失败
 					wx.showToast({
-						type: 'fail',
-						title: '预约失败'
+						icon: 'error',
+						title: msg
 					})
 				}
 			} catch (err) {
 				console.log(`err`, err);
 				wx.showToast({
-					type: 'fail',
+					icon: 'error',
 					title: '预约失败'
 				})
 			}
+		}),
+		/**
+		 * 取消
+		 */
+		cancelReservation: throttle(function(){
+			this.hideAddReservation()
 		})
 	},
 });

@@ -3,7 +3,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 14:04:24
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-13 22:39:57
+ * @LastEditTime: 2023-04-18 11:12:42
  * @FilePath: /wxapp-boilerplate/src/store/global.js
  * @Description: 全局状态数据
  */
@@ -15,8 +15,8 @@ export const global = observable({
 	titleHeight: 0, // 标题栏高度
 	statusBarHeight: 0, // 状态栏高度
 	systemInfo: {}, // 系统信息
-	userInfo:{},
-	// userInfo: { token: "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjZjNDU0Y2Y5LWIwN2EtNGU1MC04ZDY4LWQ5NTBhYjI1ZGZlOSJ9.4w6vnWBWt0u0jS0IW_5o3mI_MKj_aWiej_A-MUFRh8QlRYzVcQ954Z0b7rCA7_VIYHKpxtRv1usXDQLkBpCLIQ", memberId: 39 },
+	userInfo: {},
+	// userInfo: { token: "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjUzYjAxNDMwLWQ0YzMtNDM4My1iZDM1LTNiNWY4OTI4Mzc5OSJ9.pLt-EWSNdRoUwtiqzW2rjdjAjXUqwcSWLtns2Pc1IlkZ1qbJj2SQCeYHqqssRL6bg66SFFt9LGiHB-AH1453FA", memberId: 5 },
 	/**
 	 * 获取底部自定义tabBar高度
 	 * @param {callee} 当前页面实例
@@ -27,9 +27,9 @@ export const global = observable({
 			return;
 		};
 		var obj = callee.getTabBar().createSelectorQuery();
-		console.log(`obj`,obj);
+		console.log(`obj`, obj);
 		obj.select('.tab-bar').boundingClientRect((rect) => {
-			console.log(`rect`,rect);
+			console.log(`rect`, rect);
 			console.log('获取tabBar元素的高度', rect.height);
 			const tabBarHeight = rect.height;
 			this.tabBarHeight = tabBarHeight;
@@ -39,7 +39,7 @@ export const global = observable({
 	/**
 	 * 更新tabbar高度
 	 */
-	updateTabbarHeight:action(function(tabBarHeight){
+	updateTabbarHeight: action(function (tabBarHeight) {
 		this.tabBarHeight = tabBarHeight;
 		wx.setStorageSync('tabBarHeight', tabBarHeight); // 将获取到的高度设置缓存，以便之后使用
 	}),
@@ -93,8 +93,18 @@ export const global = observable({
 	/**
 	 * 更新token
 	 */
-	refreshToken({ token, memberId }) {
-		console.log(`token`, token);
-		this.userInfo = { token, memberId }
+	refreshToken({ token, memberId } = {}) {
+		const key = 'TOKEN'
+		if (token) {
+			this.userInfo = { token, memberId };
+			wx.setStorage({
+				key,
+				data: {token, memberId}
+			})
+		} else {
+			console.log(`wx.getStorageSync({key: 'TOKEN'})`,wx.getStorageSync(key));
+			this.userInfo = wx.getStorageSync(key);
+		}
+
 	},
 });

@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-08 22:10:04
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-13 20:39:14
+ * @LastEditTime: 2023-04-18 21:17:20
  * @FilePath: /wxapp-boilerplate/src/pages/appointment/appointment.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -24,6 +24,21 @@ Page({
 		showReservationList: true, // 展示预约列表
 		doneReserList: [],// 已预约列表
 		cancelReserList: [], // 取消预约
+		MEMBER_TYPE:{
+			0:{
+				memberType:0,
+				memberTypeName:'安驾',
+				finished:''
+			},
+			1:{
+				memberType:1,
+				memberTypeName:'赛道'
+			},
+			2:{
+				memberType:2,
+				memberTypeName:'考试'
+			}
+		}
 	},
 	behaviors: [behavior],
 	onLoad() {

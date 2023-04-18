@@ -33,7 +33,7 @@
                                     <!-- 预约类型 -->
                                     <view class="type">
                                         预约类型:
-                                        <text>{{item.memberType}}</text>
+                                        <text>{{item.memberTypeName}}</text>
                                     </view>
                                     <!-- 校区 -->
                                     <view class="address">
@@ -66,27 +66,27 @@
                                     <!-- 预约类型 -->
                                     <view class="type">
                                         预约类型:
-                                        <text>练车</text>
+                                        <text>{{item.memberTypeName}}</text>
                                     </view>
                                     <!-- 校区 -->
                                     <view class="address">
                                         校区:
-                                        <text>顺义驾校</text>
+                                        <text>{{item.campusName}}</text>
                                     </view>
                                     <!-- 学习 -->
                                     <view class="project">
                                         学习:
-                                        <text>科目二油离配合</text>
+                                        <text>{{item.courseName}}</text>
                                     </view>
                                     <!-- 日期 -->
                                     <view class="date">
                                         日期:
-                                        <text>3月1日（星期一）</text>
+                                        <text>{{item.scheduleDate}}({{item.weekDate}})</text>
                                     </view>
                                     <!-- 学习时间 -->
                                     <view class="time">
                                         学习:
-                                        <text>9:30 ～ 12:00     13:30 ～ 17:00</text>
+                                        <text wx:for="{{item.timeIntervalList}}" wx:key="timeIntervalId">{{item.startDate}}~{{item.endDate}} </text>
                                     </view>
                                     <!-- 取消预约 -->
                                     <view wx:if="{{item.reservationStatus === 0}}" class="cancel disabled">

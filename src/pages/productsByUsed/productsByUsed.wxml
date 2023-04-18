@@ -1,6 +1,6 @@
 <view class="products">
     <view class="lists">
-      <view class="list-item" data-index="{{index}}" bindtap="productDetail" wx:for="{{modulesInfo}}" wx:key="articalId">
+      <view class="list-item" data-index="{{index}}" wx:if="{{item.articalType !== 0}}" bindtap="productDetail" wx:for="{{modulesInfo}}" wx:key="articalId">
         <view class="product-img">
           <image src="{{item.fistImage}}"></image>
         </view>
