@@ -103,6 +103,7 @@
         justify-content: flex-start;
         align-items: center;
         overflow-x: auto;
+        overflow-y: hidden;
         &>.member-info {
             width: 280rpx;
             flex: 0 0 280rpx;

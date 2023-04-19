@@ -1,0 +1,50 @@
+<view class="product-detail">
+  <!-- 价格 -->
+  <!-- <view class="price">
+    <view class="price-value">
+      <text class="unit">¥</text>
+      {{productDetail.price}}
+    </view>
+    <view class="points">
+      <text class="unit">可用积分</text>
+      <text class="value">{{productDetail.integral}}</text>
+    </view>
+  </view> -->
+  <!-- 标题 -->
+  <view class="title">
+    {{productDetail.title}}
+  </view>
+  <!-- 描述 -->
+  <view class="desc">
+    {{productDetail.fistText}}
+  </view>
+  <block wx:for="{{productDetail.itemList}}" wx:key="itemId">
+    <!-- 文本 -->
+    <block wx:if="{{item.itemType === 0}}">
+      <view class="desc">
+        {{item.itemText}}
+      </view>
+    </block>
+    <!-- 图片 -->
+    <block wx:elif="{{item.itemType === 1}}">
+      <view class="images">
+        <image mode="widthFix" src="{{item.itemImage}}" />
+      </view>
+    </block>
+    <!-- 视频 -->
+    <block wx:elif="{{item.itemType === 2}}">
+      <view class="video">
+        <video
+          id="myVideo"
+          src="{{item.videoPath}}"
+          show-center-play-btn='{{false}}'
+          show-play-btn="{{true}}"
+          controls
+          picture-in-picture-mode="{{['push', 'pop']}}"
+          bindenterpictureinpicture='bindVideoEnterPictureInPicture'
+          bindleavepictureinpicture='bindVideoLeavePictureInPicture'
+        />
+      </view>
+    </block>
+  </block>
+</view>

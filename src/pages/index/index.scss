@@ -93,4 +93,37 @@
 			}
 		}
 	}
+	// 公告弹框
+	.notice-content {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		background: rgba(0, 0, 0, 0.7);
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		flex-direction: column;
+		&>.content{
+			width: 550rpx;
+			min-height: 300rpx;
+			background-color: #fff;
+			border-radius: 30rpx;
+			padding: 30rpx;
+			&>.title {
+				text-align: center;
+				font-size: 40rpx;
+				line-height: 60rpx;
+			}
+			&>.desc{
+				font-size: 24rpx;
+				line-height: 40rpx;
+				text-align: left;
+				max-height: 700rpx;
+				overflow-y: auto;
+			}
+		}
+	}
 }

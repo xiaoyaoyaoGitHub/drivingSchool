@@ -1,14 +1,14 @@
 <!--index.wxml-->
 <view class="container">
     <!-- 公告 -->
-    <notice wx:if="{{anouncementList.length}}" anouncementList="{{anouncementList}}"></notice>
+    <notice wx:if="{{anouncementList.length}}" bind:showContent="onShowNoticeContent" anouncementList="{{anouncementList}}"></notice>
     <!-- 头部卡片 -->
-    <view class="top-card" wx:if="{{modulesInfo['CAPRICORN_INTRO']}}">
+    <view class="top-card" bindtap="goToCosts" wx:if="{{modulesInfo['CAPRICORN_INTRO']}}">
         <image src="{{modulesInfo['CAPRICORN_INTRO'].image}}" />
     </view>
     <!-- 99vip -->
     <view class="center-banner" bindtap="loginTap">
-        <image src="/images/center-banner.png" />
+        <image src="http://www.mojiezuo.store:9000/profile/upload/images/center-banner.png" />
     </view>
     <!-- 安架科目 -->
     <view class="business">
@@ -43,7 +43,7 @@
         <swiper class="swiper-content" style="height:{{swiperHeight}}px">
             <swiper-item class="swiper-content-item">
                 <view class="swiper">
-                    <view class="swiper-item" bindtap="articalDetail" data-item="{{item}}" wx:for="{{moduleContent}}" wx:key="articalId">
+                    <view class="swiper-item" bindtap="articalDetail" data-artical="{{item}}" wx:for="{{moduleContent}}" wx:key="articalId">
                         <!-- 图片 -->
                         <image class="swiper-item-img" src="{{item.fistImage}}" />
                         <!-- 文案描述 -->
@@ -57,7 +57,17 @@
             </swiper-item>
         </swiper>
     </view>
-
+    <!-- 公告弹框 -->
+    <view class="notice-content" bindtap="onShowNoticeContent" wx:if="{{showNoticeContent}}">
+        <view class="content">
+            <view class="title">
+                {{anouncementList[0].title}}
+            </view>
+            <view class="desc">
+                {{anouncementList[0].content}}
+            </view>
+        </view>
+    </view>
 </view>
 <!-- 底部tab高度占位 -->
 <view class="place-holder" style="height:{{tabBarHeight}}px" />

@@ -12,7 +12,8 @@
     "pages/my/my",
     "pages/player/player",
     "pages/recommendations/recommendations",
-    "pages/appointment/appointment"
+    "pages/appointment/appointment",
+    "pages/articalDetail/articalDetail"
     
   ],
   "window":{

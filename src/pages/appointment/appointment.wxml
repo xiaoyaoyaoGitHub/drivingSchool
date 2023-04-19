@@ -1,7 +1,7 @@
 <!-- appointment.wxml-->
 <view class="appointment" style="height:{{totalHeight}}px">
     <!-- bg -->
-    <image mode="top" class="appointment-bg" src="/images/bg.png" />
+    <image mode="top" class="appointment-bg" src="http://www.mojiezuo.store:9000/profile/upload/images/bg.png" />
     <!-- statusbar占位 -->
     <view class="statusBar" style="height:{{statusBarHeight}}px" />
     <!-- 标题栏占位 -->
@@ -116,7 +116,7 @@
     <!-- 没有预约课程 -->
     <block wx:elif="{{noReservation}}">
         <view class="none-appointment-list">
-            <image class="none-appointment" src="/images/none-appointment.png"></image>
+            <image class="none-appointment" src="http://www.mojiezuo.store:9000/profile/upload/images/none-appointment.png"></image>
             <view class="desc">您还没有预约过课程，马上去预约吧！</view>
             <view class="reservation-btn" bindtap="addNewReservation">
                 去预约

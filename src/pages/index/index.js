@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 16:21:28
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-14 14:42:45
+ * @LastEditTime: 2023-04-19 22:11:52
  * @FilePath: /wxapp-boilerplate/src/pages/index/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -37,10 +37,17 @@ Page({
 		modulesInfo: {}, // 首页模块信息
 		moduleContent: [], // 模块内容信息
 		anouncementList: [], // 公告
+		showNoticeContent:false, // 是否展示公告弹框
 	},
 	behaviors: [indexBehavior],
 	// 事件处理函数
 	loginTap: throttle(function () {
+		wx.navigateTo({
+			url: '/pages/costs/costs',
+		});
+	}),
+	// 了解摩羯座
+	goToCosts: throttle(function () {
 		wx.navigateTo({
 			url: '/pages/costs/costs',
 		});
@@ -169,8 +176,16 @@ Page({
 	 * 点击文章详情
 	 */
 	articalDetail: throttle(function (e) {
-		const { dataset: { target: { item: artical = {} } = {} } = {} } = e || {};
-		const { articalId } = artical || {};
+		console.log(`e`,e);
+		const { currentTarget: { dataset: {  artical = {} } = {} } = {} } = e || {};
+		console.log(`artical`,artical);
+		// wx.navigateTo({
+		// 	url:`/pages/productDetail/productDetail?info=${JSON.stringify(this.data.modulesInfo[index])}`
+		//   })
+		wx.navigateTo({
+			url:`/pages/articalDetail/articalDetail?info=${JSON.stringify(artical)}`
+		})
+
 	}),
 	/**
 	 * 获取公告
@@ -196,5 +211,13 @@ Page({
 			const tabBarHeight = rect.height;
 			this.updateTabbarHeight(tabBarHeight);
 		}).exec();
-	}
+	},
+	/**
+	 * 展示公告栏
+	 */
+	onShowNoticeContent:throttle(function(e){
+		this.setData({
+			showNoticeContent: !this.data.showNoticeContent
+		})
+	})
 });
