@@ -8,7 +8,7 @@
     padding:0 $padding;
     overflow: auto;
    
-    .bg {
+    &>.bg {
         position: absolute;
         left: 0;
         right: 0;
@@ -67,13 +67,22 @@
         &>.point {
             width: 100%;
             height: 100%;
-            background:  linear-gradient(135deg, rgba(254, 228, 182, 1) 0%, rgba(255, 192, 84, 1) 57.98%, rgba(248, 212, 140, 1) 100%);
+            // background:  linear-gradient(135deg, rgba(254, 228, 182, 1) 0%, rgba(255, 192, 84, 1) 57.98%, rgba(248, 212, 140, 1) 100%);
             font-size: 48rpx;
             line-height: 88rpx;
             font-weight: 700;
             color: rgba(29, 29, 31, 1);
             text-align: right;
             border-radius: 24rpx;
+            position: relative;
+            &>.bg{
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: -1;
+            }
             &>.unit {
                 font-size: 20rpx;
                 margin-right: 36rpx;
@@ -98,9 +107,17 @@
             width: 280rpx;
             flex: 0 0 280rpx;
             height: 236rpx;
-            background: linear-gradient(135deg, rgba(243, 245, 245, 1) 0%, rgba(201, 229, 255, 1) 100%);
             margin-right: 24rpx;
             border-radius: 24rpx;
+            position: relative;
+            &>.bg{
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: -1;
+            }
             &:last-child{
                 margin-right: 0;
             }
@@ -148,7 +165,7 @@
             .list-item-icon {
                 width: 96rpx;
                 height: 96rpx;
-                background-color: #fff;
+                // background-color: #fff;
                 border-radius: 50%;
                 margin: 0 auto;
             }

@@ -49,7 +49,9 @@
     </view>
     <!-- 会员积分 -->
     <view class="points" wx:if="{{userInfo.memberId}}">
+        
         <view class="point">
+            <image class="bg" src="/images/jifen-bg.png"></image>
             {{userInfo.memberPoint}}<text class="unit">分</text>
         </view>
     </view>
@@ -58,13 +60,15 @@
     </view>
     <!-- about -->
     <view class="member-list" wx:if="{{userInfo.memberId}}">
-        <view class="member-info" wx:if="{{userInfo.safeDriverStartDate}}" >
+        <view class="member-info anjia" wx:if="{{userInfo.safeDriverStartDate}}" >
+            <image class="bg" src="/images/anjiahuiyuan.png"></image>
             <view class="rest">
                 <view class="rest-value">{{userInfo.safeDriverMemberTotal}}<text class="unit">天</text></view>
                 <view class="desc">剩余有效天数</view>
             </view>
         </view>
-        <view class="member-info" wx:if="{{userInfo.trackMemberStartDate}}" >
+        <view class="member-info saidao" wx:if="{{userInfo.trackMemberStartDate}}" >
+            <image class="bg" src="/images/saidaohuiyuan.png"></image>
             <view class="rest">
                 <view class="rest-value">{{userInfo.trackMemberTotal}}<text class="unit">次</text></view>
                 <view class="desc">截止日期{{userInfo.trackMemberEndDate}}</view>
@@ -82,7 +86,7 @@
         <view class="list-item">
             <!-- icon -->
             <view class="list-item-icon">
-                <image src="" />
+                <image src="/images/my-icon-1.png" />
             </view>
             <!-- name -->
             <view class="list-item-name">
@@ -97,7 +101,7 @@
         <view class="list-item">
             <!-- icon -->
             <view class="list-item-icon">
-                <image src="" />
+                <image src="/images/my-icon-2.png" />
             </view>
             <!-- name -->
             <view class="list-item-name">
@@ -112,7 +116,7 @@
         <view class="list-item">
             <!-- icon -->
             <view class="list-item-icon">
-                <image src="" />
+                <image src="/images/my-icon-3.png" />
             </view>
             <!-- name -->
             <view class="list-item-name">

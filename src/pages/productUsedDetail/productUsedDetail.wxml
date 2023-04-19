@@ -49,7 +49,7 @@
   </block>
 
   <!-- btn -->
-  <view class="btn">
+  <button class="btn" open-type="contact">
     我想要
-  </view>
+  </button>
 </view>

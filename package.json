@@ -72,7 +72,8 @@
 		"es6-promise": "^4.1.0",
 		"lodash": "^4.17.4",
 		"mobx-miniprogram": "^4.13.2",
-		"mobx-miniprogram-bindings": "^2.1.5"
+		"mobx-miniprogram-bindings": "^2.1.5",
+		"moment": "^2.29.4"
 	},
 	"copyWebpack": [
 		"custom-tab-bar",

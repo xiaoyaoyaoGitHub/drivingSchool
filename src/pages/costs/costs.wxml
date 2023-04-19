@@ -17,62 +17,138 @@
       <swiper-item class="swiper-content-item">
         <view class="swiper-{{index}}">
           <!-- 了解我们 -->
-          <block wx:if="{{index === 0}}" >
-            <view class="top-img">
-              <image src=""></image>
-            </view>
-            <view class="sec-img">
-              <image src=""></image>
+          <block wx:if="{{index === 0}}">
+            <view class="about-us" >
+              <block wx:for="{{CAPRICORN_INTRO}}" wx:key="itemId">
+                <!-- 文本 -->
+                <block wx:if="{{item.itemType === 0}}">
+                  <view class="desc">
+                    {{item.itemText}}
+                  </view>
+                </block>
+                <!-- 图片 -->
+                <block wx:elif="{{item.itemType === 1}}">
+                  <view class="img">
+                    <image mode="widthFix" src="{{item.itemImage}}" />
+                  </view>
+                </block>
+                <!-- 视频 -->
+                <block wx:else>
+                  <view class="video-content">
+                    <video
+                      src="{{item.videoPath}}"
+                      show-center-play-btn='{{false}}'
+                      show-play-btn="{{true}}"
+                      controls
+                      picture-in-picture-mode="{{['push', 'pop']}}"
+                      bindenterpictureinpicture='bindVideoEnterPictureInPicture'
+                      bindleavepictureinpicture='bindVideoLeavePictureInPicture'
+                    />
+                  </view>
+                </block>
+              </block>
             </view>
           </block>
           <!-- 俱乐部收费 -->
-          <block wx:if="{{index === 1}}" >
+          <block wx:if="{{index === 1}}">
             <view class="club">
-                <view class="title">
-
-                </view>
-                <!-- 收费列表 -->
-                <view class="cost-list">
-                  <view class="cost-list-item" wx:for="{{COLLECT_FEES}}" wx:key="itemId">
-                    <view class="name">
-                      {{item.itemText}}
-                    </view>
-                    <view class="price">
-                      <!-- {{item.}} -->
-                      <text class="unit">元</text>
-                    </view>
+              <block wx:for="{{COLLECT_FEES}}" wx:key="itemId">
+                <!-- 文本 -->
+                <block wx:if="{{item.itemType === 0}}">
+                  <view class="desc">
+                    {{item.itemText}}
                   </view>
-                </view>
+                </block>
+                <!-- 图片 -->
+                <block wx:elif="{{item.itemType === 1}}">
+                  <view class="img">
+                    <image mode="widthFix" src="{{item.itemImage}}" />
+                  </view>
+                </block>
+                <!-- 视频 -->
+                <block wx:else>
+                  <view class="video-content">
+                    <video
+                      src="{{item.videoPath}}"
+                      show-center-play-btn='{{false}}'
+                      show-play-btn="{{true}}"
+                      controls
+                      picture-in-picture-mode="{{['push', 'pop']}}"
+                      bindenterpictureinpicture='bindVideoEnterPictureInPicture'
+                      bindleavepictureinpicture='bindVideoLeavePictureInPicture'
+                    />
+                  </view>
+                </block>
+              </block>
             </view>
           </block>
           <!-- 培训收费 -->
-          <block wx:if="{{index === 2}}" >
+          <block wx:if="{{index === 2}}">
             <view class="train">
-                <view class="title">
-
-                </view>
-                <!-- 收费列表 -->
-                <view class="cost-list">
-                  <view class="cost-list-item" wx:for="{{TRAIN_FEES}}" wx:key="itemId">
-                    <view class="name">
-                      {{item.itemText}}
-                    </view>
-                    <view class="price">
-                      <!-- {{item.}} -->
-                      <text class="unit">元</text>
-                    </view>
+              <block wx:for="{{TRAIN_FEES}}" wx:key="itemId">
+                <!-- 文本 -->
+                <block wx:if="{{item.itemType === 0}}">
+                  <view class="desc">
+                    {{item.itemText}}
                   </view>
-                
-                </view>
+                </block>
+                <!-- 图片 -->
+                <block wx:elif="{{item.itemType === 1}}">
+                  <view class="img">
+                    <image mode="widthFix" src="{{item.itemImage}}" />
+                  </view>
+                </block>
+                <!-- 视频 -->
+                <block wx:else>
+                  <view class="video-content">
+                    <video
+                      src="{{item.videoPath}}"
+                      show-center-play-btn='{{false}}'
+                      show-play-btn="{{true}}"
+                      controls
+                      picture-in-picture-mode="{{['push', 'pop']}}"
+                      bindenterpictureinpicture='bindVideoEnterPictureInPicture'
+                      bindleavepictureinpicture='bindVideoLeavePictureInPicture'
+                    />
+                  </view>
+                </block>
+              </block>
+              
             </view>
           </block>
           <!-- 场地 列表 -->
-          <block wx:if="{{index === 3}}" >
+          <block wx:if="{{index === 3}}">
             <view class="venue">
-              <view class="venue-item" wx:for="{{SITE_LIST}}" wx:key="itemId">
-                {{item.itemText}}
-              </view>
+              <block wx:for="{{SITE_LIST}}" wx:key="itemId">
+                <!-- 文本 -->
+                <block wx:if="{{item.itemType === 0}}">
+                  <view class="desc">
+                    {{item.itemText}}
+                  </view>
+                </block>
+                <!-- 图片 -->
+                <block wx:elif="{{item.itemType === 1}}">
+                  <view class="img">
+                    <image mode="widthFix" src="{{item.itemImage}}" />
+                  </view>
+                </block>
+                <!-- 视频 -->
+                <block wx:else>
+                  <view class="video-content">
+                    <video
+                      src="{{item.videoPath}}"
+                      show-center-play-btn='{{false}}'
+                      show-play-btn="{{true}}"
+                      controls
+                      picture-in-picture-mode="{{['push', 'pop']}}"
+                      bindenterpictureinpicture='bindVideoEnterPictureInPicture'
+                      bindleavepictureinpicture='bindVideoLeavePictureInPicture'
+                    />
+                  </view>
+                </block>
+              </block>
              
+
             </view>
           </block>
         </view>

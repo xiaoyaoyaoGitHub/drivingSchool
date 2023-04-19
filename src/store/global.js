@@ -3,12 +3,12 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 14:04:24
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-18 11:12:42
+ * @LastEditTime: 2023-04-19 20:26:33
  * @FilePath: /wxapp-boilerplate/src/store/global.js
  * @Description: 全局状态数据
  */
 import { observable, action } from 'mobx-miniprogram';
-
+import moment from "moment"
 
 export const global = observable({
 	tabBarHeight: 0, // 底部tabBar高度
@@ -78,6 +78,11 @@ export const global = observable({
 			const { memberId } = this.userInfo || {};
 			const { code, data: info = {}, msg } = await app.apis.GET_MEMBER_DETAIL({ memberId });
 			if (code === 200) {
+				info.trackMemberEndDate = moment(info.trackMemberEndDate).format('YYYY年MM月DD日');
+				info.registerDate = moment(info.registerDate).format('YYYY年MM月DD日');
+				info.safeDriverEndDate = moment(info.safeDriverEndDate).format('YYYY年MM月DD日')
+				info.createDate = moment(info.createDate).format('YYYY年MM月DD日')
+				info.updateDate = moment(info.updateDate).format('YYYY年MM月DD日')
 				this.userInfo = { ...this.userInfo, ...info }
 			}
 			else {
