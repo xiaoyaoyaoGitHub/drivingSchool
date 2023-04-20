@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText":"二手好车"
+  "navigationBarTitleText":"二手好车",
+  "usingComponents": {
+    "player-component": "plugin://player/video"
+ }
 }

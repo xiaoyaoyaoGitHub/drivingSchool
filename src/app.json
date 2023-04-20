@@ -1,6 +1,5 @@
 {
-  "pages":[
-    
+  "pages": [
     "pages/index/index",
     "pages/productDetail/productDetail",
     "pages/productsByUsed/productsByUsed",
@@ -14,32 +13,37 @@
     "pages/recommendations/recommendations",
     "pages/appointment/appointment",
     "pages/articalDetail/articalDetail"
-    
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#1D1D1F",
     "navigationBarTitleText": "摩羯座",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle": "white"
   },
-  "tabBar":{
-    "custom":true,
-    "backgroundColor":"#FFE7DE",
-    "color":"#fff",
-    "selectedColor":"#E35700",
-    "list":[
+  "tabBar": {
+    "custom": true,
+    "backgroundColor": "#FFE7DE",
+    "color": "#fff",
+    "selectedColor": "#E35700",
+    "list": [
       {
-        "pagePath":"pages/index/index",
-        "text":"首页"
+        "pagePath": "pages/index/index",
+        "text": "首页"
       },
       {
-        "pagePath":"pages/appointment/appointment",
-        "text":"约课"
+        "pagePath": "pages/appointment/appointment",
+        "text": "约课"
       },
       {
-        "pagePath":"pages/my/my",
-        "text":"我的"
+        "pagePath": "pages/my/my",
+        "text": "我的"
       }
     ]
+  },
+  "plugins": {
+    "player": {
+      "version": "2.1.15",
+      "provider": "wxa75efa648b60994b"
+    }
   }
 }
