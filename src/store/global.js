@@ -3,7 +3,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 14:04:24
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-19 20:26:33
+ * @LastEditTime: 2023-04-21 14:01:12
  * @FilePath: /wxapp-boilerplate/src/store/global.js
  * @Description: 全局状态数据
  */
@@ -77,6 +77,7 @@ export const global = observable({
 			const app = getApp()
 			const { memberId } = this.userInfo || {};
 			const { code, data: info = {}, msg } = await app.apis.GET_MEMBER_DETAIL({ memberId });
+			wx.stopPullDownRefresh();
 			if (code === 200) {
 				info.trackMemberEndDate = moment(info.trackMemberEndDate).format('YYYY年MM月DD日');
 				info.registerDate = moment(info.registerDate).format('YYYY年MM月DD日');

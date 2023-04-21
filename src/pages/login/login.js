@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-18 13:56:48
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-09 09:45:56
+ * @LastEditTime: 2023-04-21 11:04:03
  * @FilePath: /wxapp-boilerplate/src/pages/login/login.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -103,7 +103,7 @@ Page({
 			// 手机号格式不正确,不允许发送验证码
 			if (!this.phoneInputVerfify) return;
 			console.log('获取验证码');
-			const { code } = await apis.VERIFY_CODE({ phoneNumber: this.data.phoneInput });
+			const { code, msg } = await apis.VERIFY_CODE({ phoneNumber: this.data.phoneInput });
 			// 是否开始设置倒计时
 			this.setData({
 				countdown: code === 200
@@ -116,7 +116,7 @@ Page({
 				})
 			} else {
 				my.showToast({
-					title: '获取验证码失败',
+					title: msg,
 					icon: 'error'
 				})
 			}

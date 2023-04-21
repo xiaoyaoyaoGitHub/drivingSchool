@@ -38,7 +38,7 @@
                 <view class="tag">
                     <view wx:if="{{userInfo.safeDriverStartDate}}" class="tag-info">安驾学员</view>
                     <view  wx:if="{{userInfo.trackMemberStartDate}}" class="tag-info">赛道学员</view>
-                    <view wx:if="{{userInfo.rentalStartDate}}" class="tag-info">安驾学员</view>
+                    <!-- <view wx:if="{{userInfo.rentalStartDate}}" class="tag-info">安驾学员</view> -->
                 </view>
             </view>
         </block>
@@ -136,17 +136,21 @@
             我的摩托车
         </view>
         <view class="cars-list">
-            <view class="cars-list-item" wx:for="{{carsList}}" wx:key="*this" >
-                <view class="licence-title">
-                    <text class="licence-location">京</text>.<text class="licence-abbr">B</text>
+            <block  wx:for="{{cardList}}" wx:key="*this" >
+                <view wx:if="{{item}}" class="cars-list-item" >
+                    <view class="licence-title">
+                        <text class="licence-location">京</text>.<text class="licence-abbr">B</text>
+                    </view>
+                    <view class="licence-member">
+                        {{item}}
+                    </view>
                 </view>
-                <view class="licence-member">
-                    668888
-                </view>
-            </view>
-            <view class="cars-list-item add" bindtap="addLicence">
-               <image src="http://www.mojiezuo.store:9000/profile/upload/images/add-licence.png"></image>
-            </view>
+                <view wx:else class="cars-list-item add" bindtap="addLicence">
+                    <image src="http://www.mojiezuo.store:9000/profile/upload/images/add-licence.png"></image>
+                 </view>
+            </block>
+           
+            
         </view>
     </view>
     <!-- 功能 -->
@@ -177,10 +181,10 @@
                 <image src="http://www.mojiezuo.store:9000/profile/upload/images/tsyjy.png" />
             </view>
             <view class="desc">退出</view>
-            <view class="operate">
+            <!-- <view class="operate">
                 <text>输入</text>
                 <image src="http://www.mojiezuo.store:9000/profile/upload/images/triangle-right.png" />
-            </view>
+            </view> -->
         </view>
     </view>
 </view>
