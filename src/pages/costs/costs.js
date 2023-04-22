@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-18 09:27:56
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-20 18:46:11
+ * @LastEditTime: 2023-04-22 17:36:04
  * @FilePath: /wxapp-boilerplate/src/pages/costs/costs.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%A
  */
@@ -26,6 +26,7 @@ Page({
 			moduleCode: 'SITE_LIST',
 		}],
 		swiperTabCheckIndex: 0,
+		CAPRICORN_INTRO: [], // 了解我们
 		COLLECT_FEES: [], // 俱乐部收费
 		TRAIN_FEES: [], // 培训收费
 		SITE_LIST: [], // 场地列表
@@ -50,7 +51,7 @@ Page({
 					}
 				});
 				this.setData({
-					[moduleCode]: itemLists,
+					[moduleCode]: itemList,
 				});
 			}
 			else {

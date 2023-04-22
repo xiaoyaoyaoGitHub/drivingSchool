@@ -47,7 +47,7 @@
                         <!-- 图片 -->
                         <image class="swiper-item-img" src="{{item.fistImage}}" />
                         <!-- 文案描述 -->
-                        <view class="desc">{{item.fistText}}</view>
+                        <view class="desc">{{item.title}}</view>
                         <!-- 标签 -->
                         <view class="tag">
                             <image src="{{item.itemImage}}" wx:for="{{item.tagList}}" wx:key="*this"></image>

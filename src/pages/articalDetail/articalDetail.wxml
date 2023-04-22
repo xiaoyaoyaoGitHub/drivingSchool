@@ -34,16 +34,12 @@
     <!-- 视频 -->
     <block wx:elif="{{item.itemType === 2}}">
       <view class="video">
-        <video
-          id="myVideo"
-          src="{{item.videoPath}}"
-          show-center-play-btn='{{false}}'
-          show-play-btn="{{true}}"
-          controls
-          picture-in-picture-mode="{{['push', 'pop']}}"
-          bindenterpictureinpicture='bindVideoEnterPictureInPicture'
-          bindleavepictureinpicture='bindVideoLeavePictureInPicture'
-        />
+        <player-component vid="{{item.vid}}" autoplay="{{false}}">
+          <!-- <view slot="bottom-left-ctrl-btn" bind:tap="callback">左下角的自定义按钮</view>
+          <view slot="top-right-ctrl-btn" bind:tap="callback">右上角的自定义按钮</view>
+          <view slot="bottom-right-ctrl-btn" bind:tap="callback">右下角的自定义按钮</view> -->
+          <!-- <view slot="default" bind:tap="callback">默认slot</view> -->
+        </player-component>
       </view>
     </block>
   </block>
