@@ -1,7 +1,13 @@
 <scroll-view class="subjects" scroll-y="true">
   <!-- 列表 -->
   <view class="subjects-lists">
-    <view class="list-item" data-item="{{item}}" bindtap="toPlayer" wx:for="{{modulesInfo}}" wx:key="*this">
+    <view
+      class="list-item"
+      data-item="{{item}}"
+      bindtap="toPlayer"
+      wx:for="{{modulesInfo}}"
+      wx:key="articalId"
+    >
       <!-- 顺序 -->
       <view class="order">{{index - 0 + 1}}</view>
       <!-- 主标题副标题 -->
@@ -12,9 +18,13 @@
       <!-- video -->
       <view class="video-container">
         <!-- 画面 -->
-        <image src="{{item.fistImage}}" class=""></image>
+        <image src="{{item.fistImage}}" class="" />
       </view>
     </view>
+  </view>
+  <!-- 登录按钮 -->
+  <view class="login" bindtap="goToLogin" wx:if="{{!isLogin}}">
+    去登录
   </view>
 </scroll-view>
 <!-- 会员开通 -->
@@ -24,7 +34,7 @@
   <!-- 白色底部 -->
   <view class="open-vip-container">
     <view class="logo">
-      <image src=""></image>
+      <image src="" />
     </view>
     <!-- 标题 -->
     <view class="title">

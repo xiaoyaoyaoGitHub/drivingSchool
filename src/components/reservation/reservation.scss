@@ -48,8 +48,24 @@
                     color: $btnColor;
                 }
             }
+            .timeList {
+                display: block;
+
+            }
+            &.noBorder{
+                @include border-1(transparent)
+            }
             @include border-1(rgba(255, 255, 255, 0.1))
             
+        }
+        .timeList {
+            text {
+                font-size: 24rpx;
+                font-weight: 400;
+                color: #fff;
+                line-height: 36rpx;
+                margin-right: 32rpx;
+            }
         }
     }
     .btns {

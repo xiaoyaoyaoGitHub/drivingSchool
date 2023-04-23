@@ -43,12 +43,12 @@
             </view>
         </block>
         <!-- 设置 -->
-        <view class="setting">
+        <!-- <view class="setting">
             <image src="http://www.mojiezuo.store:9000/profile/upload/images/setting.png" />
-        </view>
+        </view> -->
     </view>
     <!-- 会员积分 -->
-    <view class="points" wx:if="{{userInfo.memberId}}">
+    <view class="points" wx:if="{{isLogin}}">
         
         <view class="point">
             <image class="bg" src="http://www.mojiezuo.store:9000/profile/upload/images/jifen-bg.png"></image>
@@ -59,12 +59,20 @@
         <image src="http://www.mojiezuo.store:9000/profile/upload/images/points.png" />
     </view>
     <!-- about -->
-    <view class="member-list" wx:if="{{userInfo.memberId}}">
+    <view class="member-list" wx:if="{{isLogin}}">
         <view class="member-info anjia" wx:if="{{userInfo.safeDriverStartDate}}" >
             <image class="bg" src="http://www.mojiezuo.store:9000/profile/upload/images/anjiahuiyuan.png"></image>
             <view class="rest">
                 <view class="rest-value">{{userInfo.safeDriverMemberTotal}}<text class="unit">天</text></view>
                 <view class="desc">剩余有效天数</view>
+            </view>
+            <view class="disable" wx:if="{{userInfo.safeDriverMemberTotalDisable === 1}}">
+                <view class="title">
+                    停卡/待激活
+                </view>
+                <view class="btn">
+                    激活
+                </view>
             </view>
         </view>
         <view class="member-info saidao" wx:if="{{userInfo.trackMemberStartDate}}" >
@@ -72,6 +80,14 @@
             <view class="rest">
                 <view class="rest-value">{{userInfo.trackMemberTotal}}<text class="unit">次</text></view>
                 <view class="desc">截止日期{{userInfo.trackMemberEndDate}}</view>
+            </view>
+            <view class="disable" wx:if="{{userInfo.trackMemberTotalDisable === 1}}">
+                <view class="title">
+                    停卡/待激活
+                </view>
+                <view class="btn">
+                    激活
+                </view>
             </view>
         </view>
         <view class="member-info">
@@ -83,7 +99,7 @@
     </view>
     <!-- my-servies -->
     <view class="services">
-        <view class="list-item">
+        <view class="list-item {{userInfo.rentalDays ? '':'gray'}}">
             <!-- icon -->
             <view class="list-item-icon">
                 <image src="http://www.mojiezuo.store:9000/profile/upload/images/my-icon-1.png" />
@@ -93,12 +109,17 @@
                 柜子
             </view>
             <!-- value -->
-            <view class="list-item-value">
+            <view class="list-item-value" wx:if="{{userInfo.rentalDays}}">
                 <view class="value">{{userInfo.rentalDays}}</view>
                 <view class="desc">剩余有效期</view>
             </view>
+            <view class="list-item-value" wx:else>
+               <view class="unable">
+                未租赁
+               </view>
+            </view>
         </view>
-        <view class="list-item">
+        <view class="list-item {{userInfo.cabinetDays ? '':'gray'}}">
             <!-- icon -->
             <view class="list-item-icon">
                 <image src="http://www.mojiezuo.store:9000/profile/upload/images/my-icon-2.png" />
@@ -108,12 +129,17 @@
                 存车
             </view>
             <!-- value -->
-            <view class="list-item-value">
+            <view class="list-item-value" wx:if="{{userInfo.cabinetDays}}">
                 <view class="value">{{userInfo.cabinetDays}}</view>
                 <view class="desc">剩余有效期</view>
             </view>
+            <view class="list-item-value" wx:else>
+                <view class="unable">
+                    未租赁
+                   </view>
+            </view>
         </view>
-        <view class="list-item">
+        <view class="list-item  {{userInfo.depositaryDays ? '':'gray'}}">
             <!-- icon -->
             <view class="list-item-icon">
                 <image src="http://www.mojiezuo.store:9000/profile/upload/images/my-icon-3.png" />
@@ -123,15 +149,20 @@
                 租车
             </view>
             <!-- value -->
-            <view class="list-item-value">
+            <view class="list-item-value" wx:if="{{userInfo.depositaryDays}}">
                 <!-- <view class="value">{{userInfo.rentalCarNumber}}</view> -->
                 <view class="value">{{userInfo.depositaryDays}}</view>
                 <view class="desc">车辆型号</view>
             </view>
+            <view class="list-item-value" wx:else>
+                <view class="unable">
+                    未租赁
+                   </view>
+            </view>
         </view>
     </view>
     <!-- 我的摩托车 -->
-    <view class="my-cars">
+    <view class="my-cars" wx:if="{{isLogin}}">
         <view class="title">
             我的摩托车
         </view>
@@ -145,12 +176,10 @@
                         {{item}}
                     </view>
                 </view>
-                <view wx:else class="cars-list-item add" bindtap="addLicence">
+                <view wx:else class="cars-list-item add" bindtap="addLicence" data-idx="{{index}}">
                     <image src="http://www.mojiezuo.store:9000/profile/upload/images/add-licence.png"></image>
                  </view>
             </block>
-           
-            
         </view>
     </view>
     <!-- 功能 -->
@@ -175,17 +204,10 @@
                 <image src="http://www.mojiezuo.store:9000/profile/upload/images/triangle-right.png" />
             </view>
         </view>
-        <!-- 退出 -->
-        <view class="list-item" bindtap="logout">
-            <view class="icon">
-                <image src="http://www.mojiezuo.store:9000/profile/upload/images/tsyjy.png" />
-            </view>
-            <view class="desc">退出</view>
-            <!-- <view class="operate">
-                <text>输入</text>
-                <image src="http://www.mojiezuo.store:9000/profile/upload/images/triangle-right.png" />
-            </view> -->
-        </view>
+    </view>
+    <!-- 退出 -->
+    <view class="logout" bindtap="logout" wx:if="{{isLogin}}">
+        退出登录
     </view>
 </view>
 <!-- 添加车牌号 -->

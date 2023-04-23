@@ -3,7 +3,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 14:04:24
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-21 14:01:12
+ * @LastEditTime: 2023-04-23 11:08:45
  * @FilePath: /wxapp-boilerplate/src/store/global.js
  * @Description: 全局状态数据
  */
@@ -54,6 +54,12 @@ export const global = observable({
 	 */
 	get totalHeight() {
 		return this.systemInfo.screenHeight - this.tabBarHeight
+	},
+	/**
+	 * 是否已登录
+	 */
+	get isLogin(){
+		return this.userInfo.token
 	},
 	/**
 	 * 获取 状态栏+ 标题栏的高度

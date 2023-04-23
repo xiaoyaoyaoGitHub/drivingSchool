@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 16:21:28
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-21 14:00:37
+ * @LastEditTime: 2023-04-23 11:00:35
  * @FilePath: /wxapp-boilerplate/src/pages/logs/logs.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -56,7 +56,9 @@ Page({
 	/**
 	 * 增加车牌号
 	 */
-	addLicence: throttle(function () {
+	addLicence: throttle(function (e) {
+		const { target: {dataset: {idx: addLicenceIndex = 0} = {}} = {} } = e || {};
+		this.addLicenceIndex = addLicenceIndex - 0 + 1;
 		this.setData({
 			addLicenceStatus: true,
 		});
@@ -72,16 +74,20 @@ Page({
 	/**
 	 * 添加车牌号确认按钮
 	 */
-	addLicenceConfirm: throttle(async function () {
+	addLicenceConfirm: throttle(async function (e) {
 		try {
-			console.log(this.data);
-			const { code, msg } = await apis.ADD_CAR_NUMBER({ carNumber: this.data.licenceValue });
+			const tempKey = `carNumber${this.addLicenceIndex}`
+			const { code, msg } = await apis.ADD_CAR_NUMBER({ [tempKey]: this.data.licenceValue });
 			this.setData({
 				addLicenceStatus: false,
 			});
 			if (code === 200) {
+				this.getUserInfo();
 				// todo 更新车牌号
-
+				my.showToast({
+					icon: 'success',
+					title: msg,
+				});
 			}
 			else {
 				my.showToast({
@@ -192,7 +198,7 @@ Page({
 		global.userInfo = {};
 		wx.removeStorageSync('TOKEN');
 		wx.reLaunch({
-			url: '/pages/index/index',
+			url: '/pages/login/login',
 		});
 	}),
 });

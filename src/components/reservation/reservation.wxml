@@ -42,22 +42,23 @@
             </view>
         </view>
         <!-- 选择时间段 -->
-        <view class="list-item">
+        <view class="list-item noBorder">
             <view class="icon">
                 <image src="http://www.mojiezuo.store:9000/profile/upload/images/p_icon_4.png" />
             </view>
             <view class="content">
                 <text wx:if="{{selectTimeList.length === 0}}" class="placeHolder">请选择日期/时段</text>
-                <text wx:else>{{selectScheduleInfo.scheduleDate}}
-                    <block wx:for="{{selectTimeList}}" wx:key="*this">{{item.startDate}}-{{item.endDate}}(已约{{item.reservationNum}}人),</block>
+                <text wx:else>
+                    <text>{{selectScheduleInfo.scheduleDate}}</text>
                 </text>
             </view>
-
             <view class="btn {{selectTimeList.length !== 0?'change-btn':'' }}" bindtap="schedulePickerSwitch">
                 {{selectTimeList.length !== 0? '更改':'选择'}}
             </view>
         </view>
-
+        <view class="timeList" wx:if="{{selectTimeList.length !== 0}}" >
+            <text wx:for="{{selectTimeList}}" wx:key="*this">{{item.startDate}}-{{item.endDate}}(已约{{item.reservationNum}}人)</text>
+        </view>
     </view>
     <!-- 提交按钮 -->
     <view class="btns">
