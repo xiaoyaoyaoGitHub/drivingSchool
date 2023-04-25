@@ -15,9 +15,9 @@
     {{productDetail.title}}
   </view>
   <!-- 描述 -->
-  <view class="desc">
+  <!-- <view class="desc">
     {{productDetail.fistText}}
-  </view>
+  </view> -->
   <block wx:for="{{productDetail.itemList}}" wx:key="itemId">
     <!-- 文本 -->
     <block wx:if="{{item.itemType === 0}}">
@@ -28,7 +28,7 @@
     <!-- 图片 -->
     <block wx:elif="{{item.itemType === 1}}">
       <view class="images">
-        <image mode="mode" src="{{item.itemImage}}" />
+        <image mode="widthFix" src="{{item.itemImage}}" />
       </view>
     </block>
     <!-- 视频 -->

@@ -8,7 +8,7 @@
     </view>
     <!-- 99vip -->
     <view class="center-banner" bindtap="loginTap">
-        <image src="http://www.mojiezuo.store:9000/profile/upload/images/center-banner.png" />
+        <image src="http://www.mojiezuo.store:90/profile/upload/images/center-banner.png" />
     </view>
     <!-- 安架科目 -->
     <view class="business">

@@ -1,7 +1,7 @@
 <!--my.wxml-->
 <view class="profile" style="height:{{totalHeight}}px">
     <!-- bg -->
-    <image class="bg" src="http://www.mojiezuo.store:9000/profile/upload/images/my-bg.png" />
+    <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/my-bg.png" />
     <!-- statusbar占位 -->
     <view class="statusBar" style="height:{{statusBarHeight}}px" />
     <!-- 标题栏占位 -->
@@ -44,24 +44,24 @@
         </block>
         <!-- 设置 -->
         <!-- <view class="setting">
-            <image src="http://www.mojiezuo.store:9000/profile/upload/images/setting.png" />
+            <image src="http://www.mojiezuo.store:90/profile/upload/images/setting.png" />
         </view> -->
     </view>
     <!-- 会员积分 -->
     <view class="points" wx:if="{{isLogin}}">
         
         <view class="point">
-            <image class="bg" src="http://www.mojiezuo.store:9000/profile/upload/images/jifen-bg.png"></image>
+            <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/jifen-bg.png"></image>
             {{userInfo.memberPoint}}<text class="unit">分</text>
         </view>
     </view>
     <view class="points" wx:else>
-        <image src="http://www.mojiezuo.store:9000/profile/upload/images/points.png" />
+        <image src="http://www.mojiezuo.store:90/profile/upload/images/points.png" />
     </view>
     <!-- about -->
     <view class="member-list" wx:if="{{isLogin}}">
         <view class="member-info anjia" wx:if="{{userInfo.safeDriverStartDate}}" >
-            <image class="bg" src="http://www.mojiezuo.store:9000/profile/upload/images/anjiahuiyuan.png"></image>
+            <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/anjiahuiyuan.png"></image>
             <view class="rest">
                 <view class="rest-value">{{userInfo.safeDriverMemberTotal}}<text class="unit">天</text></view>
                 <view class="desc">剩余有效天数</view>
@@ -76,7 +76,7 @@
             </view>
         </view>
         <view class="member-info saidao" wx:if="{{userInfo.trackMemberStartDate}}" >
-            <image class="bg" src="http://www.mojiezuo.store:9000/profile/upload/images/saidaohuiyuan.png"></image>
+            <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/saidaohuiyuan.png"></image>
             <view class="rest">
                 <view class="rest-value">{{userInfo.trackMemberTotal}}<text class="unit">次</text></view>
                 <view class="desc">截止日期{{userInfo.trackMemberEndDate}}</view>
@@ -91,18 +91,18 @@
             </view>
         </view>
         <view class="member-info">
-            <image src="http://www.mojiezuo.store:9000/profile/upload/images/anjia_vip.png" />
+            <image src="http://www.mojiezuo.store:90/profile/upload/images/anjia_vip.png" />
         </view>
     </view>
     <view class="about" wx:else>
-        <image src="http://www.mojiezuo.store:9000/profile/upload/images/about.png" />
+        <image src="http://www.mojiezuo.store:90/profile/upload/images/about.png" />
     </view>
     <!-- my-servies -->
     <view class="services">
         <view class="list-item {{userInfo.rentalDays ? '':'gray'}}">
             <!-- icon -->
             <view class="list-item-icon">
-                <image src="http://www.mojiezuo.store:9000/profile/upload/images/my-icon-1.png" />
+                <image src="http://www.mojiezuo.store:90/profile/upload/images/my-icon-1.png" />
             </view>
             <!-- name -->
             <view class="list-item-name">
@@ -122,7 +122,7 @@
         <view class="list-item {{userInfo.cabinetDays ? '':'gray'}}">
             <!-- icon -->
             <view class="list-item-icon">
-                <image src="http://www.mojiezuo.store:9000/profile/upload/images/my-icon-2.png" />
+                <image src="http://www.mojiezuo.store:90/profile/upload/images/my-icon-2.png" />
             </view>
             <!-- name -->
             <view class="list-item-name">
@@ -142,7 +142,7 @@
         <view class="list-item  {{userInfo.depositaryDays ? '':'gray'}}">
             <!-- icon -->
             <view class="list-item-icon">
-                <image src="http://www.mojiezuo.store:9000/profile/upload/images/my-icon-3.png" />
+                <image src="http://www.mojiezuo.store:90/profile/upload/images/my-icon-3.png" />
             </view>
             <!-- name -->
             <view class="list-item-name">
@@ -177,7 +177,7 @@
                     </view>
                 </view>
                 <view wx:else class="cars-list-item add" bindtap="addLicence" data-idx="{{index}}">
-                    <image src="http://www.mojiezuo.store:9000/profile/upload/images/add-licence.png"></image>
+                    <image src="http://www.mojiezuo.store:90/profile/upload/images/add-licence.png"></image>
                  </view>
             </block>
         </view>
@@ -186,22 +186,22 @@
     <view class="func-lists">
         <view class="list-item" bindtap="addEmergency">
             <view class="icon">
-                <image src="http://www.mojiezuo.store:9000/profile/upload/images/jjlxr.png" />
+                <image src="http://www.mojiezuo.store:90/profile/upload/images/jjlxr.png" />
             </view>
             <view class="desc">紧急联系人</view>
             <view class="operate">
                 <text>添加</text>
-                <image src="http://www.mojiezuo.store:9000/profile/upload/images/triangle-right.png" />
+                <image src="http://www.mojiezuo.store:90/profile/upload/images/triangle-right.png" />
             </view>
         </view>
         <view class="list-item" bindtap="goToRecommend">
             <view class="icon">
-                <image src="http://www.mojiezuo.store:9000/profile/upload/images/tsyjy.png" />
+                <image src="http://www.mojiezuo.store:90/profile/upload/images/tsyjy.png" />
             </view>
             <view class="desc">投诉与建议</view>
             <view class="operate">
                 <text>输入</text>
-                <image src="http://www.mojiezuo.store:9000/profile/upload/images/triangle-right.png" />
+                <image src="http://www.mojiezuo.store:90/profile/upload/images/triangle-right.png" />
             </view>
         </view>
     </view>

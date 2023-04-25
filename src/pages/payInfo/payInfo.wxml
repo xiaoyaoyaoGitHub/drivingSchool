@@ -1,0 +1,26 @@
+<view class="pay-container">
+  <image class="bg" mode="widthFix" src="/images/payInfoBg.png"></image>
+  <!-- title -->
+  <view class="title">
+    — 99VIP精选特权 —
+  </view>
+  <!-- 视频抢先看 -->
+  <view class="center">
+    <view class="center-item" wx:for="{{[1,3,4,5]}}" wx:key="*this">
+      <view class="img">
+        <image></image>
+      </view>
+      <view class="desc">
+        视频抢先看
+      </view>
+    </view>
+  </view>
+  <!-- 描述 -->
+  <view class="desc">
+    99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明
+  </view>
+  <!-- 按钮 -->
+  <view class="btn">
+    立即开通
+  </view>
+</view>

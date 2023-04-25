@@ -5,7 +5,7 @@
         <!-- 类型名称 -->
         <view class="list-item">
             <view class="icon">
-                <image src="http://www.mojiezuo.store:9000/profile/upload/images/p_icon_1.png" />
+                <image src="http://www.mojiezuo.store:90/profile/upload/images/p_icon_1.png" />
             </view>
             <view class="content">
                 <text wx:if="{{selectTypeInfo.memberTypeName}}" >{{selectTypeInfo.memberTypeName}}</text>
@@ -18,7 +18,7 @@
         <!-- 选择校区 -->
         <view class="list-item">
             <view class="icon">
-                <image src="http://www.mojiezuo.store:9000/profile/upload/images/p_icon_2.png" />
+                <image src="http://www.mojiezuo.store:90/profile/upload/images/p_icon_2.png" />
             </view>
             <view class="content">
                 <text wx:if="{{selectLocationInfo.campusName}}" >{{selectLocationInfo.campusName}}</text>
@@ -31,7 +31,7 @@
         <!-- 选择科目 -->
         <view class="list-item">
             <view class="icon">
-                <image src="http://www.mojiezuo.store:9000/profile/upload/images/p_icon_3.png" />
+                <image src="http://www.mojiezuo.store:90/profile/upload/images/p_icon_3.png" />
             </view>
             <view class="content">
                 <text wx:if="{{selectCourseInfo.courseName}}">{{selectCourseInfo.courseName}}</text>
@@ -44,7 +44,7 @@
         <!-- 选择时间段 -->
         <view class="list-item noBorder">
             <view class="icon">
-                <image src="http://www.mojiezuo.store:9000/profile/upload/images/p_icon_4.png" />
+                <image src="http://www.mojiezuo.store:90/profile/upload/images/p_icon_4.png" />
             </view>
             <view class="content">
                 <text wx:if="{{selectTimeList.length === 0}}" class="placeHolder">请选择日期/时段</text>
@@ -91,7 +91,7 @@
             >
                 <view class="name">{{item.memberTypeName}}</view>
                 <view class="radio" wx:if="{{preSelectTypeInfo.memberType === item.memberType}}">
-                    <image src="http://www.mojiezuo.store:9000/profile/upload/images/radio-checked.png" />
+                    <image src="http://www.mojiezuo.store:90/profile/upload/images/radio-checked.png" />
                 </view>
             </view>
         </view>
@@ -123,7 +123,7 @@
             >
                 <view class="name">{{item.campusName}}</view>
                 <view class="radio" wx:if="{{preSelectLocationInfo.campusId === item.campusId}}">
-                    <image src="http://www.mojiezuo.store:9000/profile/upload/images/radio-checked.png" />
+                    <image src="http://www.mojiezuo.store:90/profile/upload/images/radio-checked.png" />
                 </view>
             </view>
         </view>
@@ -164,7 +164,7 @@
                 </block>
                 <block wx:else>
                     <view class="radio" wx:if="{{item.courseId === preSelectCourseInfo.courseId}}">
-                        <image src="http://www.mojiezuo.store:9000/profile/upload/images/radio-checked.png" />
+                        <image src="http://www.mojiezuo.store:90/profile/upload/images/radio-checked.png" />
                     </view>
                 </block>
                 

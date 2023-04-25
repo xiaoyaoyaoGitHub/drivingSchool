@@ -6,17 +6,17 @@
       <!-- 标题栏 -->
   </view>
   <!-- 底部背景图 -->
-  <image src="http://www.mojiezuo.store:9000/profile/upload/images/login-bg.png" class="bg" />
+  <image src="http://www.mojiezuo.store:90/profile/upload/images/login-bg.png" class="bg" />
   <!-- container -->
   <view class="login-container">
     <block wx:if="{{showLogo}}">
       <!-- logo -->
       <view class="logo">
-        <image src="http://www.mojiezuo.store:9000/profile/upload/images/login-logo.png" />
+        <image src="http://www.mojiezuo.store:90/profile/upload/images/login-logo.png" />
       </view>
       <!-- title -->
       <view class="title">
-        <image src="http://www.mojiezuo.store:9000/profile/upload/images/login-title.png" />
+        <image src="http://www.mojiezuo.store:90/profile/upload/images/login-title.png" />
       </view>
     </block>
     <!-- 登录 -->
@@ -34,7 +34,7 @@
           </view>
           <!-- 清除 -->
           <view class="clearfix">
-            <image src="http://www.mojiezuo.store:9000/profile/upload/images/close.png" bindtap="clearPhoneInput"  />
+            <image src="http://www.mojiezuo.store:90/profile/upload/images/close.png" bindtap="clearPhoneInput"  />
           </view>
         </view>
         <!-- 验证码 -->
@@ -62,12 +62,12 @@
     <!-- 声明 -->
     <view class="statement">
       <view class="check-status">
-        <image wx:if="{{checkAgreementStatus}}" src="http://www.mojiezuo.store:9000/profile/upload/images/login-checked.png" bindtap="checkAgreement" />
-        <image wx:else src="http://www.mojiezuo.store:9000/profile/upload/images/login-unchecked.png" bindtap="checkAgreement" />
+        <image wx:if="{{checkAgreementStatus}}" src="http://www.mojiezuo.store:90/profile/upload/images/login-checked.png" bindtap="checkAgreement" />
+        <image wx:else src="http://www.mojiezuo.store:90/profile/upload/images/login-unchecked.png" bindtap="checkAgreement" />
         <view class="tips" wx:if="{{tipsShow}}">
-          <image src="http://www.mojiezuo.store:9000/profile/upload/images/tip-bg.png" class="bg" />
+          <image src="http://www.mojiezuo.store:90/profile/upload/images/tip-bg.png" class="bg" />
           请先阅读并勾选用户协议
-          <image class="close" src="http://www.mojiezuo.store:9000/profile/upload/images/close.png" bindtap="closeTips" />
+          <image class="close" src="http://www.mojiezuo.store:90/profile/upload/images/close.png" bindtap="closeTips" />
         </view>
       </view>
       <view class="desc">
