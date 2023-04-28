@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 16:21:28
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-22 15:03:38
+ * @LastEditTime: 2023-04-25 16:30:44
  * @FilePath: /wxapp-boilerplate/src/pages/index/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -46,7 +46,15 @@ Page({
 			url: '/pages/costs/costs',
 		});
 	}),
-	// 了解摩羯座
+	/**
+	 * 支付VIP
+	 */
+	payVip: throttle(function(){
+		wx.navigateTo({
+			url: '/pages/payInfo/payInfo',
+		});
+	}),
+	// 了解摩杰座
 	goToCosts: throttle(function () {
 		wx.navigateTo({
 			url: '/pages/costs/costs',
@@ -144,7 +152,7 @@ Page({
 		this.setSwiperHeight(swiperTabCheckIndex)
 	},
 	/**
-	 * 获取banner图（首页解摩羯座，安驾科目，会员商品，二手好车的banner图从这里获取）									
+	 * 获取banner图（首页解摩杰座，安驾科目，会员商品，二手好车的banner图从这里获取）									
 	 */
 	async getModuleBanner() {
 		const { CAPRICORN_INTRO, SAFE_DRIVING_SUBJECT, MEMBER_PRODUCT, USED_CAR, TRAVEL_GUIDE, ACCIDENT_ANALYSIS } = MODULE_CODE || {};
@@ -186,8 +194,9 @@ Page({
 		// wx.navigateTo({
 		// 	url:`/pages/productDetail/productDetail?info=${JSON.stringify(this.data.modulesInfo[index])}`
 		//   })
+		const info = encodeURIComponent(JSON.stringify(artical))
 		wx.navigateTo({
-			url:`/pages/articalDetail/articalDetail?info=${JSON.stringify(artical)}`
+			url:`/pages/articalDetail/articalDetail?info=${info}`
 		})
 
 	}),

@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/payInfo/payInfo",
     "pages/index/index",
     "pages/productDetail/productDetail",
     "pages/productsByUsed/productsByUsed",
@@ -13,12 +12,13 @@
     "pages/player/player",
     "pages/recommendations/recommendations",
     "pages/appointment/appointment",
-    "pages/articalDetail/articalDetail"
+    "pages/articalDetail/articalDetail",
+    "pages/payInfo/payInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#1D1D1F",
-    "navigationBarTitleText": "摩羯座",
+    "navigationBarTitleText": "摩杰座",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {

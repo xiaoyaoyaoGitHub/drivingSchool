@@ -7,7 +7,7 @@
         <image src="{{modulesInfo['CAPRICORN_INTRO'].image}}" />
     </view>
     <!-- 99vip -->
-    <view class="center-banner" bindtap="loginTap">
+    <view class="center-banner" bindtap="payVip">
         <image src="http://www.mojiezuo.store:90/profile/upload/images/center-banner.png" />
     </view>
     <!-- 安架科目 -->

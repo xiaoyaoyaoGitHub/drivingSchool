@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-20 15:19:44
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-09 11:58:26
+ * @LastEditTime: 2023-04-25 16:29:12
  * @FilePath: /wxapp-boilerplate/src/pages/products/products.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -37,8 +37,9 @@ Page({
    */
   productDetail: throttle(function (e) {
     const { currentTarget: { dataset: { index = '' } = {} } = {} } = e || {};
+    const info = encodeURIComponent(JSON.stringify(this.data.modulesInfo[index]))
     wx.navigateTo({
-      url:`/pages/productDetail/productDetail?info=${JSON.stringify(this.data.modulesInfo[index])}`
+      url:`/pages/productDetail/productDetail?info=${info}`
     })
   }),
 });

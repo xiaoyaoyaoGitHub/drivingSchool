@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 17:07:13
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-21 17:34:31
+ * @LastEditTime: 2023-04-28 13:22:49
  * @FilePath: /wxapp-boilerplate/src/api/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -167,7 +167,7 @@ const init = () => {
 			});
 		},
 		/**
-		 * 获取banner图（首页解摩羯座，安驾科目，会员商品，二手好车的banner图从这里获取）
+		 * 获取banner图（首页解摩杰座，安驾科目，会员商品，二手好车的banner图从这里获取）
 		 * @param {*} data
 		 * @param {*} options
 		 * @returns
