@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-15 20:27:39
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-23 14:13:21
+ * @LastEditTime: 2023-05-03 13:06:19
  * @FilePath: /wxapp-boilerplate/src/pages/my/behavior.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -24,19 +24,19 @@ export const behavior = BehaviorWithStore({
 					const { userInfo: {carNumber1, carNumber2, carNumber3} = {} } = store || {};
 					const tempCardList = [];
 					if (carNumber1) {
-						tempCardList.push(carNumber1);
+						tempCardList.push({0: carNumber1.slice(0, 1), 1: carNumber1.slice(1, 2), 2: carNumber1.slice(2)});
 					}
 					else {
 						tempCardList.push('');
 					}
 					if (carNumber2) {
-						tempCardList.push(carNumber2);
+						tempCardList.push({0: carNumber2.slice(0, 1), 1: carNumber2.slice(1, 2), 2: carNumber2.slice(2)});
 					}
 					else {
 						tempCardList.push('');
 					}
 					if (carNumber3) {
-						tempCardList.push(carNumber3);
+						tempCardList.push({0: carNumber3.slice(0, 1), 1: carNumber3.slice(1, 2), 2: carNumber3.slice(2)});
 					}
 					else {
 						tempCardList.push('');

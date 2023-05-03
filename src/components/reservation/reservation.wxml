@@ -9,7 +9,7 @@
             </view>
             <view class="content">
                 <text wx:if="{{selectTypeInfo.memberTypeName}}" >{{selectTypeInfo.memberTypeName}}</text>
-                <text wx:else class="placeHolder">请选择驾校</text>
+                <text wx:else class="placeHolder">请选择类型</text>
             </view>
             <view bindtap="typePickerSwitch" class="btn {{selectTypeInfo.memberTypeName ?'change-btn':'' }}">
                 {{selectTypeInfo.memberTypeName? '更改':'选择'}}
