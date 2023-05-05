@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-18 13:56:48
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-21 11:04:03
+ * @LastEditTime: 2023-05-03 14:36:00
  * @FilePath: /wxapp-boilerplate/src/pages/login/login.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -131,9 +131,9 @@ Page({
 	/**
 	 * 开启倒计时
 	 */
-	startCountDown(){
+	startCountDown() {
 		// 如果存在之前的,清除
-		if(this.countdownTimer) clearInterval(this.countdownTimer)
+		if (this.countdownTimer) clearInterval(this.countdownTimer)
 		this.setData({
 			countdownTime: COUNT_DOWN_TIME
 		})
@@ -144,16 +144,16 @@ Page({
 			this.setData({
 				countdownTime
 			})
-			if(countdownTime === 0) {
+			if (countdownTime === 0) {
 				this.resetGetVerify()
 			}
-		},1000)
+		}, 1000)
 	},
 	/**
 	 * 还原获取验证码按钮
 	 */
-	resetGetVerify(){
-		if(this.countdownTimer) clearInterval(this.countdownTimer);
+	resetGetVerify() {
+		if (this.countdownTimer) clearInterval(this.countdownTimer);
 		this.setData({
 			countdown: false
 		})
@@ -189,23 +189,30 @@ Page({
 			}
 			const { code, token, memberId } = await apis.MEMBER_LOGIN({ verifyCode, phoneNumber });
 			if (code === 200) {
-				this.refreshToken({token, memberId})
+				this.refreshToken({ token, memberId })
 				my.showToast({
 					title: "登录成功",
 					icon: 'success'
 				});
-				// wx.reLaunch({
-				// 	url:"/pages/index/index"
-				// })
-				wx.navigateBack()
-			}else{
+				console.log(getCurrentPages());
+
+				if (getCurrentPages().length === 1) {
+					wx.reLaunch({
+						url: "/pages/index/index"
+					})
+				} else {
+					wx.navigateBack()
+				}
+
+
+			} else {
 				my.showToast({
 					title: "登录失败,请重试",
 					icon: 'error'
 				})
 			}
 		} catch (err) {
-			console.log(`err`,err);
+			console.log(`err`, err);
 			my.showToast({
 				title: "登录失败,请重试",
 				icon: 'error'

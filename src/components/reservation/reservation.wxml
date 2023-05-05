@@ -155,7 +155,7 @@
             >
                 <view class="name">{{item.courseName}}</view>
                 <block wx:if="{{item.examStatus !== 2}}">
-                    <view class="process-status" wx:if="{{item.examStatus === 0}} ">
+                    <view class="process-status" wx:if="{{item.examStatus === 0}}">
                         考过
                     </view>
                     <view class="process-status" wx:else>
