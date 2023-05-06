@@ -139,3 +139,41 @@
         padding-top: 136rpx;
     }
 }
+
+.cancel-appolint {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: rgba(0,0,0, .6);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    .cancel-content {
+        width: 590rpx;
+        height: 780rpx;
+        position: relative;
+        .btns {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 64rpx;
+            z-index: 1;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            &>.cancel {
+                width: 64rpx;
+                height: 48rpx;
+            }
+            &>.confirm {
+                width: 64rpx;
+                height: 48rpx;
+            }
+        }
+    }
+   
+}

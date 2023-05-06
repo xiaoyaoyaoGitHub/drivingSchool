@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-08 22:10:04
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-23 13:36:21
+ * @LastEditTime: 2023-05-06 09:29:00
  * @FilePath: /wxapp-boilerplate/src/pages/appointment/appointment.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -24,21 +24,22 @@ Page({
 		showReservationList: true, // 展示预约列表
 		doneReserList: [],// 已预约列表
 		cancelReserList: [], // 取消预约
-		MEMBER_TYPE:{
-			0:{
-				memberType:0,
-				memberTypeName:'安驾',
-				finished:''
+		MEMBER_TYPE: {
+			0: {
+				memberType: 0,
+				memberTypeName: '安驾',
+				finished: ''
 			},
-			1:{
-				memberType:1,
-				memberTypeName:'赛道'
+			1: {
+				memberType: 1,
+				memberTypeName: '赛道'
 			},
-			2:{
-				memberType:2,
-				memberTypeName:'考试'
+			2: {
+				memberType: 2,
+				memberTypeName: '考试'
 			}
-		}
+		},
+		showCancelAppolintModal: false //取消预约确认弹框
 	},
 	behaviors: [behavior],
 	onLoad() {
@@ -76,25 +77,47 @@ Page({
 		});
 		this.reservationRecord(this.data.swiperTabCheckIndex);
 	},
-	
+	/**
+	 * 关闭取消预约弹框
+	 */
+	closeCancelModal: throttle(function (e) {
+		this.setData({
+			showCancelAppolintModal: false
+		})
+	}),
+	/**
+	 * 弹出取消预约弹框
+	 */
+	showCancelModal: throttle(function (e) {
+		const { target: { dataset: { item } = {} } = {} } = e || {};
+		this.setData({
+			showCancelAppolintModal: true,
+			currentCancelItem: item, // 保存当前需要取消的预约列表id
+		})
+	}),
 	/**
 	 * 取消预约
 	 */
 	cancelReservation: throttle(async function (e) {
 		try {
-			const { target: { dataset: { item } = {} } = {} } = e || {};
+			wx.showLoading({
+				title:'取消中...'
+			})
+			const { currentCancelItem: item } = this.data || {};
 			const { reservationId } = item || {};
-			const {code, msg} = await apis.CANCEL_RESERVATE({ reservationId });
-			if(code === 200){
+			const { code, msg } = await apis.CANCEL_RESERVATE({ reservationId });
+			wx.hideLoading();
+			this.closeCancelModal()
+			if (code === 200) {
 				wx.showToast({
-					icon:'success',
-					title:msg
+					icon: 'success',
+					title: msg
 				})
 				this.reservationRecord(this.data.swiperTabCheckIndex);
-			}else{
+			} else {
 				wx.showToast({
-					icon:'error',
-					title:msg
+					icon: 'error',
+					title: msg
 				})
 			}
 		} catch (err) {

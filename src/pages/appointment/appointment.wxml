@@ -56,7 +56,7 @@
                                         <text><block wx:for="{{item.timeIntervalList}}" wx:key="*this">{{item.startDate}}~{{item.endDate}}</block></text>
                                     </view>
                                     <!-- 取消预约 -->
-                                    <view class="cancel" bindtap="cancelReservation" data-item="{{item}}">
+                                    <view class="cancel" bindtap="showCancelModal" data-item="{{item}}">
                                         取消预约
                                     </view>
                                 </view>
@@ -129,6 +129,16 @@
             <reservation></reservation>
         </view>
     </block>
+</view>
+<!-- 取消预约二次确认弹框 -->
+<view class="cancel-appolint" wx:if="{{showCancelAppolintModal}}">
+    <view class="cancel-content">
+        <image mode="widthFix" src="/images/modal-cancel-application.png" />
+        <view class="btns">
+            <view class="cancel" bindtap="closeCancelModal"></view>
+            <view class="confirm" bindtap="cancelReservation"></view>
+        </view>
+    </view>
 </view>
 <!-- 底部tab高度占位 -->
 <view class="place-holder" style="height:{{tabBarHeight}}px" />
