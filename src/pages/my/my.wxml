@@ -26,7 +26,7 @@
         </block>
         <block wx:else>
             <!-- 头像 -->
-            <view class="avatar" >
+            <view class="avatar" bindtap="getUserProfile">
                 <image src="" />
             </view>
             <!-- 用户名称 -->

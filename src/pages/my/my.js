@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 16:21:28
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-03 14:32:29
+ * @LastEditTime: 2023-05-07 18:43:19
  * @FilePath: /wxapp-boilerplate/src/pages/logs/logs.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -220,4 +220,15 @@ Page({
 			url: '/pages/login/login',
 		});
 	}),
+	getUserProfile(e) {
+		// 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+		// 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+		wx.getUserProfile({
+		  desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+		  success: (res) => {
+			console.log(res);
+			
+		  }
+		})
+	  },
 });

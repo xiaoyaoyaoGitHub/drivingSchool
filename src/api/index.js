@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 17:07:13
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-06 09:30:40
+ * @LastEditTime: 2023-05-08 07:59:58
  * @FilePath: /wxapp-boilerplate/src/api/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,8 +12,8 @@ import { global } from '@/store/index';
 
 const hostConfig = {
 	// url: 'http://39.98.207.154:9000',
-	// url: 'http://www.mojiezuo.store:9000',
-	url: 'https://www.mojiezuo.store:443',
+	url: 'http://www.mojiezuo.store:9000',
+	// url: 'https://www.mojiezuo.store:443',
 };
 
 /**
@@ -347,6 +347,20 @@ const init = () => {
 				baseURL: hostConfig.url,
 				url: '/mobile/member',
 				method: 'PUT',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 创建订单
+		 * @param {*} data
+		 * @param {*} options
+		 */
+		CREATE_ORDER(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/mobile/order/createOrder',
+				method: 'POST',
 				data,
 				...options,
 			});
