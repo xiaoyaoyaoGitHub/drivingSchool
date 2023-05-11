@@ -90,7 +90,7 @@
                 </view>
             </view>
         </view>
-        <view class="member-info">
+        <view class="member-info" wx:if="{{!isPayVip}}" bindtap="payVip">
             <image src="http://www.mojiezuo.store:90/profile/upload/images/anjia_vip.png" />
         </view>
     </view>

@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 14:48:46
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-13 21:50:32
+ * @LastEditTime: 2023-05-11 16:42:50
  * @FilePath: /wxapp-boilerplate/src/pages/index/behavior.js
  * @Description: 首页behavior
  */
@@ -18,5 +18,8 @@ export const indexBehavior = BehaviorWithStore({
 			totalHeight: (store) => store.totalHeight,
 		},
 		actions: ['getTabBarHeight', 'updateTabbarHeight'],
+	}, {
+		store: global,
+		fields: ['isPayVip'],
 	}],
 });

@@ -4,6 +4,7 @@
     <view
       class="list-item"
       data-item="{{item}}"
+      data-idx="{{index}}"
       bindtap="toPlayer"
       wx:for="{{modulesInfo}}"
       wx:key="articalId"
@@ -28,11 +29,11 @@
   </view>
 </scroll-view>
 <!-- 会员开通 -->
-<view class="open-vip" wx:if="{{false}}">
+<view class="open-vip" bindtap="closePayModal" wx:if="{{showOpenPayModal}}">
   <!-- 蒙层 -->
   <!-- <view class="mask"></view> -->
   <!-- 白色底部 -->
-  <view class="open-vip-container">
+  <view class="open-vip-container" catchtap="stop">
     <view class="logo">
       <image src="" />
     </view>
@@ -41,7 +42,7 @@
       <text>立即开通会员\n观看更多视频内容</text>
     </view>
     <!-- 按钮 -->
-    <view class="btn">
+    <view class="btn" bindtap="payVip">
       立即办理
     </view>
   </view>

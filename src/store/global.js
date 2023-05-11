@@ -3,7 +3,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 14:04:24
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-23 11:08:45
+ * @LastEditTime: 2023-05-11 16:55:49
  * @FilePath: /wxapp-boilerplate/src/store/global.js
  * @Description: 全局状态数据
  */
@@ -60,6 +60,12 @@ export const global = observable({
 	 */
 	get isLogin(){
 		return this.userInfo.token
+	},
+	/**
+	 * 是否为付费会员
+	 */
+	get isPayVip(){
+		return +this.userInfo.isVip === 0
 	},
 	/**
 	 * 获取 状态栏+ 标题栏的高度

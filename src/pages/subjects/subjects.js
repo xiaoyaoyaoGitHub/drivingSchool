@@ -3,7 +3,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-20 14:07:41
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-04-23 11:52:06
+ * @LastEditTime: 2023-05-11 16:49:42
  * @FilePath: /wxapp-boilerplate/src/pages/subjects/subjects.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -19,13 +19,14 @@ const MODULE_CODE = {
 }
 Page({
 	data: {
-		modulesInfo: []
+		modulesInfo: [],
+		showOpenPayModal:false
 	},
 	onLoad() {
 		// 手工绑定 
 		this.storeBindings = createStoreBindings(this, {
 			store:global,
-			fields: ['isLogin'],
+			fields: ['isLogin','isPayVip'],
 		})
 	},
 	onUnload() {
@@ -35,10 +36,32 @@ Page({
 		this.getSubjectList()
 	},
 	/**
+	 * 支付VIP
+	 */
+	payVip: throttle(function(){
+		this.closePayModal();
+		wx.navigateTo({
+			url: '/pages/payInfo/payInfo',
+		});
+	}),
+	stop(){},
+	closePayModal:throttle(function(){
+		this.setData({
+			showOpenPayModal: false
+		})
+	}),
+	/**
 	 * 播放
 	 */
 	toPlayer: throttle(function (e) {
-		const { currentTarget: { dataset: { item = '' } = {} } = {} } = e || {};
+		const { currentTarget: { dataset: { item = '',idx } = {} } = {} } = e || {};
+		// 非付费会员超过3个视频不让看
+		if(idx > 2 && !this.data.isPayVip){
+			this.setData({
+				showOpenPayModal: true
+			})
+			return
+		}
 		wx.navigateTo({
 			url: `/pages/player/player?playerUrl=${item.fistVideoPath}`
 		})

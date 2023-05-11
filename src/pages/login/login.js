@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-18 13:56:48
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-03 14:36:00
+ * @LastEditTime: 2023-05-11 16:34:26
  * @FilePath: /wxapp-boilerplate/src/pages/login/login.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -190,6 +190,7 @@ Page({
 			const { code, token, memberId } = await apis.MEMBER_LOGIN({ verifyCode, phoneNumber });
 			if (code === 200) {
 				this.refreshToken({ token, memberId })
+				await this.getUserInfo()
 				my.showToast({
 					title: "登录成功",
 					icon: 'success'

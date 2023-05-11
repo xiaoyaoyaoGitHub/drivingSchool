@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-15 20:27:39
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-03 13:06:19
+ * @LastEditTime: 2023-05-11 16:52:46
  * @FilePath: /wxapp-boilerplate/src/pages/my/behavior.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -15,7 +15,7 @@ export const behavior = BehaviorWithStore({
 	storeBindings: [
 		{
 			store: global,
-			fields: ['tabBarHeight', 'transparentHeight', 'statusBarHeight', 'totalHeight', 'userInfo', 'titleHeight', 'isLogin'],
+			fields: ['tabBarHeight', 'transparentHeight', 'statusBarHeight', 'totalHeight', 'userInfo', 'titleHeight', 'isLogin', 'isPayVip'],
 			actions: ['getTabBarHeight', 'getUserInfo'],
 		}, {
 			store: global,
