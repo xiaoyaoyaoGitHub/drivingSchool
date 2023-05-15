@@ -55,7 +55,7 @@
   </block>
 
   <!-- btn -->
-  <button class="btn" open-type="contact">
+  <button class="btn" open-type="contact" bindcontact="concact">
     我想要
   </button>
 </view>
