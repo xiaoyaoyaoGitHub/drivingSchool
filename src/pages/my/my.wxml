@@ -62,7 +62,11 @@
     <view class="member-list" wx:if="{{isLogin}}">
         <view class="member-info anjia" wx:if="{{userInfo.safeDriverStartDate}}" >
             <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/anjiahuiyuan.png"></image>
-            <view class="rest">
+            <view class="rest" wx:if="{{userInfo.safeDriverMemberTotalDisable === 0}}">
+                <view class="rest-value">{{userInfo.safeDriverMemberTotal}}<text class="unit">次</text></view>
+                <view class="desc">截止日期{{userInfo.safeDriverEndDate}}</view>>
+            </view>
+            <view class="rest" wx:else>
                 <view class="rest-value">{{userInfo.safeDriverMemberTotal}}<text class="unit">天</text></view>
                 <view class="desc">剩余有效天数</view>
             </view>
@@ -77,11 +81,15 @@
         </view>
         <view class="member-info saidao" wx:if="{{userInfo.trackMemberStartDate}}" >
             <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/saidaohuiyuan.png"></image>
-            <view class="rest">
+            <view class="rest" wx:if="{{userInfo.trackMemberTotalDisable === 0}}">
                 <view class="rest-value">{{userInfo.trackMemberTotal}}<text class="unit">次</text></view>
                 <view class="desc">截止日期{{userInfo.trackMemberEndDate}}</view>
             </view>
-            <view class="disable" wx:if="{{!(userInfo.trackMemberTotalDisable === 0 && userInfo.safeDriverMemberTotalDisable === 0)}}">
+            <view class="rest" wx:else>
+                <view class="rest-value">{{userInfo.trackMemberTotal}}<text class="unit">天</text></view>
+                <view class="desc">剩余有效天数</view>
+            </view>
+            <view class="disable" wx:if="{{!(userInfo.trackMemberTotalDisable === 0 && userInfo.trackMemberIsDisable === 0)}}">
                 <view class="title">
                     停卡/待激活
                 </view>
