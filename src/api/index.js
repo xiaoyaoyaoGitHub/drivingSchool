@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 17:07:13
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-15 10:58:16
+ * @LastEditTime: 2023-05-22 09:46:44
  * @FilePath: /wxapp-boilerplate/src/api/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -57,7 +57,9 @@ const init = () => {
 	instance.interceptors.request.use(requestInterceptorFuncWrapper);
 
 	const responseInterceptorFunc = (response = { code: '', msg: '' }, config = {}) => {
-		if (response.code === 401) { // 需要登录
+		// console.log(config);
+		const UN_CHECK_API = ['/mobile/member/getMemberById'];
+		if (response.code === 401 && !UN_CHECK_API.includes(config.url)) { // 需要登录
 			const routes = getCurrentPages();
 			console.log('routes', routes);
 			if (routes.pop().route === 'pages/login/login') return;

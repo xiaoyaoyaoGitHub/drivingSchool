@@ -24,9 +24,9 @@
     </view>
   </view>
   <!-- 登录按钮 -->
-  <view class="login" bindtap="goToLogin" wx:if="{{!isLogin}}">
+  <!-- <view class="login" bindtap="goToLogin" wx:if="{{!isLogin}}">
     去登录
-  </view>
+  </view> -->
 </scroll-view>
 <!-- 会员开通 -->
 <view class="open-vip" bindtap="closePayModal" wx:if="{{showOpenPayModal}}">

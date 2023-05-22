@@ -9,7 +9,7 @@
         <!-- 标题栏 -->
     </view>
     <!-- 非付费会员 -->
-    <block wx:if="{{!isPayVip}}">
+    <block wx:if="{{false}}">
         <view class="none-appointment-list">
             <image class="none-appointment" src="http://www.mojiezuo.store:90/profile/upload/images/none-appointment.png" />
             <view class="desc">哎吆，您还未开通会员啊，开通后就可以预约课程呢，期待您的加入！</view>

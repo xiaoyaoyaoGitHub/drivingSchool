@@ -3,7 +3,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 14:04:24
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-11 16:55:49
+ * @LastEditTime: 2023-05-22 10:02:04
  * @FilePath: /wxapp-boilerplate/src/store/global.js
  * @Description: 全局状态数据
  */
@@ -58,13 +58,14 @@ export const global = observable({
 	/**
 	 * 是否已登录
 	 */
-	get isLogin(){
-		return this.userInfo.token
+	get isLogin() {
+		return !!this.userInfo.memberId
 	},
 	/**
 	 * 是否为付费会员
 	 */
-	get isPayVip(){
+	get isPayVip() {
+		return false
 		return +this.userInfo.isVip === 0
 	},
 	/**
@@ -97,6 +98,8 @@ export const global = observable({
 				info.createDate = moment(info.createDate).format('YYYY年MM月DD日')
 				info.updateDate = moment(info.updateDate).format('YYYY年MM月DD日')
 				this.userInfo = { ...this.userInfo, ...info }
+			} else if (code === 401) {
+				this.removeToken();
 			}
 			else {
 				wx.showToast({
@@ -117,12 +120,20 @@ export const global = observable({
 			this.userInfo = { token, memberId };
 			wx.setStorage({
 				key,
-				data: {token, memberId}
+				data: { token, memberId }
 			})
 		} else {
-			console.log(`wx.getStorageSync({key: 'TOKEN'})`,wx.getStorageSync(key));
+			console.log(`wx.getStorageSync({key: 'TOKEN'})`, wx.getStorageSync(key));
 			this.userInfo = wx.getStorageSync(key);
 		}
 
+	},
+	/**
+	 * token失效,清楚数据
+	 * @param {string} key 
+	 */
+	removeToken(key = 'TOKEN') {
+		this.userInfo = {};
+		wx.removeStorage({ key: key })
 	},
 });

@@ -3,7 +3,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-20 14:07:41
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-11 16:49:42
+ * @LastEditTime: 2023-05-22 09:43:29
  * @FilePath: /wxapp-boilerplate/src/pages/subjects/subjects.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -76,10 +76,14 @@ Page({
    */
 	async getSubjectList() {
 		const { SAFE_DRIVING_SUBJECT } = MODULE_CODE || {};
-		const { code, data: modulesInfo = {} } = await apis.GET_MODULE_CONTENT({ moduleCode: `${SAFE_DRIVING_SUBJECT}`, pageNum: 1, pageSize: 1000 });
+		const { code, data: modulesInfo = {}, msg } = await apis.GET_MODULE_CONTENT({ moduleCode: `${SAFE_DRIVING_SUBJECT}`, pageNum: 1, pageSize: 1000 });
 		if (code === 200) {
 			this.setData({
-				modulesInfo: this.data.isLogin ? modulesInfo : modulesInfo.slice(0, 3),
+				modulesInfo,
+			})
+		}else {
+			wx.showToast({
+				title:msg
 			})
 		}
 	},

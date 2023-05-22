@@ -10,13 +10,13 @@
     </view>
     <!-- 用户信息 -->
     <view class="user-info">
-        <block wx:if="{{!userInfo.memberId}}" bindtap="login">
+        <block wx:if="{{!userInfo.memberId}}">
             <!-- 头像 -->
-            <view class="avatar" >
+            <view class="avatar" bindtap="login">
                 <image src="" />
             </view>
             <!-- 用户名称 -->
-            <view class="info">
+            <view class="info" bindtap="login">
                 <view class="info-top">
                     注册/登录
                 </view>
