@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-08 22:10:04
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-11 17:18:54
+ * @LastEditTime: 2023-05-22 17:35:51
  * @FilePath: /wxapp-boilerplate/src/pages/appointment/appointment.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -45,6 +45,7 @@ Page({
 	onLoad() {
 		// 获取tabBar高度;
 		this.getTabBarHeight(this);
+		this.getUserInfo();
 		// this.reservationRecord(this.data.swiperTabCheckIndex);
 	},
 	onShow() {

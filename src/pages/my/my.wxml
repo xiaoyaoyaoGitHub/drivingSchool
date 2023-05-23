@@ -70,7 +70,7 @@
                 <view class="rest-value">{{userInfo.safeDriverMemberTotal}}<text class="unit">天</text></view>
                 <view class="desc">剩余有效天数</view>
             </view>
-            <view class="disable" wx:if="{{!(userInfo.safeDriverMemberTotalDisable === 0 && userInfo.safeDriverIsDisable === 0)}}">
+            <view class="disable" wx:if="{{userInfo.safeDriverMemberStatus === 2}}">
                 <view class="title">
                     停卡/待激活
                 </view>
@@ -89,7 +89,7 @@
                 <view class="rest-value">{{userInfo.trackMemberTotal}}<text class="unit">天</text></view>
                 <view class="desc">剩余有效天数</view>
             </view>
-            <view class="disable" wx:if="{{!(userInfo.trackMemberTotalDisable === 0 && userInfo.trackMemberIsDisable === 0)}}">
+            <view class="disable" wx:if="{{userInfo.trackMemberStatus === 2}}">
                 <view class="title">
                     停卡/待激活
                 </view>
