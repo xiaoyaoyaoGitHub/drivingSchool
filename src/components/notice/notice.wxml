@@ -1,4 +1,4 @@
 <!-- 公告 -->
 <view class='notice-container' bindtap="showContent">
-  <text><block wx:for="{{anouncementList}}" wx:key="anuuncementId">{{item.content}}</block></text>
+  <text><block wx:for="{{anouncementList}}" wx:key="anuuncementId">{{item.title}}</block></text>
 </view>

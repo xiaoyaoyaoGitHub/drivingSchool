@@ -6,7 +6,7 @@
       {{productDetail.price}}
     </view>
     <view class="points">
-      <text class="unit">可用积分</text>
+      <text class="unit">积分可抵扣</text>
       <text class="value">{{productDetail.integral}}</text>
     </view>
   </view>

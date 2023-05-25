@@ -5,7 +5,7 @@
     <!-- statusbar占位 -->
     <view class="statusBar" style="height:{{statusBarHeight}}px" />
     <!-- 标题栏占位 -->
-    <view class="navigate" style="height:{{titleHeight}}rpx" >
+    <view class="navigate" style="height:{{titleHeight}}rpx">
         <!-- 标题栏 -->
     </view>
     <!-- 用户信息 -->
@@ -37,7 +37,7 @@
                 <!-- 标签 -->
                 <view class="tag">
                     <view wx:if="{{userInfo.safeDriverStartDate}}" class="tag-info">安驾学员</view>
-                    <view  wx:if="{{userInfo.trackMemberStartDate}}" class="tag-info">赛道学员</view>
+                    <view wx:if="{{userInfo.trackMemberStartDate}}" class="tag-info">赛道学员</view>
                     <!-- <view wx:if="{{userInfo.rentalStartDate}}" class="tag-info">安驾学员</view> -->
                 </view>
             </view>
@@ -49,10 +49,11 @@
     </view>
     <!-- 会员积分 -->
     <view class="points" wx:if="{{isLogin}}">
-        
+
         <view class="point">
-            <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/jifen-bg.png"></image>
-            {{userInfo.memberPoint}}<text class="unit">分</text>
+            <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/jifen-bg.png" />
+            {{userInfo.memberPoint}}
+            <text class="unit">分</text>
         </view>
     </view>
     <view class="points" wx:else>
@@ -67,7 +68,7 @@
                 <view class="desc">截止日期{{userInfo.safeDriverEndDate}}</view>>
             </view>
             <view class="rest" wx:else>
-                <view class="rest-value">{{userInfo.safeDriverMemberTotal}}<text class="unit">天</text></view>
+                <view class="rest-value">{{userInfo.safeDriverDays}}<text class="unit">天</text></view>
                 <view class="desc">剩余有效天数</view>
             </view>
             <view class="disable" wx:if="{{userInfo.safeDriverMemberStatus === 2}}">
@@ -86,7 +87,7 @@
                 <view class="desc">截止日期{{userInfo.trackMemberEndDate}}</view>
             </view>
             <view class="rest" wx:else>
-                <view class="rest-value">{{userInfo.trackMemberTotal}}<text class="unit">天</text></view>
+                <view class="rest-value">{{userInfo.trackMemberDays}}<text class="unit">天</text></view>
                 <view class="desc">剩余有效天数</view>
             </view>
             <view class="disable" wx:if="{{userInfo.trackMemberStatus === 2}}">
@@ -157,9 +158,9 @@
                 租车
             </view>
             <!-- value -->
-            <view class="list-item-value" wx:if="{{userInfo.depositaryDays}}">
+            <view class="list-item-value" wx:if="{{userInfo.carModel}}">
                 <!-- <view class="value">{{userInfo.rentalCarNumber}}</view> -->
-                <view class="value">{{userInfo.depositaryDays}}</view>
+                <view class="value">{{userInfo.carModel}}</view>
                 <view class="desc">车辆型号</view>
             </view>
             <view class="list-item-value" wx:else>
@@ -176,7 +177,7 @@
         </view>
         <view class="cars-list">
             <block  wx:for="{{cardList}}" wx:key="*this" >
-                <view wx:if="{{item}}" class="cars-list-item" >
+                <view wx:if="{{item}}" data-idx="{{index}}" bindtap="addLicence" class="cars-list-item" >
                     <view class="licence-title">
                         <text class="licence-location">{{item[0]}}</text>.<text class="licence-abbr">{{item[1]}}</text>
                     </view>

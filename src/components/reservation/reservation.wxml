@@ -197,14 +197,14 @@
                   bindchange="bindDayPickerChange"
                 >
                     <picker-view-column>
-                        <view wx:for="{{scheduleList}}" wx:key="scheduleId" style="line-height: 50px">{{item.scheduleDate}}</view>
+                        <view wx:for="{{scheduleList}}" wx:if="{{!item.isGray}}" wx:key="scheduleId" style="line-height: 50px">{{item.scheduleDate}}</view>
                     </picker-view-column>
                 </picker-view>
             </view>
             <view class="time-picker">
                 <view
-                  class="time-list-item"
-                  bindtap="addTimeList"
+                  class="time-list-item {{item.isGray ? 'gray':''}}"
+                  bindtap="{{item.isGray ? '':'addTimeList'}}"
                   wx:for="{{timeList}}"
                   wx:key="timeIntervalId"
                 >

@@ -56,6 +56,6 @@
 
   <!-- btn -->
   <button class="btn" open-type="contact" bindcontact="concact">
-    我想要
+    联系我们
   </button>
 </view>
