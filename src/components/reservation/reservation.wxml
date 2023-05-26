@@ -41,24 +41,39 @@
                 {{selectCourseInfo.courseName? '更改':'选择'}}
             </view>
         </view>
-        <!-- 选择时间段 -->
+        <!-- 选择天 -->
+        <view class="list-item">
+            <view class="icon">
+                <image src="http://www.mojiezuo.store:90/profile/upload/images/p_icon_4.png" />
+            </view>
+            <view class="content">
+                <text wx:if="{{!selectScheduleInfo.scheduleDate}}" class="placeHolder">请选择日期</text>
+                <text wx:else>
+                    <text>{{selectScheduleInfo.scheduleDate}}</text>
+                </text>
+            </view>
+            <view class="btn {{selectScheduleInfo.scheduleDate?'change-btn':'' }}" bindtap="scheduleDayPickerSwitch">
+                {{selectScheduleInfo.scheduleDate? '更改':'选择'}}
+            </view>
+        </view>
+        <!-- 选择 时间段-->
         <view class="list-item noBorder">
             <view class="icon">
                 <image src="http://www.mojiezuo.store:90/profile/upload/images/p_icon_4.png" />
             </view>
             <view class="content">
-                <text wx:if="{{selectTimeList.length === 0}}" class="placeHolder">请选择日期/时段</text>
-                <text wx:else>
-                    <text>{{selectScheduleInfo.scheduleDate}}</text>
-                </text>
+                <text wx:if="{{selectTimeList.length === 0}}" class="placeHolder">请选择上课时段</text>
+                <view class="timeList" wx:else>
+                    <view wx:for="{{selectTimeList}}" wx:key="*this">{{item.startDate}}-{{item.endDate}}<text>(已约{{item.reservationNum}}人)</text></view>
+                </view>
             </view>
-            <view class="btn {{selectTimeList.length !== 0?'change-btn':'' }}" bindtap="schedulePickerSwitch">
-                {{selectTimeList.length !== 0? '更改':'选择'}}
+            <view class="btn {{selectTimeList.length ?'change-btn':'' }}" bindtap="scheduleTimesPickerSwitch">
+                {{selectTimeList.length? '更改':'选择'}}
             </view>
         </view>
-        <view class="timeList" wx:if="{{selectTimeList.length !== 0}}" >
+        <!-- <view class="timeList" wx:if="{{selectTimeList.length !== 0}}" >
             <text wx:for="{{selectTimeList}}" wx:key="*this">{{item.startDate}}-{{item.endDate}}(已约{{item.reservationNum}}人)</text>
-        </view>
+        </view> -->
     </view>
     <!-- 提交按钮 -->
     <view class="btns">
@@ -69,7 +84,7 @@
             提交
         </view>
     </view>
-  
+
 </view>
 <!-- picker 类型 选择 -->
 <view class="picker-select" wx:if="{{showTypePicker}}">
@@ -167,7 +182,7 @@
                         <image src="http://www.mojiezuo.store:90/profile/upload/images/radio-checked.png" />
                     </view>
                 </block>
-                
+
             </view>
         </view>
         <!-- 按钮 -->
@@ -178,7 +193,7 @@
     </view>
 </view>
 
-<!-- picker 请选择上课时间 选择 -->
+<!-- picker 请选择天 选择 -->
 <view class="picker-select" wx:if="{{timePicker}}">
     <!-- picker-select-content -->
     <view class="picker-select-content">
@@ -191,32 +206,63 @@
             <!-- 时间段 -->
             <view class="day-picker">
                 <picker-view
-                  indicator-style="height: 50px;"
-                  style="height: 100%;"
+                  indicator-style="height: 50px;color:red"
+                  style="height: 100%;text-align: center"
                   value="{{value}}"
                   bindchange="bindDayPickerChange"
+                  class="picker"
                 >
-                    <picker-view-column>
-                        <view wx:for="{{scheduleList}}" wx:if="{{!item.isGray}}" wx:key="scheduleId" style="line-height: 50px">{{item.scheduleDate}}</view>
+                    <picker-view-column class="column">
+                        <view
+                          wx:for="{{scheduleList}}"
+                          class="{{index === value ? 'red':''}}"
+                          wx:if="{{!item.isGray}}"
+                          wx:key="scheduleId"
+                          style="line-height: 50px"
+                        >{{item.scheduleDate}}
+                        </view>
                     </picker-view-column>
                 </picker-view>
             </view>
+        </view>
+        <!-- 按钮 -->
+        <view class="picker-btn">
+            <view class="cancel" data-type="cancel" bindtap="scheduleDayPickerSwitch">取消</view>
+            <view class="confirm" data-type="confirm" bindtap="scheduleDayPickerSwitch">确定</view>
+        </view>
+    </view>
+</view>
+
+<!-- picker 请选择上课时间 选择 -->
+<view class="picker-select" wx:if="{{timeListPicker}}">
+    <!-- picker-select-content -->
+    <view class="picker-select-content">
+        <!-- 标题 -->
+        <view class="picker-title">
+            请选择上课时间（可选择多个时段）
+        </view>
+        <!-- 类型列表 -->
+        <view class="time-content">
             <view class="time-picker">
                 <view
                   class="time-list-item {{item.isGray ? 'gray':''}}"
                   bindtap="{{item.isGray ? '':'addTimeList'}}"
                   wx:for="{{timeList}}"
+                  data-item="{{item}}" data-index="{{index}}"
                   wx:key="timeIntervalId"
                 >
-                    <view data-item="{{item}}" data-index="{{index}}" class="name {{item.selected ? 'selected':''}}">{{item.startDate}}-{{item.endDate}}(已约{{item.reservationNum}}人)</view>
+                    <view  class="name {{item.selected ? 'selected':''}}">
+                        {{item.startDate}}~{{item.endDate}}
+                        <view class="hasRever">(已约{{item.reservationNum}}人)</view>
+                    </view>
                 </view>
             </view>
 
         </view>
         <!-- 按钮 -->
         <view class="picker-btn">
-            <view class="cancel" data-type="cancel" bindtap="schedulePickerSwitch">取消</view>
-            <view class="confirm" data-type="confirm" bindtap="schedulePickerSwitch">确定</view>
+            <view class="cancel" data-type="cancel" bindtap="scheduleTimesPickerSwitch">取消</view>
+            <view class="confirm" data-type="confirm" bindtap="scheduleTimesPickerSwitch">确定</view>
         </view>
     </view>
 </view>

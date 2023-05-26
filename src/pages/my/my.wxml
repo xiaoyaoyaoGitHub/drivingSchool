@@ -107,7 +107,7 @@
             <!-- time -->
             <view class="rest">
                 <view class="rest-value height76"></view>
-                <view class="desc">会员有效期</view>
+                <!-- <view class="desc">会员有效期</view> -->
             </view>
         </view>
     </view>

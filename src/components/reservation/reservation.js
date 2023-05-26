@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 16:45:45
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-05 11:21:58
+ * @LastEditTime: 2023-05-26 14:42:40
  * @FilePath: /wxapp-boilerplate/src/components/reservation/reservation.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -44,6 +44,8 @@ Component({
 		timeList: [], // 可选时间列表
 		selectDayIndex: 0, // 时间默认选择
 		preSelectTimeIdList: [],
+
+		timeListPicker: false,// 课时列表选择
 	},
 	attached() {
 		this.storeBindings = createStoreBindings(this, {
@@ -98,16 +100,16 @@ Component({
 					selectTypeInfo: this.data.preSelectTypeInfo,
 
 					selectLocationInfo: {},
-					preSelectLocationInfo:{},
+					preSelectLocationInfo: {},
 
 					selectCourseInfo: {},
-					preSelectCourseInfo:{},
+					preSelectCourseInfo: {},
 
 					selectScheduleInfo: {},
-					preSelectScheduleInfo:{},
+					preSelectScheduleInfo: {},
 
 					selectTimeList: [],
-					preSelectTimeList:[],
+					preSelectTimeList: [],
 				});
 			}
 			if (type === 'cancel') { // 取消
@@ -182,13 +184,15 @@ Component({
 				this.setData({
 					selectLocationInfo: this.data.preSelectLocationInfo,
 					selectCourseInfo: {},
-					preSelectCourseInfo:{},
+					preSelectCourseInfo: {},
 
 					selectScheduleInfo: {},
-					preSelectScheduleInfo:{},
+					preSelectScheduleInfo: {},
 
 					selectTimeList: [],
-					preSelectTimeList:[],
+					preSelectTimeList: [],
+
+					timeList:[],
 				});
 			}
 			if (type === 'cancel') { // 取消
@@ -265,9 +269,10 @@ Component({
 				this.setData({
 					selectCourseInfo: this.data.preSelectCourseInfo,
 					selectScheduleInfo: {},
-					preSelectScheduleInfo:{},
+					preSelectScheduleInfo: {},
 					selectTimeList: [],
-					preSelectTimeList:[]
+					preSelectTimeList: [],
+					timeList:[]
 				});
 			}
 			if (type === 'cancel') { // 取消
@@ -348,23 +353,21 @@ Component({
 			}
 		},
 		/**
-		 * 选择时间段
+		 * 选择时间段 天选择
 		 */
-		schedulePickerSwitch: throttle(function (e) {
+		scheduleDayPickerSwitch: throttle(function (e) {
 			const { target: { dataset: { type = '' } } = {} } = e || {};
-			const { selectDayIndex, preSelectTimeList, scheduleList } = this.data || {};
+			const { selectDayIndex, scheduleList } = this.data || {};
 			if (type === 'confirm') { // 确定
-				console.log(`preSelectTimeList`, preSelectTimeList);
 				this.setData({
 					selectScheduleInfo: scheduleList[selectDayIndex],
-					selectTimeList: preSelectTimeList,
-					preSelectTimeList: []
+					timeList:[]
 				});
 			}
 			if (type === 'cancel') { // 取消
-				this.setData({
-					preSelectCourseInfo: this.data.selectCourseInfo,
-				});
+				// this.setData({
+				// 	preSelectCourseInfo: this.data.selectCourseInfo,
+				// });
 			}
 			console.log(this.data);
 			if (!this.data.timePicker) {
@@ -387,17 +390,45 @@ Component({
 				this.setData({
 					timeList: this.data.scheduleList[selectDayIndex].timeIntervalList,
 					preSelectTimeIdList: [],
-					preSelectTimeList:[]
+					preSelectTimeList: []
 				});
 				console.log(this.data);
 			});
 		},
 		/**
+		 * 上课时段
+		 */
+		scheduleTimesPickerSwitch:throttle(function(e){
+			const { target: { dataset: { type = '' } } = {} } = e || {};
+			const { selectScheduleInfo,preSelectTimeList } = this.data || {};
+			if (type === 'confirm') { // 确定
+				this.setData({
+					selectTimeList: preSelectTimeList,
+				});
+			}
+			if (type === 'cancel') { // 取消
+				// this.setData({
+				// 	preSelectCourseInfo: this.data.selectCourseInfo,
+				// });
+			}
+			if(!this.data.timeListPicker && !selectScheduleInfo.timeIntervalList){
+				wx.showToast({
+					icon:'none',
+					title:'请选择日期'
+				})
+				return
+			}
+			this.setData({
+				timeListPicker: !this.data.timeListPicker,
+				timeList: selectScheduleInfo['timeIntervalList']
+			});
+		}),
+		/**
 		 * 选择天下面的时间段
 		 */
 		addTimeList: throttle(function (e) {
 			console.log(e);
-			const { target: { dataset: { item: curTimeInterval, index } } = {} } = e || {};
+			const { currentTarget: { dataset: { item: curTimeInterval, index } } = {} } = e || {};
 			console.log(`curTimeInterval`, curTimeInterval, index);
 			const curSelectTimeList = this.data.preSelectTimeList.concat();
 			// 是否存在当前选中的时间段
@@ -499,7 +530,7 @@ Component({
 		/**
 		 * 取消
 		 */
-		cancelReservation: throttle(function(){
+		cancelReservation: throttle(function () {
 			this.hideAddReservation()
 		})
 	},

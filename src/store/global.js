@@ -3,7 +3,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 14:04:24
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-25 22:54:29
+ * @LastEditTime: 2023-05-26 14:52:01
  * @FilePath: /wxapp-boilerplate/src/store/global.js
  * @Description: 全局状态数据
  */
@@ -91,10 +91,10 @@ export const global = observable({
 			const { code, data: info = {}, msg } = await app.apis.GET_MEMBER_DETAIL({ memberId });
 			wx.stopPullDownRefresh();
 			if (code === 200) {
-				info.trackMemberDays = moment(info.trackMemberEndDate).diff(moment(), 'day')
+				info.trackMemberDays = this.diffDay(info.trackMemberEndDate)
 				info.trackMemberEndDate = moment(info.trackMemberEndDate).format('YYYY年MM月DD日');
 				info.registerDate = moment(info.registerDate).format('YYYY年MM月DD日');
-				info.safeDriverDays = moment(info.safeDriverEndDate).diff(moment(), 'day')
+				info.safeDriverDays = this.diffDay(info.safeDriverEndDate)
 				info.safeDriverEndDate = moment(info.safeDriverEndDate).format('YYYY年MM月DD日');
 				info.createDate = moment(info.createDate).format('YYYY年MM月DD日')
 				info.updateDate = moment(info.updateDate).format('YYYY年MM月DD日')
@@ -111,6 +111,14 @@ export const global = observable({
 		} catch (err) {
 			console.log(err);
 		}
+	},
+	/**
+	 * 两个时间差比对
+	 */
+	diffDay(futureTime, endTime = new Date()){
+		const futureTempstamps = new Date(futureTime).getTime();
+		const nowTempstamps = new Date(endTime).getTime();
+		return ((futureTempstamps - nowTempstamps)/(24 * 60 * 60 * 1000)).toFixed(0)
 	},
 	/**
 	 * 更新token
