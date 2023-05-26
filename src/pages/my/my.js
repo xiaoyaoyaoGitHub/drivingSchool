@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 16:21:28
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-25 13:26:12
+ * @LastEditTime: 2023-05-26 10:33:22
  * @FilePath: /wxapp-boilerplate/src/pages/logs/logs.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -130,6 +130,10 @@ Page({
 	 * 添加紧急联系人
 	 */
 	addEmergency: throttle(function (e) {
+		const { emergencyContacter = '' } = this.data.userInfo || {};
+		this.setData({
+			emergencyNumber:emergencyContacter,
+		});
 		this.setData({
 			emergencyStatus: true,
 		});

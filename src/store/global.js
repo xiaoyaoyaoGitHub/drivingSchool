@@ -3,7 +3,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 14:04:24
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-25 13:44:06
+ * @LastEditTime: 2023-05-25 22:54:29
  * @FilePath: /wxapp-boilerplate/src/store/global.js
  * @Description: 全局状态数据
  */
@@ -65,7 +65,6 @@ export const global = observable({
 	 * 是否为付费会员
 	 */
 	get isPayVip() {
-		return false
 		return +this.userInfo.isVip === 0
 	},
 	/**

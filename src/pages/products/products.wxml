@@ -15,7 +15,7 @@
             {{item.price}}
           </view>
           <view class="add">
-            <image></image>
+            <image src="/images/add.png"></image>
           </view>
           <view class="points">
             {{item.integral}}<text class="unit">积分</text>

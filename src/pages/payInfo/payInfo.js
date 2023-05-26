@@ -3,7 +3,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-04-25 14:27:58
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-11 16:51:46
+ * @LastEditTime: 2023-05-26 09:54:42
  * @FilePath: /wxapp-boilerplate/src/pages/payInfo/payInfo.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,13 +16,28 @@ Page({
 	data: {},
 	onLoad() { },
 	createOrder: throttle(async function (e) {
+		const { userInfo: { phoneNumber = '' } = {} } = global || {};
+		// 未登录 请先登录
+		if(!phoneNumber){
+			wx.showToast({
+				icon:'none',
+				title:'请先登录',
+				duration:2000
+			})
+			setTimeout(() => {
+				my.navigateTo({
+				  url: '/pages/login/login'
+				});
+			},2000)
+			return
+		}
 		wx.showLoading({
 			title: '创建订单中...',
 		});
 		const loginInfo = await this.login();
 		console.log(`loginInfo`, loginInfo);
 		// const { encryptedData, iv } = userInfoProfile || {};
-		const { userInfo: { phoneNumber } = {} } = global || {};
+		
 		console.log('创建订单');
 		const result = await apis.CREATE_ORDER({ code: loginInfo.code });
 		const { code, data: payInfo = {}, msg } = result || {};

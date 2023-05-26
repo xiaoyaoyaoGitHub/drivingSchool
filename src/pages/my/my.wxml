@@ -13,7 +13,7 @@
         <block wx:if="{{!userInfo.memberId}}">
             <!-- 头像 -->
             <view class="avatar" bindtap="login">
-                <image src="" />
+                <image src="/images/avatar.png" />
             </view>
             <!-- 用户名称 -->
             <view class="info" bindtap="login">
@@ -27,7 +27,7 @@
         <block wx:else>
             <!-- 头像 -->
             <view class="avatar" bindtap="getUserProfile">
-                <image src="" />
+                <image src="/images/avatar.png" />
             </view>
             <!-- 用户名称 -->
             <view class="info">
@@ -38,7 +38,7 @@
                 <view class="tag">
                     <view wx:if="{{userInfo.safeDriverStartDate}}" class="tag-info">安驾学员</view>
                     <view wx:if="{{userInfo.trackMemberStartDate}}" class="tag-info">赛道学员</view>
-                    <!-- <view wx:if="{{userInfo.rentalStartDate}}" class="tag-info">安驾学员</view> -->
+                    <view wx:if="{{isPayVip}}" class="tag-info vip">99VIP会员</view>
                 </view>
             </view>
         </block>
@@ -101,6 +101,14 @@
         </view>
         <view class="member-info" wx:if="{{!isPayVip}}" bindtap="payVip">
             <image src="http://www.mojiezuo.store:90/profile/upload/images/anjia_vip.png" />
+        </view>
+        <view class="member-info" wx:else>
+            <image class="bg" src="/images/isVip.png" />
+            <!-- time -->
+            <view class="rest">
+                <view class="rest-value height76"></view>
+                <view class="desc">会员有效期</view>
+            </view>
         </view>
     </view>
     <view class="about" wx:else>
@@ -246,7 +254,7 @@
             <input class="name" bindblur="getEmergencyName" auto-focus placeholder="请输入联系人姓名" />
         </view>
         <view class="emergency-contcat-input" style="margin-top: 24rpx">
-            <input class="phone" type="number" maxlength="11" bindblur="getEmergencyNumber" placeholder="请输入联系人手机号" />
+            <input class="phone" value="{{emergencyNumber}}" type="number" maxlength="11" bindblur="getEmergencyNumber" placeholder="请输入联系人手机号" />
         </view>
         <!-- 确认按钮 -->
         <view class="btn" bindtap="addEmergencyConfirm">

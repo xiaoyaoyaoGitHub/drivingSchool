@@ -50,7 +50,10 @@
                     border-radius: 24rpx;
                     margin-right: 16rpx;
                     color: rgba(29, 29, 31, 1);
-                    background:  linear-gradient(135deg, rgba(243, 245, 245, 1) 0%, rgba(201, 229, 255, 1) 100%);
+                    background: linear-gradient(135deg, rgba(243, 245, 245, 1) 0%, rgba(201, 229, 255, 1) 100%);
+                    &.vip {
+                        background: linear-gradient(135deg, rgba(255, 195, 0, 1) 0%, rgba(228, 130, 37, 1) 17.13%, rgba(227, 87, 0, 1) 60.53%, rgba(255, 141, 26, 1) 100%);;   
+                    }
                 }
             }
         }
@@ -125,12 +128,15 @@
             }
             &>.rest {
                 padding: 104rpx 24rpx 0;
+               
                 &>.rest-value {
                     font-size: 48rpx;
                     line-height: 70rpx;
                     color: rgba(29, 29, 31, 1);
                     font-weight: 700;
-                    
+                    &.height76 {
+                        height: 76rpx;
+                    }
                     &>.unit  {
                         font-size: 24rpx;
                         line-height: 70rpx;
