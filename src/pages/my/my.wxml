@@ -116,7 +116,7 @@
     </view>
     <!-- my-servies -->
     <view class="services">
-        <view class="list-item {{userInfo.rentalDays ? '':'gray'}}">
+        <view class="list-item {{userInfo.cabinetDays ? '':'gray'}}">
             <!-- icon -->
             <view class="list-item-icon">
                 <image src="http://www.mojiezuo.store:90/profile/upload/images/my-icon-1.png" />
@@ -126,8 +126,8 @@
                 柜子
             </view>
             <!-- value -->
-            <view class="list-item-value" wx:if="{{userInfo.rentalDays}}">
-                <view class="value">{{userInfo.rentalDays}}</view>
+            <view class="list-item-value" wx:if="{{userInfo.cabinetDays}}">
+                <view class="value">{{userInfo.cabinetDays}}</view>
                 <view class="desc">剩余有效期</view>
             </view>
             <view class="list-item-value" wx:else>
@@ -136,7 +136,7 @@
                </view>
             </view>
         </view>
-        <view class="list-item {{userInfo.cabinetDays ? '':'gray'}}">
+        <view class="list-item {{userInfo.rentalDays ? '':'gray'}}">
             <!-- icon -->
             <view class="list-item-icon">
                 <image src="http://www.mojiezuo.store:90/profile/upload/images/my-icon-2.png" />
@@ -146,8 +146,8 @@
                 存车
             </view>
             <!-- value -->
-            <view class="list-item-value" wx:if="{{userInfo.cabinetDays}}">
-                <view class="value">{{userInfo.cabinetDays}}</view>
+            <view class="list-item-value" wx:if="{{userInfo.rentalDays}}">
+                <view class="value">{{userInfo.rentalDays}}</view>
                 <view class="desc">剩余有效期</view>
             </view>
             <view class="list-item-value" wx:else>
@@ -166,7 +166,7 @@
                 租车
             </view>
             <!-- value -->
-            <view class="list-item-value" wx:if="{{userInfo.carModel}}">
+            <view class="list-item-value" wx:if="{{userInfo.depositaryDays}}">
                 <!-- <view class="value">{{userInfo.rentalCarNumber}}</view> -->
                 <view class="value">{{userInfo.carModel}}</view>
                 <view class="desc">车辆型号</view>

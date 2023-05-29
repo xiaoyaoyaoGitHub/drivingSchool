@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-14 16:45:45
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-26 14:42:40
+ * @LastEditTime: 2023-05-28 11:05:27
  * @FilePath: /wxapp-boilerplate/src/components/reservation/reservation.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -330,9 +330,11 @@ Component({
 			wx.showLoading({
 				title: '获取时间列表中...'
 			})
-			const { code, data: scheduleList = [] } = await apis.GET_TIME_INTERVAL_LIST({ memberType, memberId, campusId, courseId });
+			let { code, data: scheduleList = [] } = await apis.GET_TIME_INTERVAL_LIST({ memberType, memberId, campusId, courseId });
 			wx.hideLoading()
 			if (code === 200) {
+				// 过滤不展示不可选天数
+				scheduleList = scheduleList.filter(item => !item.isGray)
 				this.setData({
 					scheduleList,
 				});
@@ -344,6 +346,11 @@ Component({
 					this.setData({
 						timePicker: !this.data.timePicker,
 					});
+				}else{
+					wx.showToast({
+						icon: 'none',
+						title: '没有可选日期'
+					})
 				}
 			} else {
 				wx.showToast({

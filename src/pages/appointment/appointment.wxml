@@ -19,6 +19,17 @@
 
         </view>
     </block>
+    <!-- 非付费会员 -->
+    <block wx:elif="{{userInfo.isMember === 1}}">
+        <view class="none-appointment-list">
+            <image class="none-appointment" src="http://www.mojiezuo.store:90/profile/upload/images/none-appointment.png" />
+            <view class="desc">哎吆，您还未开通会员啊，开通后就可以预约课程呢，期待您的加入！</view>
+            <button class="reservation-btn" open-type="contact" bindcontact="concact">
+                我想要
+            </button>
+
+        </view>
+    </block>
     <block wx:else>
         <!-- 预约列表 -->
         <block wx:if="{{showReservationList}}">
