@@ -267,7 +267,7 @@
         </view>
         <!-- 输入框 -->
         <view class="emergency-contcat-input">
-            <input class="name" bindblur="getEmergencyName" auto-focus placeholder="请输入联系人姓名" />
+            <input class="name" value="{{emergencyName}}"  bindblur="getEmergencyName" auto-focus placeholder="请输入联系人姓名" />
         </view>
         <view class="emergency-contcat-input" style="margin-top: 24rpx">
             <input class="phone" value="{{emergencyNumber}}" type="number" maxlength="11" bindblur="getEmergencyNumber" placeholder="请输入联系人手机号" />
