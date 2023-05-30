@@ -73,9 +73,17 @@
             </view>
             <view class="disable" wx:if="{{userInfo.safeDriverMemberStatus === 2}}">
                 <view class="title">
-                    停卡/待激活
+                    停卡
                 </view>
-                <view class="btn">
+                <view class="btn" bindtap="startSafeCard">
+                    启卡
+                </view>
+            </view>
+            <view class="disable" wx:elif="{{userInfo.safeDriverMemberStatus === 4}}">
+                <view class="title">
+                    待激活
+                </view>
+                <view class="btn" bindtap="activitySafeCard">
                     激活
                 </view>
             </view>
@@ -92,9 +100,17 @@
             </view>
             <view class="disable" wx:if="{{userInfo.trackMemberStatus === 2}}">
                 <view class="title">
-                    停卡/待激活
+                    停卡
                 </view>
-                <view class="btn">
+                <view class="btn" bindtap="startTrackCard">
+                    启卡
+                </view>
+            </view>
+            <view class="disable" wx:elif="{{userInfo.trackMemberStatus === 4}}">
+                <view class="title">
+                    待激活
+                </view>
+                <view class="btn" bindtap="activityTrackCard">
                     激活
                 </view>
             </view>

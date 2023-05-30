@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 16:21:28
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-26 14:53:42
+ * @LastEditTime: 2023-05-30 13:17:06
  * @FilePath: /wxapp-boilerplate/src/pages/logs/logs.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -27,9 +27,9 @@ Page({
 	onLoad() {
 		try {
 			this.getTabBarHeight();
-			if(!this.data.isLogin){
+			if (!this.data.isLogin) {
 				wx.navigateTo({
-					url:'/pages/login/login'
+					url: '/pages/login/login'
 				})
 			}
 		}
@@ -53,7 +53,7 @@ Page({
 	/**
 	 * 支付VIP
 	 */
-	payVip: throttle(function(){
+	payVip: throttle(function () {
 		wx.navigateTo({
 			url: '/pages/payInfo/payInfo',
 		});
@@ -70,12 +70,12 @@ Page({
 	 * 增加车牌号
 	 */
 	addLicence: throttle(function (e) {
-		const { target: {dataset: {idx: addLicenceIndex = 0} = {}} = {} } = e || {};
+		const { target: { dataset: { idx: addLicenceIndex = 0 } = {} } = {} } = e || {};
 		this.addLicenceIndex = addLicenceIndex - 0 + 1;
 		const licenceValue = this.data.cardList[addLicenceIndex];
 		this.setData({
 			addLicenceStatus: true,
-			licenceValue: licenceValue[0] ? `${licenceValue[0]}${licenceValue[1]}${licenceValue[2]}`:''
+			licenceValue: licenceValue[0] ? `${licenceValue[0]}${licenceValue[1]}${licenceValue[2]}` : ''
 		});
 	}),
 	/**
@@ -136,7 +136,7 @@ Page({
 	addEmergency: throttle(function (e) {
 		const { emergencyContacter = '' } = this.data.userInfo || {};
 		this.setData({
-			emergencyNumber:emergencyContacter,
+			emergencyNumber: emergencyContacter,
 		});
 		this.setData({
 			emergencyStatus: true,
@@ -159,7 +159,7 @@ Page({
 	/**
 	 * 阻止冒泡
 	 */
-	stop() {},
+	stop() { },
 	/**
 	 * 获取紧急联系人手机号码
 	 */
@@ -176,24 +176,24 @@ Page({
 	addEmergencyConfirm: throttle(async function () {
 		try {
 			const { emergencyName = '', emergencyNumber: emergencyContacter = '' } = this.data || {};
-			console.log(`emergencyName`,emergencyName);
-			console.log(`emergencyContacter`,emergencyContacter);
-			if(emergencyName.length === 0){
+			console.log(`emergencyName`, emergencyName);
+			console.log(`emergencyContacter`, emergencyContacter);
+			if (emergencyName.length === 0) {
 				my.showToast({
-					icon:'none',
-					title:'请输入紧急联系人名称'
+					icon: 'none',
+					title: '请输入紧急联系人名称'
 				})
 				return
 			}
-			if(emergencyContacter.length !== 11){
+			if (emergencyContacter.length !== 11) {
 				my.showToast({
-					icon:'none',
-					title:'请输入正确的手机号'
+					icon: 'none',
+					title: '请输入正确的手机号'
 				})
 				return
 			}
-			
-			const {code, msg} = await apis.SET_EMERGENCY_PHONE({ emergencyContacter,emergencyName });
+
+			const { code, msg } = await apis.SET_EMERGENCY_PHONE({ emergencyContacter, emergencyName });
 			this.setData({
 				emergencyStatus: false,
 			});
@@ -241,11 +241,124 @@ Page({
 		// 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
 		// 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
 		wx.getUserProfile({
-		  desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-		  success: (res) => {
-			console.log(res);
-			
-		  }
+			desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+			success: (res) => {
+				console.log(res);
+
+			}
 		})
-	  },
+	},
+	/**
+	 * 安驾会员启卡
+	 */
+	startSafeCard: throttle(async function () {
+		console.log('startSafeCard');
+		try {
+			const { userInfo: { safeDriverMemberId } = {} } = this.data || {};
+			const result = await apis.ACTIVITE_SAFE_DRIVER_CARD({ safeDriverMemberId, isFirstSafety: 1, safeDriverIsDisable: 0 });
+			if (result.code === 200) {
+				wx.showToast({
+					icon: 'success',
+					title: '启卡成功'
+				})
+				this.getUserInfo()
+			} else {
+				wx.showToast({
+					icon: 'fail',
+					title: '启卡失败'
+				})
+			}
+			console.log(result);
+		} catch (err) {
+			console.log(err);
+			wx.showToast({
+				icon: 'fail',
+				title: '启卡失败'
+			})
+		}
+	}),
+	/**
+	 * 安驾会员激活
+	 */
+	activitySafeCard: throttle(async function () {
+		try {
+			const { userInfo: { safeDriverMemberId } = {} } = this.data || {};
+			const result = await apis.START_SAFE_DRIVER_CARD({ safeDriverMemberId, isFirstSafety: 1 });
+			if (result.code === 200) {
+				wx.showToast({
+					icon: 'success',
+					title: '激活成功'
+				})
+				this.getUserInfo()
+			} else {
+				wx.showToast({
+					icon: 'fail',
+					title: '激活失败'
+				})
+			}
+			console.log(result);
+		} catch (err) {
+			console.log(err);
+			wx.showToast({
+				icon: 'fail',
+				title: '激活失败'
+			})
+		}
+	}),
+	/**
+	 * 赛道会员启卡
+	 */
+	startTrackCard: throttle(async function () {
+		try {
+			const { userInfo: { trackMemberId } = {} } = this.data || {};
+			const result = await apis.ACTIVITE_TRACK_CARD({ trackMemberId, isFirstSafety: 1, trackMemberIsDisable: 0 });
+			if (result.code === 200) {
+				wx.showToast({
+					icon: 'success',
+					title: '启卡成功'
+				})
+				this.getUserInfo()
+			} else {
+				wx.showToast({
+					icon: 'fail',
+					title: '启卡失败'
+				})
+			}
+			console.log(result);
+		} catch (err) {
+			console.log(err);
+			wx.showToast({
+				icon: 'fail',
+				title: '启卡失败'
+			})
+		}
+	}),
+	/**
+	 * 赛道会员激活
+	 */
+	activityTrackCard: throttle(async function () {
+		try {
+			const { userInfo: { trackMemberId } = {} } = this.data || {};
+			const result = await apis.START_TRACK_CARD({ trackMemberId, isFirstSafety: 1 });
+			if (result.code === 200) {
+				wx.showToast({
+					icon: 'success',
+					title: '激活成功'
+				})
+				this.getUserInfo()
+			} else {
+				wx.showToast({
+					icon: 'fail',
+					title: '激活失败'
+				})
+			}
+			console.log(result);
+		} catch (err) {
+			console.log(err);
+			wx.showToast({
+				icon: 'fail',
+				title: '激活失败'
+			})
+		}
+	})
 });

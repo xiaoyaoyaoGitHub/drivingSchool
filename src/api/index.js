@@ -2,7 +2,7 @@
  * @Author: wangluyao wangluyao959277@163.com
  * @Date: 2023-03-07 17:07:13
  * @LastEditors: wangluyao wangluyao959277@163.com
- * @LastEditTime: 2023-05-26 09:42:23
+ * @LastEditTime: 2023-05-30 13:03:07
  * @FilePath: /wxapp-boilerplate/src/api/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -377,6 +377,62 @@ const init = () => {
 				baseURL: hostConfig.url,
 				url: '/mobile/module/userWantIncr',
 				method: 'GET',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 安驾会员启停卡
+		 * @param {*} data
+		 * @param {*} options
+		 */
+		ACTIVITE_SAFE_DRIVER_CARD(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/mobile/member/activateSafeDriverCard',
+				method: 'POST',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 安驾会员激活
+		 * @param {*} data
+		 * @param {*} options
+		 */
+		START_SAFE_DRIVER_CARD(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/mobile/member/startSafeDriverCard',
+				method: 'POST',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 赛道会员启停卡
+		 * @param {*} data
+		 * @param {*} options
+		 */
+		ACTIVITE_TRACK_CARD(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/mobile/member/activateTrackCard',
+				method: 'POST',
+				data,
+				...options,
+			});
+		},
+		/**
+		 * 赛道会员激活
+		 * @param {*} data
+		 * @param {*} options
+		 */
+		START_TRACK_CARD(data = {}, options = {}) {
+			return getInstance.http({
+				baseURL: hostConfig.url,
+				url: '/mobile/member/startTrackCard',
+				method: 'POST',
 				data,
 				...options,
 			});
