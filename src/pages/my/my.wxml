@@ -65,7 +65,7 @@
             <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/anjiahuiyuan.png"></image>
             <view class="rest" wx:if="{{userInfo.safeDriverMemberTotalDisable === 0}}">
                 <view class="rest-value">{{userInfo.safeDriverMemberTotal}}<text class="unit">次</text></view>
-                <view class="desc">截止日期{{userInfo.safeDriverEndDate}}</view>>
+                <view class="desc">截止日期{{userInfo.safeDriverEndDate}}</view>
             </view>
             <view class="rest" wx:else>
                 <view class="rest-value">{{userInfo.safeDriverDays}}<text class="unit">天</text></view>
@@ -152,7 +152,7 @@
                </view>
             </view>
         </view>
-        <view class="list-item {{userInfo.rentalDays ? '':'gray'}}">
+        <view class="list-item {{userInfo.depositaryDays ? '':'gray'}}">
             <!-- icon -->
             <view class="list-item-icon">
                 <image src="http://www.mojiezuo.store:90/profile/upload/images/my-icon-2.png" />
@@ -162,8 +162,8 @@
                 存车
             </view>
             <!-- value -->
-            <view class="list-item-value" wx:if="{{userInfo.rentalDays}}">
-                <view class="value">{{userInfo.rentalDays}}</view>
+            <view class="list-item-value" wx:if="{{userInfo.depositaryDays}}">
+                <view class="value">{{userInfo.depositaryDays}}</view>
                 <view class="desc">剩余有效期</view>
             </view>
             <view class="list-item-value" wx:else>
@@ -184,7 +184,7 @@
             <!-- value -->
             <view class="list-item-value" wx:if="{{userInfo.depositaryDays}}">
                 <!-- <view class="value">{{userInfo.rentalCarNumber}}</view> -->
-                <view class="value">{{userInfo.carModel}}</view>
+                <view class="value">{{userInfo.rentalCarModel}}</view>
                 <view class="desc">车辆型号</view>
             </view>
             <view class="list-item-value" wx:else>

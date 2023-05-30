@@ -6,7 +6,7 @@
         </view>
         <!-- 描述 -->
         <view class="desc">
-          {{item.fistText}}
+          {{item.title}}
         </view>
         <!-- 价格 -->
         <view class="price">
