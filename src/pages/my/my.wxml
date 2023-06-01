@@ -61,21 +61,25 @@
     </view>
     <!-- about -->
     <view class="member-list" wx:if="{{isLogin}}">
-        <view class="member-info anjia" wx:if="{{userInfo.safeDriverStartDate}}" >
-            <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/anjiahuiyuan.png"></image>
-            <view class="rest" wx:if="{{userInfo.safeDriverMemberTotalDisable === 0}}">
-                <view class="rest-value">{{userInfo.safeDriverMemberTotal}}<text class="unit">次</text></view>
+        <view class="member-info anjia" wx:if="{{userInfo.safeDriverStartDate}}">
+            <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/anjiahuiyuan.png" />
+            <view class="rest" wx:if="{{userInfo.safeDriverMemberStatus === 0}}">
+                <view class="rest-value">{{userInfo.safeDriverMemberTotal}}
+                    <text class="unit">次</text>
+                </view>
                 <view class="desc">截止日期{{userInfo.safeDriverEndDate}}</view>
             </view>
             <view class="rest" wx:else>
-                <view class="rest-value">{{userInfo.safeDriverDays}}<text class="unit">天</text></view>
+                <view class="rest-value">{{userInfo.safeDriverDays}}
+                    <text class="unit">天</text>
+                </view>
                 <view class="desc">剩余有效天数</view>
             </view>
-            <view class="disable" wx:if="{{userInfo.safeDriverMemberStatus === 2}}">
+            <view class="disable" wx:if="{{userInfo.safeDriverMemberStatus ===2 || userInfo.safeDriverMemberStatus ===3}}">
                 <view class="title">
-                    停卡
+                    已停卡
                 </view>
-                <view class="btn" bindtap="startSafeCard">
+                <view class="btn {{userInfo.safeDriverMemberStatus ===2 ? 'disabled':''}}" bindtap="{{userInfo.safeDriverMemberStatus ===2 ? '':'startSafeCard'}}">
                     启卡
                 </view>
             </view>
@@ -88,21 +92,25 @@
                 </view>
             </view>
         </view>
-        <view class="member-info saidao" wx:if="{{userInfo.trackMemberStartDate}}" >
-            <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/saidaohuiyuan.png"></image>
-            <view class="rest" wx:if="{{userInfo.trackMemberTotalDisable === 0}}">
-                <view class="rest-value">{{userInfo.trackMemberTotal}}<text class="unit">次</text></view>
+        <view class="member-info saidao" wx:if="{{userInfo.trackMemberStartDate}}">
+            <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/saidaohuiyuan.png" />
+            <view class="rest" wx:if="{{userInfo.trackMemberStatus === 0}}">
+                <view class="rest-value">{{userInfo.trackMemberTotal}}
+                    <text class="unit">次</text>
+                </view>
                 <view class="desc">截止日期{{userInfo.trackMemberEndDate}}</view>
             </view>
             <view class="rest" wx:else>
-                <view class="rest-value">{{userInfo.trackMemberDays}}<text class="unit">天</text></view>
+                <view class="rest-value">{{userInfo.trackMemberDays}}
+                    <text class="unit">天</text>
+                </view>
                 <view class="desc">剩余有效天数</view>
             </view>
-            <view class="disable" wx:if="{{userInfo.trackMemberStatus === 2}}">
+            <view class="disable" wx:if="{{userInfo.trackMemberStatus ===2 || userInfo.trackMemberStatus === 3}}">
                 <view class="title">
-                    停卡
+                    已停卡
                 </view>
-                <view class="btn" bindtap="startTrackCard">
+                <view class="btn {{userInfo.trackMemberStatus ===2 ? 'disabled':''}}" bindtap="{{userInfo.trackMemberStatus ===2 ? '':'startTrackCard'}}">
                     启卡
                 </view>
             </view>
@@ -122,7 +130,7 @@
             <image class="bg" src="/images/isVip.png" />
             <!-- time -->
             <view class="rest">
-                <view class="rest-value height76"></view>
+                <view class="rest-value height76" />
                 <!-- <view class="desc">会员有效期</view> -->
             </view>
         </view>
@@ -147,9 +155,9 @@
                 <view class="desc">剩余有效期</view>
             </view>
             <view class="list-item-value" wx:else>
-               <view class="unable">
-                未租赁
-               </view>
+                <view class="unable">
+                    未租赁
+                </view>
             </view>
         </view>
         <view class="list-item {{userInfo.depositaryDays ? '':'gray'}}">
@@ -169,7 +177,7 @@
             <view class="list-item-value" wx:else>
                 <view class="unable">
                     未租赁
-                   </view>
+                </view>
             </view>
         </view>
         <view class="list-item  {{userInfo.depositaryDays ? '':'gray'}}">
@@ -190,7 +198,7 @@
             <view class="list-item-value" wx:else>
                 <view class="unable">
                     未租赁
-                   </view>
+                </view>
             </view>
         </view>
     </view>
@@ -200,18 +208,30 @@
             我的摩托车
         </view>
         <view class="cars-list">
-            <block  wx:for="{{cardList}}" wx:key="*this" >
-                <view wx:if="{{item}}" data-idx="{{index}}" bindtap="addLicence" class="cars-list-item" >
+            <block wx:for="{{cardList}}" wx:key="*this">
+                <view
+                  wx:if="{{item}}"
+                  data-idx="{{index}}"
+                  bindtap="addLicence"
+                  class="cars-list-item"
+                >
                     <view class="licence-title">
-                        <text class="licence-location">{{item[0]}}</text>.<text class="licence-abbr">{{item[1]}}</text>
+                        <text class="licence-location">{{item[0]}}</text>
+                        .
+                        <text class="licence-abbr">{{item[1]}}</text>
                     </view>
                     <view class="licence-member">
                         {{item[2]}}
                     </view>
                 </view>
-                <view wx:else class="cars-list-item add" bindtap="addLicence" data-idx="{{index}}">
-                    <image src="http://www.mojiezuo.store:90/profile/upload/images/add-licence.png"></image>
-                 </view>
+                <view
+                  wx:else
+                  class="cars-list-item add"
+                  bindtap="addLicence"
+                  data-idx="{{index}}"
+                >
+                    <image src="http://www.mojiezuo.store:90/profile/upload/images/add-licence.png" />
+                </view>
             </block>
         </view>
     </view>
@@ -251,7 +271,14 @@
         </view>
         <!-- 输入框 -->
         <view class="car-license">
-            <input class="license" bindblur="getLicence" value="{{licenceValue}}" type="text" auto-focus placeholder="请输入车牌号" />
+            <input
+              class="license"
+              bindblur="getLicence"
+              value="{{licenceValue}}"
+              type="text"
+              auto-focus
+              placeholder="请输入车牌号"
+            />
         </view>
         <!-- 确认按钮 -->
         <view class="btn" bindtap="addLicenceConfirm">
@@ -267,10 +294,23 @@
         </view>
         <!-- 输入框 -->
         <view class="emergency-contcat-input">
-            <input class="name" value="{{emergencyName}}"  bindblur="getEmergencyName" auto-focus placeholder="请输入联系人姓名" />
+            <input
+              class="name"
+              value="{{emergencyName}}"
+              bindblur="getEmergencyName"
+              auto-focus
+              placeholder="请输入联系人姓名"
+            />
         </view>
         <view class="emergency-contcat-input" style="margin-top: 24rpx">
-            <input class="phone" value="{{emergencyNumber}}" type="number" maxlength="11" bindblur="getEmergencyNumber" placeholder="请输入联系人手机号" />
+            <input
+              class="phone"
+              value="{{emergencyNumber}}"
+              type="number"
+              maxlength="11"
+              bindblur="getEmergencyNumber"
+              placeholder="请输入联系人手机号"
+            />
         </view>
         <!-- 确认按钮 -->
         <view class="btn" bindtap="addEmergencyConfirm">

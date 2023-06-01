@@ -14,11 +14,11 @@
             <text class="unit">¥</text>
             {{item.price}}
           </view>
-          <view class="add">
+          <!-- <view class="add">
             <image src="/images/add.png"></image>
-          </view>
+          </view> -->
           <view class="points">
-            {{item.integral}}<text class="unit">积分</text>
+            <text class="unit">积分抵扣</text>{{item.integral}}元
           </view>
         </view>
       </view>

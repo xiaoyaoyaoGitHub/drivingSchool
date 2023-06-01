@@ -160,7 +160,7 @@
                 top: 0;
                 bottom: 0;
                 margin: auto;
-                background: rgba(29, 29, 31, 0.88);
+                background: rgba(29, 29, 31, 0.99);
                 
                 &>.title {
                     font-size: 32rpx;
@@ -181,6 +181,9 @@
                     color: rgba(255, 255, 255, 1);
                     font-weight: 500;
                     background: $btnColor;
+                    &.disabled {
+                        opacity: 0.6;
+                    }
                 }
             }
         }

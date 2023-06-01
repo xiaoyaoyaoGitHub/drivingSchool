@@ -33,12 +33,12 @@ page {
                     &>.unit {
                         font-size: 20rpx;
                         line-height: 40rpx;
-                        color: #FF0000;
+                        color: rgba(227, 87, 0, 1);
                         font-weight: normal;
                     }
                     font-size: 32rpx;
                     line-height: 40rpx;
-                    color: #FF0000;
+                    color: rgba(227, 87, 0, 1);
                     font-weight: 700;
                 }
                 &>.add {
@@ -56,17 +56,15 @@ page {
                 &>.points {
                     display: inline-block;
                     margin-left: 8rpx;
-                    font-size: 32rpx;
-                    line-height: 32rpx;
-                    color: rgba(227, 87, 0, 1);
+                    font-size: 24rpx;
+                    line-height: 24rpx;
+                    color: rgba(122, 61, 0, 1);
                     border-radius: 18rpx;
-                    padding: 2rpx 0 12rpx;
-                    font-weight: 700;
-                    // background:  linear-gradient(135deg, rgba(254, 228, 182, 1) 0%, rgba(255, 192, 84, 1) 57.98%, rgba(248, 212, 140, 1) 100%);
+                    padding: 2rpx 12rpx;
+                    background:  linear-gradient(135deg, rgba(254, 228, 182, 1) 0%, rgba(255, 192, 84, 1) 57.98%, rgba(248, 212, 140, 1) 100%);
                     &>.unit {
-                        font-size: 20rpx;
-                        line-height: 40rpx;
-                        margin-left: 2rpx;
+                        font-size: 15rpx;
+                        line-height: 15rpx;
                     }
                 }
             }
