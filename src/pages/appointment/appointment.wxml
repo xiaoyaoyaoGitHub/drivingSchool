@@ -47,12 +47,12 @@
                     </view>
                 </view>
                 <!-- swiper -->
-                <swiper class="swiper-content" bindchange="changeSwiperCurrent" current="{{swiperTabCheckIndex}}">
+                <swiper  class="swiper-content" bindchange="changeSwiperCurrent" current="{{swiperTabCheckIndex}}">
                     <block wx:for="{{[1,2]}}" wx:key="*this">
                         <swiper-item class="swiper-content-item">
                             <view class="swiper-{{index}}">
                                 <block wx:if="{{index === 0}}">
-                                    <view wx:for="{{doneReserList}}" wx:key="*this" class="swiper-item done">
+                                    <view wx:if="{{doneReserList.length}}" wx:for="{{doneReserList}}" wx:key="*this" class="swiper-item done">
                                         <!-- 预约类型 -->
                                         <view class="type">
                                             预约类型:
@@ -83,9 +83,18 @@
                                             取消预约
                                         </view>
                                     </view>
+                                    <view wx:if="{{!doneReserList.length}}">
+                                        <view class="none-appointment-list">
+                                            <image class="none-appointment" src="http://www.mojiezuo.store:90/profile/upload/images/none-appointment.png" />
+                                            <view class="desc">您还没有预约过课程，马上去预约吧！</view>
+                                            <!-- <view class="reservation-btn" bindtap="addNewReservation">
+                                                去预约
+                                            </view> -->
+                                        </view>
+                                    </view>
                                 </block>
                                 <block wx:else>
-                                    <view wx:for="{{cancelReserList}}" wx:key="*this" class="swiper-item done">
+                                    <view wx:if="{{cancelReserList.length}}" wx:for="{{cancelReserList}}" wx:key="*this" class="swiper-item done">
                                         <!-- 预约类型 -->
                                         <view class="type">
                                             预约类型:
@@ -125,6 +134,15 @@
                                             已过期
                                         </view>
                                     </view>
+                                    <view wx:if="{{!cancelReserList.length}}">
+                                        <view class="none-appointment-list">
+                                            <image class="none-appointment" src="http://www.mojiezuo.store:90/profile/upload/images/none-appointment.png" />
+                                            <view class="desc">您还没有预约过课程，马上去预约吧！</view>
+                                            <!-- <view class="reservation-btn" bindtap="addNewReservation">
+                                                去预约
+                                            </view> -->
+                                        </view>
+                                    </view>
                                 </block>
                             </view>
                         </swiper-item>
@@ -137,7 +155,7 @@
             </view>
         </block>
         <!-- 没有预约课程 -->
-        <block wx:elif="{{noReservation}}">
+        <!-- <block wx:elif="{{noReservation && false}}">
             <view class="none-appointment-list">
                 <image class="none-appointment" src="http://www.mojiezuo.store:90/profile/upload/images/none-appointment.png" />
                 <view class="desc">您还没有预约过课程，马上去预约吧！</view>
@@ -145,7 +163,7 @@
                     去预约
                 </view>
             </view>
-        </block>
+        </block> -->
         <!-- 去预约 -->
         <block wx:else>
             <view class="reservation">

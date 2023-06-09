@@ -12,8 +12,8 @@ import { global } from '@/store/index';
 
 const hostConfig = {
 	// url: 'http://39.98.207.154:9000',
-	url: 'http://www.mojiezuo.store:9000',
-	// url: 'https://www.mojiezuo.store:443',
+	// url: 'http://www.mojiezuo.store:9000',
+	url: 'https://www.mojiezuo.store:443',
 };
 
 /**

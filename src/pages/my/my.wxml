@@ -91,6 +91,14 @@
                     激活
                 </view>
             </view>
+            <view class="disable" wx:elif="{{userInfo.safeDriverMemberStatus === 5}}">
+                <view class="title">
+                    已过期
+                </view>
+                <view class="btn disabled">
+                    激活
+                </view>
+            </view>
         </view>
         <view class="member-info saidao" wx:if="{{userInfo.trackMemberStartDate}}">
             <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/saidaohuiyuan.png" />
@@ -119,6 +127,14 @@
                     待激活
                 </view>
                 <view class="btn" bindtap="activityTrackCard">
+                    激活
+                </view>
+            </view>
+            <view class="disable" wx:elif="{{userInfo.trackMemberStatus === 5}}">
+                <view class="title">
+                    待过期
+                </view>
+                <view class="btn disable">
                     激活
                 </view>
             </view>
