@@ -36,8 +36,8 @@
                 </view>
                 <!-- 标签 -->
                 <view class="tag">
-                    <view wx:if="{{![5,2].includes(userInfo.safeDriverMemberStatus)}}" class="tag-info">安驾学员</view>
-                    <view wx:if="{{![5,2].includes(userInfo.trackMemberStatus)}}" class="tag-info">赛道学员</view>
+                    <view wx:if="{{ (userInfo.safeDriverMemberStatus !== 2 && userInfo.safeDriverMemberStatus !== 5)}}" class="tag-info">安驾学员</view>
+                    <view wx:if="{{ (userInfo.trackMemberStatus !== 2 && userInfo.trackMemberStatus !== 5)}}" class="tag-info">赛道学员</view>
                     <view wx:if="{{isPayVip}}" class="tag-info vip">99VIP会员</view>
                 </view>
             </view>
