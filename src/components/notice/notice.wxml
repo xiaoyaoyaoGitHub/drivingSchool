@@ -1,4 +1,15 @@
-<!-- 公告 -->
-<view class='notice-container' bindtap="showContent">
-  <text><block wx:for="{{anouncementList}}" wx:key="anuuncementId">{{item.title}}</block></text>
+<view class='notice'>
+  <view class="left">
+    <view class='iconfont icon-labagonggao'>
+      <image src="/images/laba.png" />
+    </view>
+    <view class="left-box">
+      <view class='content-box' bindtap="showContent">
+        <view class='content-text' animation="{{animationData}}">
+          <text id="text"><block wx:for="{{anouncementList}}" wx:key="anuuncementId">{{item.title}}</block></text>
+        </view>
+      </view>
+    </view>
+  </view>
+
 </view>

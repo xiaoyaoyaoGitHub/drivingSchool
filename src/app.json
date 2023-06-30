@@ -13,7 +13,8 @@
     "pages/recommendations/recommendations",
     "pages/appointment/appointment",
     "pages/articalDetail/articalDetail",
-    "pages/payInfo/payInfo"
+    "pages/payInfo/payInfo",
+    "pages/desc/desc"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,10 +1,10 @@
 <view class="login">
   <!-- statusbar占位 -->
-  <view class="statusBar" style="height:{{statusBarHeight}}px" />
+  <!-- <view class="statusBar" style="height:{{statusBarHeight}}px" /> -->
   <!-- 标题栏占位 -->
-  <view class="navigate" style="height:{{titleHeight}}rpx" >
-      <!-- 标题栏 -->
-  </view>
+  <!-- <view class="navigate" style="height:{{titleHeight}}rpx" >
+     
+  </view> -->
   <!-- 底部背景图 -->
   <image src="http://www.mojiezuo.store:90/profile/upload/images/login-bg.png" class="bg" />
   <!-- container -->
@@ -73,9 +73,8 @@
       <view class="desc">
 
         我已阅读并同意
-        <text style="color:rgba(227, 87, 0, 1)">《摩杰座用户服务协议》</text>
-        和
-        <text style="color:rgba(0, 103, 247, 1)">疑似政策</text>
+        <text bindtap="goToDesc" style="color:rgba(227, 87, 0, 1)">《隐私协议》</text>
+        <!-- <text style="color:rgba(0, 103, 247, 1)">疑似政策</text> -->
 
       </view>
     </view>

@@ -49,6 +49,6 @@
 
   <!-- btn -->
   <button class="btn" open-type="contact">
-    我想要
+    联系我们
   </button>
 </view>

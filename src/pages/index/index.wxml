@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
     <!-- 公告 -->
-    <notice wx:if="{{anouncementList.length}}" bind:showContent="onShowNoticeContent" anouncementList="{{anouncementList}}"></notice>
+    <notice wx:if="{{anouncementList.length}}"  bind:showContent="onShowNoticeContent" anouncementList="{{anouncementList}}"></notice>
     <!-- 头部卡片 -->
     <view class="top-card" bindtap="goToCosts" wx:if="{{modulesInfo['CAPRICORN_INTRO']}}">
         <image src="{{modulesInfo['CAPRICORN_INTRO'].image}}" />
