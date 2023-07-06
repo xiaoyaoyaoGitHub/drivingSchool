@@ -196,7 +196,7 @@
                 </view>
             </view>
         </view>
-        <view class="list-item  {{userInfo.depositaryDays ? '':'gray'}}">
+        <view class="list-item  {{userInfo.rentalDays ? '':'gray'}}">
             <!-- icon -->
             <view class="list-item-icon">
                 <image src="http://www.mojiezuo.store:90/profile/upload/images/my-icon-3.png" />
@@ -206,7 +206,7 @@
                 租车
             </view>
             <!-- value -->
-            <view class="list-item-value" wx:if="{{userInfo.depositaryDays}}">
+            <view class="list-item-value" wx:if="{{userInfo.rentalDays}}">
                 <!-- <view class="value">{{userInfo.rentalCarNumber}}</view> -->
                 <view class="value">{{userInfo.rentalCarModel}}</view>
                 <view class="desc">车辆型号</view>
