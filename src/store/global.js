@@ -56,11 +56,24 @@ export const global = observable({
 		return this.systemInfo.screenHeight - this.tabBarHeight
 	},
 	/**
+	 * 安驾会员
+	 */
+	get isDriveMember() {
+		return (this.userInfo.safeDriverMemberStatus !== 2 && this.userInfo.safeDriverMemberStatus !== 5)
+	},
+	/**
+	 * 赛道会员
+	 */
+	get isTrackMember() {
+		return (this.userInfo.trackMemberStatus !== 2 && this.userInfo.trackMemberStatus !== 5)
+	},
+	/**
 	 * 是否已登录
 	 */
 	get isLogin() {
 		return !!this.userInfo.memberId
 	},
+
 	/**
 	 * 是否为付费会员
 	 */
@@ -115,11 +128,11 @@ export const global = observable({
 	/**
 	 * 两个时间差比对
 	 */
-	diffDay(futureTime, endTime = new Date()){
+	diffDay(futureTime, endTime = new Date()) {
 		const futureTempstamps = new Date(futureTime).getTime();
 		const nowTempstamps = new Date(endTime).getTime();
-		if(futureTempstamps < nowTempstamps) return 0;
-		return ((futureTempstamps - nowTempstamps)/(24 * 60 * 60 * 1000)).toFixed(0)
+		if (futureTempstamps < nowTempstamps) return 0;
+		return ((futureTempstamps - nowTempstamps) / (24 * 60 * 60 * 1000)).toFixed(0)
 	},
 	/**
 	 * 更新token

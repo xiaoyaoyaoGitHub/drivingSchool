@@ -27,10 +27,10 @@ Page({
 		userInfo: {},
 		swiperHeight: 0,
 		swiperTab: [{
-			name: '摩旅路书',
+			name: '',
 			moduleCode: MODULE_CODE.TRAVEL_GUIDE
 		}, {
-			name: "事故分析",
+			name: "",
 			moduleCode: MODULE_CODE.ACCIDENT_ANALYSIS
 		}],
 		swiperTabCheckIndex: 0,
@@ -160,7 +160,9 @@ Page({
 		const { code, data: modulesInfo = {} } = await apis.GET_MODULE_BANNER({ moduleCodes: `${CAPRICORN_INTRO},${SAFE_DRIVING_SUBJECT},${MEMBER_PRODUCT},${USED_CAR},${TRAVEL_GUIDE},${ACCIDENT_ANALYSIS}` });
 		if (code === 200) {
 			this.setData({
-				modulesInfo
+				modulesInfo,
+				'swiperTab[0].name': modulesInfo[this.data.swiperTab[0].moduleCode].moduleName,
+				'swiperTab[1].name': modulesInfo[this.data.swiperTab[1].moduleCode].moduleName
 			})
 		}
 	},
@@ -175,7 +177,7 @@ Page({
 			const { code, data: moduleContent = {} } = await apis.GET_MODULE_CONTENT({ moduleCode });
 			if (code === 200) {
 				this.setData({
-					moduleContent
+					moduleContent,
 				}, () => {
 					// 设置swiper高度
 					this.setSwiperHeight()

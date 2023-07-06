@@ -7,22 +7,22 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%A
  */
 import { throttle } from '@/utils/lodash-fix';
-
+const MODULE_CODE = { CAPRICORN_INTRO: "CAPRICORN_INTRO", COLLECT_FEES: "COLLECT_FEES", TRAIN_FEES: "TRAIN_FEES", SITE_LIST: "SITE_LIST" };
 const app = getApp(); //  eslint-disable-line no-undef
 const apis = app.apis;
 Page({
 	data: {
 		costsLists: [{
-			name: '了解我们',
+			name: '',
 			moduleCode: 'CAPRICORN_INTRO',
 		}, {
-			name: '俱乐部收费',
+			name: '',
 			moduleCode: 'COLLECT_FEES',
 		}, {
-			name: '培训收费',
+			name: '',
 			moduleCode: 'TRAIN_FEES',
 		}, {
-			name: '场地列表',
+			name: '',
 			moduleCode: 'SITE_LIST',
 		}],
 		swiperTabCheckIndex: 0,
@@ -32,6 +32,7 @@ Page({
 		SITE_LIST: [], // 场地列表
 	},
 	onLoad() {
+		this.getModuleBanner();
 		this.getSubjectList(this.data.costsLists[this.data.swiperTabCheckIndex]);
 	},
 	/**
@@ -60,6 +61,19 @@ Page({
 				});
 			}
 
+		}
+	},
+	async getModuleBanner() {
+		const { CAPRICORN_INTRO, COLLECT_FEES, TRAIN_FEES, SITE_LIST } = MODULE_CODE || {};
+		const { code, data: modulesInfo = {} } = await apis.GET_MODULE_BANNER({ moduleCodes: `${CAPRICORN_INTRO},${COLLECT_FEES},${TRAIN_FEES},${SITE_LIST}` });
+		if (code === 200) {
+			this.setData({
+				modulesInfo,
+				'costsLists[0].name': modulesInfo[this.data.costsLists[0].moduleCode].moduleName,
+				'costsLists[1].name': modulesInfo[this.data.costsLists[1].moduleCode].moduleName,
+				'costsLists[2].name': modulesInfo[this.data.costsLists[2].moduleCode].moduleName,
+				'costsLists[3].name': modulesInfo[this.data.costsLists[3].moduleCode].moduleName
+			})
 		}
 	},
 	/**

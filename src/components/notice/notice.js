@@ -59,7 +59,7 @@ Component({
 					textWidth: rect[1].width,
 				}, () => {
 					console.log(`this.data`,this.data);
-					if(this.data.wrapWidth >= this.data.textWidth) return
+					// if(this.data.wrapWidth >= this.data.textWidth) return
 					this.startAnimation();
 				});
 			});

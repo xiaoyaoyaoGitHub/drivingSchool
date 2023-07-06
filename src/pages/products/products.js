@@ -12,9 +12,12 @@ const MODULE_CODE = {
   MEMBER_PRODUCT: 'MEMBER_PRODUCT'
 }
 import { throttle } from '@/utils/lodash-fix';
+import { global } from '@/store/index';
+
 Page({
   data: {
-    modulesInfo: []
+    modulesInfo: [],
+    showModalStatus: false
   },
   onLoad() { },
   onShow() {
@@ -39,10 +42,19 @@ Page({
    * 查看商品详情
    */
   productDetail: throttle(function (e) {
+    if(!global.isDriveMember && !global.isTrackMember){
+      this.changeModalStatus();
+      return
+    }
     const { currentTarget: { dataset: { index = '' } = {} } = {} } = e || {};
     const info = encodeURIComponent(JSON.stringify(this.data.modulesInfo[index]))
     wx.navigateTo({
       url:`/pages/productDetail/productDetail?info=${info}`
     })
   }),
+  changeModalStatus: throttle(function(){
+    this.setData({
+      showModalStatus: !this.data.showModalStatus
+    })
+  })
 });

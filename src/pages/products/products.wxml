@@ -24,3 +24,17 @@
       </view>
     </view>
 </view>
+<!-- alert -->
+<view class="modal-container" bindtap="changeModalStatus" wx:if="{{showModalStatus}}">
+  <!-- 蒙层 -->
+  <!-- <view class="mask"></view> -->
+  <!-- 内容 -->
+  <view class="content">
+    <view class="title">
+      您还不是会员,请联系客服
+    </view>
+    <button class="btn" open-type="contact">
+      联系客服
+    </button>
+  </view>
+</view>
