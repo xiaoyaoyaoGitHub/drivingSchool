@@ -1,14 +1,14 @@
 <view class="pay-container">
-  <image class="bg" mode="widthFix" src="/images/payInfoBg.png"></image>
+  <image class="bg" mode="widthFix" src="/images/payInfoBg.png" />
   <!-- title -->
   <view class="title">
-    — 99VIP精选特权 —
+    — 精选特权 —
   </view>
   <!-- 视频抢先看 -->
-  <view class="center">
+  <view class="center" wx:if="{{false}}">
     <view class="center-item" wx:for="{{[1,3,4,5]}}" wx:key="*this">
       <view class="img">
-        <image></image>
+        <image/>
       </view>
       <view class="desc">
         视频抢先看
@@ -17,7 +17,16 @@
   </view>
   <!-- 描述 -->
   <view class="desc">
-    99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明99VIP会员权益说明
+    摩杰座成立以来，深受广大摩友的认可与赞同，为了方便无法来到摩杰座场地练习交流的朋友也能掌握到安全且正确的精致控车技巧，特推出此驾控视频，后期我们会陆续添加和优化内容，无限制的分享给朋友们
+    <view style="color: transparent;">1.限一个号码注册一次</view>
+    <view>1.限一个号码注册一次</view>
+    <view>2.一次注册，终生观看无限制</view>
+    <view>3.注册号码为后期推广活动唯一凭证</view>
+    <view>4.最终解释权归摩杰座所有</view>
+  </view>
+  <!-- 图片 -->
+  <view class="img">
+    <image mode="widthFix" src="/images/payInfoImg.png" />
   </view>
   <!-- 按钮 -->
   <view class="btn" bindtap="createOrder">

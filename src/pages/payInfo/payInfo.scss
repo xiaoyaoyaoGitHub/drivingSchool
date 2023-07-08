@@ -8,6 +8,7 @@
         right: 0;
         top: 0;
         z-index: -1;
+        width: 686rpx;
     }
     &>.title {
         text-align: center;
@@ -43,14 +44,18 @@
         }
     }
     &>.desc {
-        margin-top: 51rpx;
+        margin-top: 28rpx;
         padding: 0 48rpx;
         font-size: 24rpx;
-        line-height: 40rpx;
+        line-height: 35rpx;
         color: rgba(255, 255, 255, 0.6);
     }
+    &>.img {
+        margin-top: 28rpx;
+        padding: 0 48rpx;
+    }
     &>.btn{
-        margin-top: 105rpx;
+        margin-top: 72rpx;
         width: 686rpx;
         text-align: center;
         border-radius: 44rpx;

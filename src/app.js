@@ -19,7 +19,7 @@ App({
 	},
 	apis: API.init(),
 	onLaunch() {
-		console.log('0.9.34');
+		console.log('0.9.37');
 		// 获取系统高度
 		global.getTitleBarAndStatusBarHeight();
 		global.refreshToken();

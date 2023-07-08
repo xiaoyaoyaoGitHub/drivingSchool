@@ -332,9 +332,25 @@ Component({
 			})
 			let { code, data: scheduleList = [] } = await apis.GET_TIME_INTERVAL_LIST({ memberType, memberId, campusId, courseId });
 			wx.hideLoading()
+			// wx.showModal({
+			// 	title: '结果',
+			// 	content: `${JSON.stringify(scheduleList)}`,
+			// 	success (res) {
+			// 	  if (res.confirm) {
+			// 		console.log('用户点击确定')
+			// 	  } else if (res.cancel) {
+			// 		console.log('用户点击取消')
+			// 	  }
+			// 	}
+			//   })
+			  
 			if (code === 200) {
 				// 过滤不展示不可选天数
-				scheduleList = scheduleList.filter(item => !item.isGray)
+				scheduleList = scheduleList.filter(item => !item.isGray);
+				const reg = /-/g;
+				scheduleList.forEach((item) => {
+					item.scheduleDate = item.scheduleDate.replace(reg,'/')
+				})
 				this.setData({
 					scheduleList,
 				});
