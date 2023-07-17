@@ -1,0 +1,21 @@
+<view class="player-container">
+  <!-- <channel-video
+    autoplay="true"
+    finder-user-name="sphhSx0gvbfcckv"
+    feed-id="https://weixin.qq.com/sph/ABJOvH"
+  /> -->
+  <!-- https://pan.baidu.com/api/streaming?app_id=250528&clienttype=0&channel=chunlei&web=1&isplayer=1&check_blue=1&bdstoken=fedccb15f82a8dab131058a87c49a872&dp-logid=99658100902141770002&logId=N0IxM0JBMTY4RTkyMTY2NjA5MUU3RDVEMjhCMjU5Mzg6Rkc9MQ%3D%3D&path=%2F%E8%8D%89%E6%A0%B9%E5%AD%A6%E9%99%A2%2F%E6%9E%81%E5%AE%A2%E5%A4%A7%E5%AD%A6-%E5%89%8D%E7%AB%AF%E5%AE%9E%E6%88%98%E8%AE%AD%E7%BB%83%E8%90%A5MP4%2F%E6%A8%A1%E5%9D%97%E4%B8%80%EF%BC%9A%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E5%8A%9F%2F%E5%89%8D%E7%AB%AF%E5%AE%9E%E6%88%98%E8%AE%AD%E7%BB%83%E8%90%A5-02%20_%20%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E5%8A%9F-2%20.mp4&vip=0&jsToken=F8EC101C32356F8313262E95B60A7E5F968EF48CF889E254708EDE6E5F4327A33E5E4A4F65F16F94C47D57868E23297B&type=M3U8_AUTO_480&trans=&adToken=a7c0Yx9pgU8I0fnQAXEd7hZmGrt%2BbqH21rpCBsSesPtHIbGk7Ad46zudGToR9i3%2FMd62mZUYJI3utKpSbbQ2u1DLJUbaLqII94B9aauBj%2B8G4%2BAu0z7cL53Lo%2Bq85pNjpR42YHgCgzfO4Oxx2SpdVx96309QGLkwywtiYF5fny0%3D -->
+  <video  id="myVideo" 
+      src="https://pan.baidu.com/api/streaming?app_id=250528&clienttype=0&channel=chunlei&web=1&isplayer=1&check_blue=1&bdstoken=fedccb15f82a8dab131058a87c49a872&dp-logid=99658100902141770002&logId=N0IxM0JBMTY4RTkyMTY2NjA5MUU3RDVEMjhCMjU5Mzg6Rkc9MQ%3D%3D&path=%2F%E8%8D%89%E6%A0%B9%E5%AD%A6%E9%99%A2%2F%E6%9E%81%E5%AE%A2%E5%A4%A7%E5%AD%A6-%E5%89%8D%E7%AB%AF%E5%AE%9E%E6%88%98%E8%AE%AD%E7%BB%83%E8%90%A5MP4%2F%E6%A8%A1%E5%9D%97%E4%B8%80%EF%BC%9A%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E5%8A%9F%2F%E5%89%8D%E7%AB%AF%E5%AE%9E%E6%88%98%E8%AE%AD%E7%BB%83%E8%90%A5-02%20_%20%E5%89%8D%E7%AB%AF%E5%9F%BA%E6%9C%AC%E5%8A%9F-2%20.mp4&vip=0&jsToken=F8EC101C32356F8313262E95B60A7E5F968EF48CF889E254708EDE6E5F4327A33E5E4A4F65F16F94C47D57868E23297B&type=M3U8_AUTO_480&trans=&adToken=a7c0Yx9pgU8I0fnQAXEd7hZmGrt%2BbqH21rpCBsSesPtHIbGk7Ad46zudGToR9i3%2FMd62mZUYJI3utKpSbbQ2u1DLJUbaLqII94B9aauBj%2B8G4%2BAu0z7cL53Lo%2Bq85pNjpR42YHgCgzfO4Oxx2SpdVx96309QGLkwywtiYF5fny0%3D" 
+      binderror="videoErrorCallback" 
+      danmu-list="{{danmuList}}" 
+      enable-danmu 
+      danmu-btn 
+      show-center-play-btn='{{false}}' 
+      show-play-btn="{{true}}" 
+      controls
+      custom-cache="{{false}}"
+      picture-in-picture-mode="{{['push', 'pop']}}"
+      bindenterpictureinpicture='bindVideoEnterPictureInPicture'
+      bindleavepictureinpicture='bindVideoLeavePictureInPicture'></video>
+</view>

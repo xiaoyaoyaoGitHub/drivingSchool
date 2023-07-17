@@ -406,14 +406,15 @@ Component({
 		 */
 		bindDayPickerChange(e) {
 			console.log(e);
-			const { detail: { value: selectDayIndex = [] } = {} } = e || {};
+			const { target: {dataset: { index: selectDayIndex = '' } = {}} = {} } = e || {};
 			this.setData({
-				selectDayIndex: selectDayIndex[0],
+				selectDayIndex,
 			}, () => {
 				this.setData({
 					timeList: this.data.scheduleList[selectDayIndex].timeIntervalList,
 					preSelectTimeIdList: [],
-					preSelectTimeList: []
+					preSelectTimeList: [],
+					selectTimeList:[]
 				});
 				console.log(this.data);
 			});

@@ -64,7 +64,9 @@
             <view class="content">
                 <text wx:if="{{selectTimeList.length === 0}}" class="placeHolder">请选择上课时段</text>
                 <view class="timeList" wx:else>
-                    <view wx:for="{{selectTimeList}}" wx:key="*this">{{item.startDate}}-{{item.endDate}}<text>(已约{{item.reservationNum}}人)</text></view>
+                    <view wx:for="{{selectTimeList}}" wx:key="*this">{{item.startDate}}-{{item.endDate}}
+                        <text>(已约{{item.reservationNum}}人)</text>
+                    </view>
                 </view>
             </view>
             <view class="btn {{selectTimeList.length ?'change-btn':'' }}" bindtap="scheduleTimesPickerSwitch">
@@ -202,10 +204,41 @@
             请选择上课时间（可选择多个时段）
         </view>
         <!-- 类型列表 -->
-        <view class="time-content">
+        <view class="select-content">
             <!-- 时间段 -->
             <view class="day-picker">
-                <picker-view
+                <view
+                  class="type-list-item"
+                  bindtap="bindDayPickerChange"
+                  data-index="{{index}}"
+                  data-item="{{item}}"
+                  wx:for="{{scheduleList}}"
+                  wx:key="scheduleId"
+                >
+                    <view class="name">{{item.scheduleDate}}</view>
+                    <block>
+                        <view class="radio" wx:if="{{index === selectDayIndex}}">
+                            <image src="http://www.mojiezuo.store:90/profile/upload/images/radio-checked.png" />
+                        </view>
+                    </block>
+
+                </view>
+                <view
+                  class="type-list-item"
+                  bindtap=""
+                  data-item="{{item}}"
+                  wx:for="{{scheduleList}}"
+                  wx:key="courseId"
+                >
+                    <view class="name">{{item.scheduleDate}}</view>
+                    <block>
+                        <view class="radio" wx:if="{{item.courseId === preSelectCourseInfo.courseId}}">
+                            <image src="http://www.mojiezuo.store:90/profile/upload/images/radio-checked.png" />
+                        </view>
+                    </block>
+
+                </view>
+                <!-- <picker-view
                   indicator-style="height: 50px;color:red"
                   style="height: 100%;text-align: center"
                   value="{{value}}"
@@ -222,7 +255,7 @@
                         >{{item.scheduleDate}}
                         </view>
                     </picker-view-column>
-                </picker-view>
+                </picker-view> -->
             </view>
         </view>
         <!-- 按钮 -->
@@ -248,10 +281,11 @@
                   class="time-list-item {{item.isGray ? 'gray':''}}"
                   bindtap="{{item.isGray ? '':'addTimeList'}}"
                   wx:for="{{timeList}}"
-                  data-item="{{item}}" data-index="{{index}}"
+                  data-item="{{item}}"
+                  data-index="{{index}}"
                   wx:key="timeIntervalId"
                 >
-                    <view  class="name {{item.selected ? 'selected':''}}">
+                    <view class="name {{item.selected ? 'selected':''}}">
                         {{item.startDate}}~{{item.endDate}}
                         <view class="hasRever">(已约{{item.reservationNum}}人)</view>
                     </view>

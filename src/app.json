@@ -10,6 +10,7 @@
     "pages/costs/costs",
     "pages/my/my",
     "pages/player/player",
+    "pages/channelVideo/player",
     "pages/recommendations/recommendations",
     "pages/appointment/appointment",
     "pages/articalDetail/articalDetail",
