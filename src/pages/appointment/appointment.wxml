@@ -47,42 +47,51 @@
                     </view>
                 </view>
                 <!-- swiper -->
-                <swiper  class="swiper-content" bindchange="changeSwiperCurrent" current="{{swiperTabCheckIndex}}">
+                <swiper class="swiper-content" bindchange="changeSwiperCurrent" current="{{swiperTabCheckIndex}}">
                     <block wx:for="{{[1,2]}}" wx:key="*this">
                         <swiper-item class="swiper-content-item">
                             <view class="swiper-{{index}}">
                                 <block wx:if="{{index === 0}}">
-                                    <view wx:if="{{doneReserList.length}}" wx:for="{{doneReserList}}" wx:key="*this" class="swiper-item done">
-                                        <!-- 预约类型 -->
-                                        <view class="type">
-                                            预约类型:
-                                            <text>{{item.memberTypeName}}</text>
+                                    <block wx:if="{{doneReserList.length}}">
+                                        <view
+                                          bindtap="showCancelModal"
+                                          wx:for="{{doneReserList}}"
+                                          data-id="{{item.reservationId}}"
+                                          wx:key="reservationId"
+                                          class="swiper-item done"
+                                        >
+                                            <!-- 预约类型 -->
+                                            <view class="type">
+                                                预约类型:
+                                                <text>{{item.memberTypeName}}</text>
+                                            </view>
+                                            <!-- 校区 -->
+                                            <view class="address">
+                                                校区:
+                                                <text>{{item.campusName}}</text>
+                                            </view>
+                                            <!-- 学习 -->
+                                            <view class="project">
+                                                学习:
+                                                <text>{{item.courseName}}</text>
+                                            </view>
+                                            <!-- 日期 -->
+                                            <view class="date">
+                                                日期:
+                                                <text>{{item.scheduleDate}}({{item.weekDate}})</text>
+                                            </view>
+                                            <!-- 学习时间 -->
+                                            <view class="time">
+                                                学习:
+                                                <text><block wx:for="{{item.timeIntervalList}}" wx:key="timeIntervalId">{{item.startDate}}~{{item.endDate}}</block></text>
+                                            </view>
+                                            <!-- 取消预约 -->
+                                            <view class="cancel">
+                                                取消预约
+                                            </view>
                                         </view>
-                                        <!-- 校区 -->
-                                        <view class="address">
-                                            校区:
-                                            <text>{{item.campusName}}</text>
-                                        </view>
-                                        <!-- 学习 -->
-                                        <view class="project">
-                                            学习:
-                                            <text>{{item.courseName}}</text>
-                                        </view>
-                                        <!-- 日期 -->
-                                        <view class="date">
-                                            日期:
-                                            <text>{{item.scheduleDate}}({{item.weekDate}})</text>
-                                        </view>
-                                        <!-- 学习时间 -->
-                                        <view class="time">
-                                            学习:
-                                            <text><block wx:for="{{item.timeIntervalList}}" wx:key="*this">{{item.startDate}}~{{item.endDate}}</block></text>
-                                        </view>
-                                        <!-- 取消预约 -->
-                                        <view class="cancel" bindtap="showCancelModal" data-item="{{item}}">
-                                            取消预约
-                                        </view>
-                                    </view>
+                                    </block>
+
                                     <view wx:if="{{!doneReserList.length}}">
                                         <view class="none-appointment-list">
                                             <image class="none-appointment" src="http://www.mojiezuo.store:90/profile/upload/images/none-appointment.png" />
@@ -94,7 +103,12 @@
                                     </view>
                                 </block>
                                 <block wx:else>
-                                    <view wx:if="{{cancelReserList.length}}" wx:for="{{cancelReserList}}" wx:key="*this" class="swiper-item done">
+                                    <view
+                                      wx:if="{{cancelReserList.length}}"
+                                      wx:for="{{cancelReserList}}"
+                                      wx:key="reservationId"
+                                      class="swiper-item done"
+                                    >
                                         <!-- 预约类型 -->
                                         <view class="type">
                                             预约类型:

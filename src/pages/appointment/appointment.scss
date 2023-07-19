@@ -55,8 +55,9 @@
                     &.done {
                         background: #fff;
                         border-radius: 24rpx;
-                        padding: 32rpx 0 0 32rpx;
+                        padding: 32rpx 0 80rpx 32rpx;
                         margin-bottom: 24rpx;
+                        position: relative;
                         &>view:not(.cancel){
                             font-size: 24rpx;
                             line-height: 36rpx;
@@ -72,10 +73,14 @@
                             }
                         }
                         .cancel {
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
                             height: 80rpx;
                             line-height: 80rpx;
                             background: rgba(227, 87, 0, 0.1);
-                            margin-left: -32rpx;
+                            // margin-left: -32rpx;
                             text-align: center;
                             font-size: 32rpx;
                             line-height: 80rpx;

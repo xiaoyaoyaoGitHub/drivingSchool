@@ -90,10 +90,11 @@ Page({
 	 * 弹出取消预约弹框
 	 */
 	showCancelModal: throttle(function (e) {
-		const { target: { dataset: { item } = {} } = {} } = e || {};
+		console.log(e);
+		const { currentTarget: { dataset: { id: reservationId } = {} } = {} } = e || {};
 		this.setData({
 			showCancelAppolintModal: true,
-			currentCancelItem: item, // 保存当前需要取消的预约列表id
+			reservationId, // 保存当前需要取消的预约列表id
 		})
 	}),
 	/**
@@ -102,10 +103,9 @@ Page({
 	cancelReservation: throttle(async function (e) {
 		try {
 			wx.showLoading({
-				title:'取消中...'
+				title: '取消中...'
 			})
-			const { currentCancelItem: item } = this.data || {};
-			const { reservationId } = item || {};
+			const { reservationId } = this.data || {};
 			const { code, msg } = await apis.CANCEL_RESERVATE({ reservationId });
 			wx.hideLoading();
 			this.closeCancelModal()
@@ -128,7 +128,7 @@ Page({
 	/**
 	 * 支付VIP
 	 */
-	payVip: throttle(function(){
+	payVip: throttle(function () {
 		wx.navigateTo({
 			url: '/pages/payInfo/payInfo',
 		});

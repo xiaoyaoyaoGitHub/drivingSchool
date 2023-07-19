@@ -223,39 +223,6 @@
                     </block>
 
                 </view>
-                <view
-                  class="type-list-item"
-                  bindtap=""
-                  data-item="{{item}}"
-                  wx:for="{{scheduleList}}"
-                  wx:key="courseId"
-                >
-                    <view class="name">{{item.scheduleDate}}</view>
-                    <block>
-                        <view class="radio" wx:if="{{item.courseId === preSelectCourseInfo.courseId}}">
-                            <image src="http://www.mojiezuo.store:90/profile/upload/images/radio-checked.png" />
-                        </view>
-                    </block>
-
-                </view>
-                <!-- <picker-view
-                  indicator-style="height: 50px;color:red"
-                  style="height: 100%;text-align: center"
-                  value="{{value}}"
-                  bindchange="bindDayPickerChange"
-                  class="picker"
-                >
-                    <picker-view-column class="column">
-                        <view
-                          wx:for="{{scheduleList}}"
-                          class="{{index === value ? 'red':''}}"
-                          wx:if="{{!item.isGray}}"
-                          wx:key="scheduleId"
-                          style="line-height: 50px"
-                        >{{item.scheduleDate}}
-                        </view>
-                    </picker-view-column>
-                </picker-view> -->
             </view>
         </view>
         <!-- 按钮 -->
