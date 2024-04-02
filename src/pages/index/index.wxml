@@ -1,73 +1,79 @@
 <!--index.wxml-->
-<view class="container">
-    <!-- 公告 -->
-    <notice wx:if="{{anouncementList.length}}"  bind:showContent="onShowNoticeContent" anouncementList="{{anouncementList}}"></notice>
-    <!-- 头部卡片 -->
-    <view class="top-card" bindtap="goToCosts" wx:if="{{modulesInfo['CAPRICORN_INTRO']}}">
-        <image src="{{modulesInfo['CAPRICORN_INTRO'].image}}" />
-    </view>
-    <!-- 99vip -->
-    <view class="center-banner" wx:if="{{!isPayVip}}" bindtap="payVip">
+<view class="container" bindtap="catchDubbed">
+  <!-- 公告 -->
+  <notice wx:if="{{anouncementList.length}}" bind:showContent="onShowNoticeContent" anouncementList="{{anouncementList}}" />
+  <!-- 头部卡片 -->
+  <view class="top-card" bindtap="goToCosts" wx:if="{{modulesInfo['CAPRICORN_INTRO']}}">
+    <image src="{{modulesInfo['CAPRICORN_INTRO'].image}}" />
+  </view>
+  <!-- 99vip -->
+  <!-- <view class="center-banner" wx:if="{{!isPayVip}}" bindtap="payVip">
         <image src="/images/center-banner.png" />
+    </view> -->
+  <!-- 安架科目 -->
+  <view class="business">
+    <!-- 左侧 -->
+    <view class="left">
+      <image bindtap="subjectList" src="{{modulesInfo['SAFE_DRIVING_SUBJECT'].image}}" />
     </view>
-    <!-- 安架科目 -->
-    <view class="business">
-        <!-- 左侧 -->
-        <view class="left">
-            <image bindtap="subjectList" src="{{modulesInfo['SAFE_DRIVING_SUBJECT'].image}}" />
-        </view>
-        <!-- 右侧 -->
-        <view class="right">
-            <!-- 右侧上方 -->
-            <image bindtap="productList" src="{{modulesInfo['MEMBER_PRODUCT'].image}}" />
-            <!-- 右侧下方 -->
-            <image bindtap="productByUsed" src="{{modulesInfo['USED_CAR'].image}}" />
-        </view>
+    <!-- 右侧 -->
+    <view class="right">
+      <!-- 右侧上方 -->
+      <image bindtap="productList" src="{{modulesInfo['MEMBER_PRODUCT'].image}}" />
+      <!-- 右侧下方 -->
+      <image bindtap="productByUsed" src="{{modulesInfo['USED_CAR'].image}}" />
     </view>
-    <!-- switch tab -->
-    <view class="switch-tab">
-        <!-- tab -->
-        <view class="swiper-tab">
-            <view
-              bindtap="checkSwiperTab"
-              data-index="{{index}}"
-              data-item="{{item}}"
-              wx:for="{{swiperTab}}"
-              wx:key="*this"
-              class="swiper-tab-item {{swiperTabCheckIndex === index ? 'checked':''}}"
-            >
-                {{item.name}}
+  </view>
+  <!-- switch tab -->
+  <view class="switch-tab">
+    <!-- tab -->
+    <view class="swiper-tab">
+      <view
+        bindtap="checkSwiperTab"
+        data-index="{{index}}"
+        data-item="{{item}}"
+        wx:for="{{swiperTab}}"
+        wx:key="*this"
+        class="swiper-tab-item {{swiperTabCheckIndex === index ? 'checked':''}}"
+      >
+        {{item.name}}
+      </view>
+    </view>
+    <!-- swiper -->
+    <swiper class="swiper-content" style="height:{{swiperHeight}}px">
+      <swiper-item class="swiper-content-item">
+        <view class="swiper">
+          <view
+            class="swiper-item"
+            bindtap="articalDetail"
+            data-artical="{{item}}"
+            wx:for="{{moduleContent}}"
+            wx:key="articalId"
+          >
+            <!-- 图片 -->
+            <image class="swiper-item-img" src="{{item.fistImage}}" />
+            <!-- 文案描述 -->
+            <view class="desc">{{item.title}}</view>
+            <!-- 标签 -->
+            <view class="tag">
+              <image src="{{item.itemImage}}" wx:for="{{item.tagList}}" wx:key="*this" />
             </view>
+          </view>
         </view>
-        <!-- swiper -->
-        <swiper class="swiper-content" style="height:{{swiperHeight}}px">
-            <swiper-item class="swiper-content-item">
-                <view class="swiper">
-                    <view class="swiper-item" bindtap="articalDetail" data-artical="{{item}}" wx:for="{{moduleContent}}" wx:key="articalId">
-                        <!-- 图片 -->
-                        <image class="swiper-item-img" src="{{item.fistImage}}" />
-                        <!-- 文案描述 -->
-                        <view class="desc">{{item.title}}</view>
-                        <!-- 标签 -->
-                        <view class="tag">
-                            <image src="{{item.itemImage}}" wx:for="{{item.tagList}}" wx:key="*this"></image>
-                        </view>
-                    </view>
-                </view>
-            </swiper-item>
-        </swiper>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 公告弹框 -->
+  <view class="notice-content" bindtap="onShowNoticeContent" wx:if="{{showNoticeContent}}">
+    <view class="content">
+      <view class="title">
+        {{anouncementList[0].title}}
+      </view>
+      <view class="desc">
+        {{anouncementList[0].content}}
+      </view>
     </view>
-    <!-- 公告弹框 -->
-    <view class="notice-content" bindtap="onShowNoticeContent" wx:if="{{showNoticeContent}}">
-        <view class="content">
-            <view class="title">
-                {{anouncementList[0].title}}
-            </view>
-            <view class="desc">
-                {{anouncementList[0].content}}
-            </view>
-        </view>
-    </view>
+  </view>
 </view>
 <!-- 底部tab高度占位 -->
 <view class="place-holder" style="height:{{tabBarHeight}}px" />

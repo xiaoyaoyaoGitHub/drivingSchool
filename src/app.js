@@ -15,11 +15,11 @@ App({
 	globalData: {
 		userInfo: null,
 		totalHeight: 0,
-		
+		openNotice: true, //是否打开通知
 	},
 	apis: API.init(),
 	onLaunch() {
-		console.log('0.9.41');
+		console.log('0.9.43');
 		// 获取系统高度
 		global.getTitleBarAndStatusBarHeight();
 		global.refreshToken();
@@ -45,10 +45,13 @@ App({
 			});
 		}
 	},
-	onError(err){
+	catchDubbed() {
+		console.log('app catchDubbed');
+	},
+	onError(err) {
 		console.log(err);
 	},
-	onUnhandledRejection(err){
+	onUnhandledRejection(err) {
 		console.log(err);
 	}
 });

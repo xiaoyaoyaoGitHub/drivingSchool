@@ -14,7 +14,7 @@ export const behavior = BehaviorWithStore({
 	storeBindings: [{
 		store: global,
 		fields: ['tabBarHeight', 'transparentHeight', 'userInfo', 'statusBarHeight', 'totalHeight', 'titleHeight', 'isPayVip'],
-		actions: ['getTabBarHeight', 'getUserInfo'],
+		actions: ['getTabBarHeight', 'getUserInfo', 'catchDubbed'],
 	}, {
 		store: reservationStore,
 		fields: ['showReservationList', 'noReservation', 'doneReserList', 'cancelReserList'],

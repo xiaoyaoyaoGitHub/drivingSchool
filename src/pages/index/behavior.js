@@ -17,7 +17,7 @@ export const indexBehavior = BehaviorWithStore({
 			tabBarHeight: (store) => store.tabBarHeight,
 			totalHeight: (store) => store.totalHeight,
 		},
-		actions: ['getTabBarHeight', 'updateTabbarHeight', 'getUserInfo'],
+		actions: ['getTabBarHeight', 'updateTabbarHeight', 'getUserInfo', 'catchDubbed'],
 	}, {
 		store: global,
 		fields: ['isPayVip'],

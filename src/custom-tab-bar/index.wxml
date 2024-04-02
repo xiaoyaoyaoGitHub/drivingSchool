@@ -1,5 +1,5 @@
 <!--miniprogram/custom-tab-bar/index.wxml-->
-<view class="tab-bar">
+<view class="tab-bar" bindtap="catchDubbed">
   <view class="tab-bar-border" />
   <view
     wx:for="{{list}}"
@@ -10,11 +10,11 @@
     bindtap="switchTab"
   >
     <block wx:if="{{!item.isSpecial}}">
-      <image src="{{selected === index ? item.selectedIconPath : item.iconPath}}" ></image>
+      <image src="{{selected === index ? item.selectedIconPath : item.iconPath}}" />
       <view style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</view>
     </block>
     <block wx:else="{{item.isSpecial}}">
-      <image class="rise-up" src="{{selected === index ? item.selectedIconPath : item.iconPath}}" ></image>
+      <image class="rise-up" src="{{selected === index ? item.selectedIconPath : item.iconPath}}" />
       <!-- <cover-view style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</cover-view> -->
     </block>
   </view>

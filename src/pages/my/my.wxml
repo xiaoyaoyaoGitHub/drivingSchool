@@ -1,338 +1,338 @@
 <!--my.wxml-->
-<view class="profile" style="height:{{totalHeight}}px">
-    <!-- bg -->
-    <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/my-bg.png" />
-    <!-- statusbar占位 -->
-    <view class="statusBar" style="height:{{statusBarHeight}}px" />
-    <!-- 标题栏占位 -->
-    <view class="navigate" style="height:{{titleHeight}}rpx">
-        <!-- 标题栏 -->
-    </view>
-    <!-- 用户信息 -->
-    <view class="user-info">
-        <block wx:if="{{!userInfo.memberId}}">
-            <!-- 头像 -->
-            <view class="avatar" bindtap="login">
-                <image src="/images/avatar.png" />
-            </view>
-            <!-- 用户名称 -->
-            <view class="info" bindtap="login">
-                <view class="info-top">
-                    注册/登录
-                </view>
-                <!-- 标签 -->
-                <view class="tag">登录更精彩...</view>
-            </view>
-        </block>
-        <block wx:else>
-            <!-- 头像 -->
-            <view class="avatar" bindtap="getUserProfile">
-                <image src="/images/avatar.png" />
-            </view>
-            <!-- 用户名称 -->
-            <view class="info">
-                <view class="info-top">
-                    {{userInfo.phoneNumber}}
-                </view>
-                <!-- 标签 -->
-                <view class="tag">
-                    <view wx:if="{{ (userInfo.safeDriverMemberStatus !== 2 && userInfo.safeDriverMemberStatus !== 5)}}" class="tag-info">安驾学员</view>
-                    <view wx:if="{{ (userInfo.trackMemberStatus !== 2 && userInfo.trackMemberStatus !== 5)}}" class="tag-info">赛道学员</view>
-                    <view wx:if="{{isPayVip}}" class="tag-info vip">99控车视频</view>
-                </view>
-            </view>
-        </block>
-        <!-- 设置 -->
-        <!-- <view class="setting">
+<view class="profile" bindtap="catchDubbed" style="height:{{totalHeight}}px">
+  <!-- bg -->
+  <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/my-bg.png" />
+  <!-- statusbar占位 -->
+  <view class="statusBar" style="height:{{statusBarHeight}}px" />
+  <!-- 标题栏占位 -->
+  <view class="navigate" style="height:{{titleHeight}}rpx">
+    <!-- 标题栏 -->
+  </view>
+  <!-- 用户信息 -->
+  <view class="user-info">
+    <block wx:if="{{!userInfo.memberId}}">
+      <!-- 头像 -->
+      <view class="avatar" bindtap="login">
+        <image src="/images/avatar.png" />
+      </view>
+      <!-- 用户名称 -->
+      <view class="info" bindtap="login">
+        <view class="info-top">
+          注册/登录
+        </view>
+        <!-- 标签 -->
+        <view class="tag">登录更精彩...</view>
+      </view>
+    </block>
+    <block wx:else>
+      <!-- 头像 -->
+      <view class="avatar" bindtap="getUserProfile">
+        <image src="/images/avatar.png" />
+      </view>
+      <!-- 用户名称 -->
+      <view class="info">
+        <view class="info-top">
+          {{userInfo.phoneNumber}}
+        </view>
+        <!-- 标签 -->
+        <view class="tag">
+          <view wx:if="{{ (userInfo.safeDriverMemberStatus !== 2 && userInfo.safeDriverMemberStatus !== 5)}}" class="tag-info">安驾学员</view>
+          <view wx:if="{{ (userInfo.trackMemberStatus !== 2 && userInfo.trackMemberStatus !== 5)}}" class="tag-info">赛道学员</view>
+          <view wx:if="{{isPayVip}}" class="tag-info vip">99控车视频</view>
+        </view>
+      </view>
+    </block>
+    <!-- 设置 -->
+    <!-- <view class="setting">
             <image src="http://www.mojiezuo.store:90/profile/upload/images/setting.png" />
         </view> -->
-    </view>
-    <!-- 会员积分 -->
-    <view class="points" wx:if="{{isLogin}}">
+  </view>
+  <!-- 会员积分 -->
+  <view class="points" wx:if="{{isLogin}}">
 
-        <view class="point">
-            <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/jifen-bg.png" />
-            {{userInfo.memberPoint}}
-            <text class="unit">分</text>
-        </view>
+    <view class="point">
+      <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/jifen-bg.png" />
+      {{userInfo.memberPoint}}
+      <text class="unit">分</text>
     </view>
-    <view class="points" wx:else>
-        <image src="http://www.mojiezuo.store:90/profile/upload/images/points.png" />
-    </view>
-    <!-- about -->
-    <view class="member-list" wx:if="{{isLogin}}">
-        <view class="member-info anjia" wx:if="{{userInfo.safeDriverMemberStatus !== 5}}">
-            <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/anjiahuiyuan.png" />
-            <view class="rest" wx:if="{{userInfo.safeDriverMemberStatus === 0}}">
-                <view class="rest-value">{{userInfo.safeDriverMemberTotal}}
-                    <text class="unit">次</text>
-                </view>
-                <view class="desc">截止日期{{userInfo.safeDriverEndDate}}</view>
-            </view>
-            <view class="rest" wx:else>
-                <view class="rest-value">{{userInfo.safeDriverDays}}
-                    <text class="unit">天</text>
-                </view>
-                <view class="desc">剩余有效天数</view>
-            </view>
-            <view class="disable" wx:if="{{userInfo.safeDriverMemberStatus ===2 || userInfo.safeDriverMemberStatus ===3}}">
-                <view class="title">
-                    已停卡
-                </view>
-                <view class="btn {{userInfo.safeDriverMemberStatus ===2 ? 'disabled':''}}" bindtap="{{userInfo.safeDriverMemberStatus ===2 ? '':'startSafeCard'}}">
-                    启卡
-                </view>
-            </view>
-            <view class="disable" wx:elif="{{userInfo.safeDriverMemberStatus === 4}}">
-                <view class="title">
-                    待激活
-                </view>
-                <view class="btn" bindtap="activitySafeCard">
-                    激活
-                </view>
-            </view>
-            <view class="disable" wx:elif="{{userInfo.safeDriverMemberStatus === 5}}">
-                <view class="title">
-                    已过期
-                </view>
-                <view class="btn disabled">
-                    激活
-                </view>
-            </view>
+  </view>
+  <view class="points" wx:else>
+    <image src="http://www.mojiezuo.store:90/profile/upload/images/points.png" />
+  </view>
+  <!-- about -->
+  <view class="member-list" wx:if="{{isLogin}}">
+    <view class="member-info anjia" wx:if="{{userInfo.safeDriverMemberStatus !== 5}}">
+      <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/anjiahuiyuan.png" />
+      <view class="rest" wx:if="{{userInfo.safeDriverMemberStatus === 0}}">
+        <view class="rest-value">{{userInfo.safeDriverMemberTotal}}
+          <text class="unit">次</text>
         </view>
-        <view class="member-info saidao" wx:if="{{userInfo.trackMemberStatus !== 5}}">
-            <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/saidaohuiyuan.png" />
-            <view class="rest" wx:if="{{userInfo.trackMemberStatus === 0}}">
-                <view class="rest-value">{{userInfo.trackMemberTotal}}
-                    <text class="unit">次</text>
-                </view>
-                <view class="desc">截止日期{{userInfo.trackMemberEndDate}}</view>
-            </view>
-            <view class="rest" wx:else>
-                <view class="rest-value">{{userInfo.trackMemberDays}}
-                    <text class="unit">天</text>
-                </view>
-                <view class="desc">剩余有效天数</view>
-            </view>
-            <view class="disable" wx:if="{{userInfo.trackMemberStatus ===2 || userInfo.trackMemberStatus === 3}}">
-                <view class="title">
-                    已停卡
-                </view>
-                <view class="btn {{userInfo.trackMemberStatus ===2 ? 'disabled':''}}" bindtap="{{userInfo.trackMemberStatus ===2 ? '':'startTrackCard'}}">
-                    启卡
-                </view>
-            </view>
-            <view class="disable" wx:elif="{{userInfo.trackMemberStatus === 4}}">
-                <view class="title">
-                    待激活
-                </view>
-                <view class="btn" bindtap="activityTrackCard">
-                    激活
-                </view>
-            </view>
-            <view class="disable" wx:elif="{{userInfo.trackMemberStatus === 5}}">
-                <view class="title">
-                    已过期
-                </view>
-                <view class="btn disable">
-                    激活
-                </view>
-            </view>
+        <view class="desc">截止日期{{userInfo.safeDriverEndDate}}</view>
+      </view>
+      <view class="rest" wx:else>
+        <view class="rest-value">{{userInfo.safeDriverDays}}
+          <text class="unit">天</text>
         </view>
-        <view class="member-info" wx:if="{{!isPayVip}}" bindtap="payVip">
-            <image src="http://www.mojiezuo.store:90/profile/upload/images/anjia_vip.png" />
-        </view>
-        <view class="member-info" wx:else>
-            <image class="bg" src="/images/isVip.png" />
-            <!-- time -->
-            <view class="rest">
-                <view class="rest-value height76" />
-                <!-- <view class="desc">会员有效期</view> -->
-            </view>
-        </view>
-    </view>
-    <view class="about" wx:else>
-        <image src="http://www.mojiezuo.store:90/profile/upload/images/about.png" />
-    </view>
-    <!-- my-servies -->
-    <view class="services">
-        <view class="list-item {{userInfo.cabinetDays ? '':'gray'}}">
-            <!-- icon -->
-            <view class="list-item-icon">
-                <image src="http://www.mojiezuo.store:90/profile/upload/images/my-icon-1.png" />
-            </view>
-            <!-- name -->
-            <view class="list-item-name">
-                柜子
-            </view>
-            <!-- value -->
-            <view class="list-item-value" wx:if="{{userInfo.cabinetDays}}">
-                <view class="value">{{userInfo.cabinetDays}}</view>
-                <view class="desc">剩余有效期</view>
-            </view>
-            <view class="list-item-value" wx:else>
-                <view class="unable">
-                    未租赁
-                </view>
-            </view>
-        </view>
-        <view class="list-item {{userInfo.depositaryDays ? '':'gray'}}">
-            <!-- icon -->
-            <view class="list-item-icon">
-                <image src="http://www.mojiezuo.store:90/profile/upload/images/my-icon-2.png" />
-            </view>
-            <!-- name -->
-            <view class="list-item-name">
-                存车
-            </view>
-            <!-- value -->
-            <view class="list-item-value" wx:if="{{userInfo.depositaryDays}}">
-                <view class="value">{{userInfo.depositaryDays}}</view>
-                <view class="desc">剩余有效期</view>
-            </view>
-            <view class="list-item-value" wx:else>
-                <view class="unable">
-                    未租赁
-                </view>
-            </view>
-        </view>
-        <view class="list-item  {{userInfo.rentalDays ? '':'gray'}}">
-            <!-- icon -->
-            <view class="list-item-icon">
-                <image src="http://www.mojiezuo.store:90/profile/upload/images/my-icon-3.png" />
-            </view>
-            <!-- name -->
-            <view class="list-item-name">
-                租车
-            </view>
-            <!-- value -->
-            <view class="list-item-value" wx:if="{{userInfo.rentalDays}}">
-                <!-- <view class="value">{{userInfo.rentalCarNumber}}</view> -->
-                <view class="value">{{userInfo.rentalCarModel}}</view>
-                <view class="desc">车辆型号</view>
-            </view>
-            <view class="list-item-value" wx:else>
-                <view class="unable">
-                    未租赁
-                </view>
-            </view>
-        </view>
-    </view>
-    <!-- 我的摩托车 -->
-    <view class="my-cars" wx:if="{{isLogin}}">
+        <view class="desc">剩余有效天数</view>
+      </view>
+      <view class="disable" wx:if="{{userInfo.safeDriverMemberStatus ===2 || userInfo.safeDriverMemberStatus ===3}}">
         <view class="title">
-            我的摩托车
+          已停卡
         </view>
-        <view class="cars-list">
-            <block wx:for="{{cardList}}" wx:key="*this">
-                <view
-                  wx:if="{{item}}"
-                  data-idx="{{index}}"
-                  bindtap="addLicence"
-                  class="cars-list-item"
-                >
-                    <view class="licence-title">
-                        <text class="licence-location">{{item[0]}}</text>
-                        .
-                        <text class="licence-abbr">{{item[1]}}</text>
-                    </view>
-                    <view class="licence-member">
-                        {{item[2]}}
-                    </view>
-                </view>
-                <view
-                  wx:else
-                  class="cars-list-item add"
-                  bindtap="addLicence"
-                  data-idx="{{index}}"
-                >
-                    <image src="http://www.mojiezuo.store:90/profile/upload/images/add-licence.png" />
-                </view>
-            </block>
+        <view class="btn {{userInfo.safeDriverMemberStatus ===2 ? 'disabled':''}}" bindtap="{{userInfo.safeDriverMemberStatus ===2 ? '':'startSafeCard'}}">
+          启卡
         </view>
+      </view>
+      <view class="disable" wx:elif="{{userInfo.safeDriverMemberStatus === 4}}">
+        <view class="title">
+          待激活
+        </view>
+        <view class="btn" bindtap="activitySafeCard">
+          激活
+        </view>
+      </view>
+      <view class="disable" wx:elif="{{userInfo.safeDriverMemberStatus === 5}}">
+        <view class="title">
+          已过期
+        </view>
+        <view class="btn disabled">
+          激活
+        </view>
+      </view>
     </view>
-    <!-- 功能 -->
-    <view class="func-lists">
-        <view class="list-item" bindtap="addEmergency">
-            <view class="icon">
-                <image src="http://www.mojiezuo.store:90/profile/upload/images/jjlxr.png" />
-            </view>
-            <view class="desc">紧急联系人</view>
-            <view class="operate">
-                <text>添加</text>
-                <image src="http://www.mojiezuo.store:90/profile/upload/images/triangle-right.png" />
-            </view>
+    <view class="member-info saidao" wx:if="{{userInfo.trackMemberStatus !== 5}}">
+      <image class="bg" src="http://www.mojiezuo.store:90/profile/upload/images/saidaohuiyuan.png" />
+      <view class="rest" wx:if="{{userInfo.trackMemberStatus === 0}}">
+        <view class="rest-value">{{userInfo.trackMemberTotal}}
+          <text class="unit">次</text>
         </view>
-        <view class="list-item" bindtap="goToRecommend">
-            <view class="icon">
-                <image src="http://www.mojiezuo.store:90/profile/upload/images/tsyjy.png" />
-            </view>
-            <view class="desc">投诉与建议</view>
-            <view class="operate">
-                <text>输入</text>
-                <image src="http://www.mojiezuo.store:90/profile/upload/images/triangle-right.png" />
-            </view>
+        <view class="desc">截止日期{{userInfo.trackMemberEndDate}}</view>
+      </view>
+      <view class="rest" wx:else>
+        <view class="rest-value">{{userInfo.trackMemberDays}}
+          <text class="unit">天</text>
         </view>
+        <view class="desc">剩余有效天数</view>
+      </view>
+      <view class="disable" wx:if="{{userInfo.trackMemberStatus ===2 || userInfo.trackMemberStatus === 3}}">
+        <view class="title">
+          已停卡
+        </view>
+        <view class="btn {{userInfo.trackMemberStatus ===2 ? 'disabled':''}}" bindtap="{{userInfo.trackMemberStatus ===2 ? '':'startTrackCard'}}">
+          启卡
+        </view>
+      </view>
+      <view class="disable" wx:elif="{{userInfo.trackMemberStatus === 4}}">
+        <view class="title">
+          待激活
+        </view>
+        <view class="btn" bindtap="activityTrackCard">
+          激活
+        </view>
+      </view>
+      <view class="disable" wx:elif="{{userInfo.trackMemberStatus === 5}}">
+        <view class="title">
+          已过期
+        </view>
+        <view class="btn disable">
+          激活
+        </view>
+      </view>
     </view>
-    <!-- 退出 -->
-    <view class="logout" bindtap="logout" wx:if="{{isLogin}}">
-        退出登录
+    <view class="member-info" wx:if="{{!isPayVip}}" bindtap="payVip">
+      <image src="http://www.mojiezuo.store:90/profile/upload/images/anjia_vip.png" />
     </view>
+    <view class="member-info" wx:else>
+      <image class="bg" src="/images/isVip.png" />
+      <!-- time -->
+      <view class="rest">
+        <view class="rest-value height76" />
+        <!-- <view class="desc">会员有效期</view> -->
+      </view>
+    </view>
+  </view>
+  <view class="about" wx:else>
+    <image src="http://www.mojiezuo.store:90/profile/upload/images/about.png" />
+  </view>
+  <!-- my-servies -->
+  <view class="services">
+    <view class="list-item {{userInfo.cabinetDays ? '':'gray'}}">
+      <!-- icon -->
+      <view class="list-item-icon">
+        <image src="http://www.mojiezuo.store:90/profile/upload/images/my-icon-1.png" />
+      </view>
+      <!-- name -->
+      <view class="list-item-name">
+        柜子
+      </view>
+      <!-- value -->
+      <view class="list-item-value" wx:if="{{userInfo.cabinetDays}}">
+        <view class="value">{{userInfo.cabinetDays}}</view>
+        <view class="desc">剩余有效期</view>
+      </view>
+      <view class="list-item-value" wx:else>
+        <view class="unable">
+          未租赁
+        </view>
+      </view>
+    </view>
+    <view class="list-item {{userInfo.depositaryDays ? '':'gray'}}">
+      <!-- icon -->
+      <view class="list-item-icon">
+        <image src="http://www.mojiezuo.store:90/profile/upload/images/my-icon-2.png" />
+      </view>
+      <!-- name -->
+      <view class="list-item-name">
+        存车
+      </view>
+      <!-- value -->
+      <view class="list-item-value" wx:if="{{userInfo.depositaryDays}}">
+        <view class="value">{{userInfo.depositaryDays}}</view>
+        <view class="desc">剩余有效期</view>
+      </view>
+      <view class="list-item-value" wx:else>
+        <view class="unable">
+          未租赁
+        </view>
+      </view>
+    </view>
+    <view class="list-item  {{userInfo.rentalDays ? '':'gray'}}">
+      <!-- icon -->
+      <view class="list-item-icon">
+        <image src="http://www.mojiezuo.store:90/profile/upload/images/my-icon-3.png" />
+      </view>
+      <!-- name -->
+      <view class="list-item-name">
+        租车
+      </view>
+      <!-- value -->
+      <view class="list-item-value" wx:if="{{userInfo.rentalDays}}">
+        <!-- <view class="value">{{userInfo.rentalCarNumber}}</view> -->
+        <view class="value">{{userInfo.rentalCarModel}}</view>
+        <view class="desc">车辆型号</view>
+      </view>
+      <view class="list-item-value" wx:else>
+        <view class="unable">
+          未租赁
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 我的摩托车 -->
+  <view class="my-cars" wx:if="{{isLogin}}">
+    <view class="title">
+      我的摩托车
+    </view>
+    <view class="cars-list">
+      <block wx:for="{{cardList}}" wx:key="*this">
+        <view
+          wx:if="{{item}}"
+          data-idx="{{index}}"
+          bindtap="addLicence"
+          class="cars-list-item"
+        >
+          <view class="licence-title">
+            <text class="licence-location">{{item[0]}}</text>
+            .
+            <text class="licence-abbr">{{item[1]}}</text>
+          </view>
+          <view class="licence-member">
+            {{item[2]}}
+          </view>
+        </view>
+        <view
+          wx:else
+          class="cars-list-item add"
+          bindtap="addLicence"
+          data-idx="{{index}}"
+        >
+          <image src="http://www.mojiezuo.store:90/profile/upload/images/add-licence.png" />
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 功能 -->
+  <view class="func-lists">
+    <view class="list-item" bindtap="addEmergency">
+      <view class="icon">
+        <image src="http://www.mojiezuo.store:90/profile/upload/images/jjlxr.png" />
+      </view>
+      <view class="desc">紧急联系人</view>
+      <view class="operate">
+        <text>添加</text>
+        <image src="http://www.mojiezuo.store:90/profile/upload/images/triangle-right.png" />
+      </view>
+    </view>
+    <view class="list-item" bindtap="goToRecommend">
+      <view class="icon">
+        <image src="http://www.mojiezuo.store:90/profile/upload/images/tsyjy.png" />
+      </view>
+      <view class="desc">投诉与建议</view>
+      <view class="operate">
+        <text>输入</text>
+        <image src="http://www.mojiezuo.store:90/profile/upload/images/triangle-right.png" />
+      </view>
+    </view>
+  </view>
+  <!-- 退出 -->
+  <view class="logout" bindtap="logout" wx:if="{{isLogin}}">
+    退出登录
+  </view>
 </view>
 <!-- 添加车牌号 -->
 <view class="add-car-license" mut-bind:tap="closeLicense" wx:if="{{addLicenceStatus}}">
-    <view class="content" catchtap="stop">
-        <view class="title">
-            · 添加车牌号 ·
-        </view>
-        <!-- 输入框 -->
-        <view class="car-license">
-            <input
-              class="license"
-              bindblur="getLicence"
-              value="{{licenceValue}}"
-              type="text"
-              auto-focus
-              placeholder="请输入车牌号"
-            />
-        </view>
-        <!-- 确认按钮 -->
-        <view class="btn" bindtap="addLicenceConfirm">
-            确认
-        </view>
+  <view class="content" catchtap="stop">
+    <view class="title">
+      · 添加车牌号 ·
     </view>
+    <!-- 输入框 -->
+    <view class="car-license">
+      <input
+        class="license"
+        bindblur="getLicence"
+        value="{{licenceValue}}"
+        type="text"
+        auto-focus
+        placeholder="请输入车牌号"
+      />
+    </view>
+    <!-- 确认按钮 -->
+    <view class="btn" bindtap="addLicenceConfirm">
+      确认
+    </view>
+  </view>
 </view>
 <!-- 添加紧急联系人 -->
 <view class="emergency-contcat" mut-bind:tap="closeEmeregncy" wx:if="{{emergencyStatus}}">
-    <view class="content" catchtap="stop">
-        <view class="title">
-            · 紧急联系人 ·
-        </view>
-        <!-- 输入框 -->
-        <view class="emergency-contcat-input">
-            <input
-              class="name"
-              value="{{emergencyName}}"
-              bindblur="getEmergencyName"
-              auto-focus
-              placeholder="请输入联系人姓名"
-            />
-        </view>
-        <view class="emergency-contcat-input" style="margin-top: 24rpx">
-            <input
-              class="phone"
-              value="{{emergencyNumber}}"
-              type="number"
-              maxlength="11"
-              bindblur="getEmergencyNumber"
-              placeholder="请输入联系人手机号"
-            />
-        </view>
-        <!-- 确认按钮 -->
-        <view class="btn" bindtap="addEmergencyConfirm">
-            确认
-        </view>
+  <view class="content" catchtap="stop">
+    <view class="title">
+      · 紧急联系人 ·
     </view>
+    <!-- 输入框 -->
+    <view class="emergency-contcat-input">
+      <input
+        class="name"
+        value="{{emergencyName}}"
+        bindblur="getEmergencyName"
+        auto-focus
+        placeholder="请输入联系人姓名"
+      />
+    </view>
+    <view class="emergency-contcat-input" style="margin-top: 24rpx">
+      <input
+        class="phone"
+        value="{{emergencyNumber}}"
+        type="number"
+        maxlength="11"
+        bindblur="getEmergencyNumber"
+        placeholder="请输入联系人手机号"
+      />
+    </view>
+    <!-- 确认按钮 -->
+    <view class="btn" bindtap="addEmergencyConfirm">
+      确认
+    </view>
+  </view>
 </view>
 
 <!-- 底部tab高度占位 -->

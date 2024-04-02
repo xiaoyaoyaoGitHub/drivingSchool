@@ -16,27 +16,27 @@ export const behavior = BehaviorWithStore({
 		{
 			store: global,
 			fields: ['tabBarHeight', 'transparentHeight', 'statusBarHeight', 'totalHeight', 'userInfo', 'titleHeight', 'isLogin', 'isPayVip'],
-			actions: ['getTabBarHeight', 'getUserInfo'],
+			actions: ['getTabBarHeight', 'getUserInfo', 'catchDubbed'],
 		}, {
 			store: global,
 			fields: {
 				'cardList': (store) => {
-					const { userInfo: {carNumber1, carNumber2, carNumber3} = {} } = store || {};
+					const { userInfo: { carNumber1, carNumber2, carNumber3 } = {} } = store || {};
 					const tempCardList = [];
 					if (carNumber1) {
-						tempCardList.push({0: carNumber1.slice(0, 1), 1: carNumber1.slice(1, 2), 2: carNumber1.slice(2)});
+						tempCardList.push({ 0: carNumber1.slice(0, 1), 1: carNumber1.slice(1, 2), 2: carNumber1.slice(2) });
 					}
 					else {
 						tempCardList.push('');
 					}
 					if (carNumber2) {
-						tempCardList.push({0: carNumber2.slice(0, 1), 1: carNumber2.slice(1, 2), 2: carNumber2.slice(2)});
+						tempCardList.push({ 0: carNumber2.slice(0, 1), 1: carNumber2.slice(1, 2), 2: carNumber2.slice(2) });
 					}
 					else {
 						tempCardList.push('');
 					}
 					if (carNumber3) {
-						tempCardList.push({0: carNumber3.slice(0, 1), 1: carNumber3.slice(1, 2), 2: carNumber3.slice(2)});
+						tempCardList.push({ 0: carNumber3.slice(0, 1), 1: carNumber3.slice(1, 2), 2: carNumber3.slice(2) });
 					}
 					else {
 						tempCardList.push('');

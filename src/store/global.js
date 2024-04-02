@@ -10,6 +10,8 @@
 import { observable, action } from 'mobx-miniprogram';
 import moment from "moment"
 
+
+
 export const global = observable({
 	tabBarHeight: 0, // 底部tabBar高度
 	titleHeight: 0, // 标题栏高度
@@ -153,10 +155,14 @@ export const global = observable({
 	},
 	/**
 	 * token失效,清楚数据
-	 * @param {string} key 
+	 * @param {string} key
 	 */
 	removeToken(key = 'TOKEN') {
 		this.userInfo = {};
 		wx.removeStorage({ key: key })
+	},
+	// 捕获点击事件
+	catchDubbed() {
+		getApp().catchDubbed()
 	},
 });

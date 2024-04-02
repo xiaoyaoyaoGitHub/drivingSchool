@@ -37,7 +37,7 @@ Page({
 		modulesInfo: {}, // 首页模块信息
 		moduleContent: [], // 模块内容信息
 		anouncementList: [], // 公告
-		showNoticeContent:false, // 是否展示公告弹框
+		showNoticeContent: false, // 是否展示公告弹框
 	},
 	behaviors: [indexBehavior],
 	// 事件处理函数
@@ -49,7 +49,7 @@ Page({
 	/**
 	 * 支付VIP
 	 */
-	payVip: throttle(function(){
+	payVip: throttle(function () {
 		wx.navigateTo({
 			url: '/pages/payInfo/payInfo',
 		});
@@ -63,7 +63,7 @@ Page({
 	/**
 	 * 会员商品
 	 */
-	productList: throttle(function(){
+	productList: throttle(function () {
 		wx.navigateTo({
 			url: '/pages/products/products',
 		});
@@ -71,7 +71,7 @@ Page({
 	/**
 	 * 安架科目
 	 */
-	subjectList: throttle(function(){
+	subjectList: throttle(function () {
 		wx.navigateTo({
 			url: '/pages/subjects/subjects',
 		});
@@ -79,11 +79,12 @@ Page({
 	/**
 	 * 二手车
 	 */
-	productByUsed: throttle(function(){
+	productByUsed: throttle(function () {
 		wx.navigateTo({
-			url:'/pages/productsByUsed/productsByUsed'
+			url: '/pages/productsByUsed/productsByUsed'
 		})
 	}),
+
 	onLoad() {
 
 		if (typeof this.getTabBar === 'function' &&
@@ -108,7 +109,8 @@ Page({
 		await this.getUserInfo();
 		// 摩旅路书
 		this.getModuleContent();
-		this.getAnouncementsList()
+		this.getAnouncementsList();
+
 	},
 	// onPullDownRefresh() {
 	// 	this.getUserInfo();
@@ -116,7 +118,7 @@ Page({
 	// },
 	/**
 	 * 动态设置swiper高度
-	 * @param {索引} index 
+	 * @param {索引} index
 	 */
 	setSwiperHeight(index) {
 		let query = wx.createSelectorQuery().in(this);
@@ -131,7 +133,7 @@ Page({
 	},
 	/**
 	 * 点击切换tab
-	 * @param {} e 
+	 * @param {} e
 	 */
 	checkSwiperTab(e) {
 		const { target: { dataset: { index: swiperTabCheckIndex = 0 } = {} } = {} } = e || {};
@@ -143,7 +145,7 @@ Page({
 	},
 	/**
 	 * 滑动底部swiper
-	 * @param {*} e 
+	 * @param {*} e
 	 */
 	changeSwiperCurrent(e) {
 		const { detail: { current: swiperTabCheckIndex } = {} } = e || {};
@@ -153,7 +155,7 @@ Page({
 		this.setSwiperHeight(swiperTabCheckIndex)
 	},
 	/**
-	 * 获取banner图（首页解摩杰座，安驾科目，会员商品，二手好车的banner图从这里获取）									
+	 * 获取banner图（首页解摩杰座，安驾科目，会员商品，二手好车的banner图从这里获取）
 	 */
 	async getModuleBanner() {
 		const { CAPRICORN_INTRO, SAFE_DRIVING_SUBJECT, MEMBER_PRODUCT, USED_CAR, TRAVEL_GUIDE, ACCIDENT_ANALYSIS } = MODULE_CODE || {};
@@ -191,15 +193,15 @@ Page({
 	 * 点击文章详情
 	 */
 	articalDetail: throttle(function (e) {
-		console.log(`e`,e);
-		const { currentTarget: { dataset: {  artical = {} } = {} } = {} } = e || {};
-		console.log(`artical`,artical);
+		console.log(`e`, e);
+		const { currentTarget: { dataset: { artical = {} } = {} } = {} } = e || {};
+		console.log(`artical`, artical);
 		// wx.navigateTo({
 		// 	url:`/pages/productDetail/productDetail?info=${JSON.stringify(this.data.modulesInfo[index])}`
 		//   })
 		const info = encodeURIComponent(JSON.stringify(artical))
 		wx.navigateTo({
-			url:`/pages/articalDetail/articalDetail?info=${info}`
+			url: `/pages/articalDetail/articalDetail?info=${info}`
 		})
 
 	}),
@@ -208,24 +210,28 @@ Page({
 	 */
 	async getAnouncementsList() {
 		try {
-			const { code, data:anouncementList = [] } = await apis.GET_ANOUNCEMENTS_LIST();
+			const { code, data: anouncementList = [] } = await apis.GET_ANOUNCEMENTS_LIST();
 			if (code === 200) {
 				anouncementList.forEach(element => {
-					element.content = element.content.replace('\n','')
+					element.content = element.content.replace('\n', '')
 				});
 				this.setData({
 					anouncementList
 				})
+				if (anouncementList.length && app.globalData.openNotice) {
+					app.globalData.openNotice = false
+					this.onShowNoticeContent();
+				}
 			}
 		} catch (err) {
 			console.log(`获取公告err:`, err);
 		}
 	},
-	getTabBarFirst(){
+	getTabBarFirst() {
 		var obj = this.getTabBar().createSelectorQuery();
-		console.log(`obj`,obj);
+		console.log(`obj`, obj);
 		obj.select('.tab-bar').boundingClientRect((rect) => {
-			console.log(`rect`,rect);
+			console.log(`rect`, rect);
 			console.log('获取tabBar元素的高度', rect.height);
 			const tabBarHeight = rect.height;
 			this.updateTabbarHeight(tabBarHeight);
@@ -234,7 +240,7 @@ Page({
 	/**
 	 * 展示公告栏
 	 */
-	onShowNoticeContent:throttle(function(e){
+	onShowNoticeContent: throttle(function (e) {
 		this.setData({
 			showNoticeContent: !this.data.showNoticeContent
 		})

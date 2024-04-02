@@ -1,3 +1,4 @@
+
 Component({
 	data: {
 		selected: 0,
@@ -30,6 +31,9 @@ Component({
 			console.log(typeof data.index);
 			console.log(typeof this.data.selected);
 			wx.switchTab({ url });
+		},
+		catchDubbed() {
+			getApp().catchDubbed();
 		},
 	},
 });

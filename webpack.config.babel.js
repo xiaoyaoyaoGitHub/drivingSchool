@@ -120,13 +120,13 @@ export default (env = {}) => {
 			new optimize.ModuleConcatenationPlugin(),
 			new IgnorePlugin(/vertx/),
 			shouldLint && new StylelintPlugin(),
-			min && new MinifyPlugin(),
+			// min && new MinifyPlugin(),
 			new CopyPlugin(copyPatterns, { context: srcDir }),
 		].filter(Boolean),
 		devtool: isDev ? 'source-map' : false,
 		resolve: {
 			modules: [resolve(__dirname, 'src'), 'node_modules'],
-			alias:{
+			alias: {
 				"@components": resolve(__dirname, 'src/components'),
 				"@": resolve(__dirname, 'src')
 			}
