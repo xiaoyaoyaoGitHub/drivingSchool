@@ -33,6 +33,7 @@ Page({
 			name: "",
 			moduleCode: MODULE_CODE.ACCIDENT_ANALYSIS
 		}],
+		noticeShowIndex: 0,
 		swiperTabCheckIndex: 0,
 		modulesInfo: {}, // 首页模块信息
 		moduleContent: [], // 模块内容信息
@@ -241,7 +242,10 @@ Page({
 	 * 展示公告栏
 	 */
 	onShowNoticeContent: throttle(function (e) {
+		const { detail: { index: noticeShowIndex = 0 } = {} } = e || {}
+
 		this.setData({
+			noticeShowIndex,
 			showNoticeContent: !this.data.showNoticeContent
 		})
 	})

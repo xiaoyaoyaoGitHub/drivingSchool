@@ -4,9 +4,11 @@
       <image src="/images/laba.png" />
     </view>
     <view class="left-box">
-      <view class='content-box' bindtap="showContent">
+      <view class='content-box'>
         <view class='content-text' animation="{{animationData}}">
-          <text id="text"><block wx:for="{{anouncementList}}" wx:key="anuuncementId">{{item.title}}</block></text>
+          <view id="text" bindtap="showContent">
+            <text wx:for="{{anouncementList}}" data-index="{{index}}" wx:key="anuuncementId" decode="true">{{item.title}}&nbsp;&nbsp;</text>
+          </view>
         </view>
       </view>
     </view>

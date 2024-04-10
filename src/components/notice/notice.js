@@ -53,12 +53,12 @@ Component({
 			query.select('.content-box').boundingClientRect();
 			query.select('#text').boundingClientRect();
 			query.exec((rect) => {
-				console.log(`rect`,rect);
+				console.log(`rect`, rect);
 				that.setData({
 					wrapWidth: rect[0].width,
 					textWidth: rect[1].width,
 				}, () => {
-					console.log(`this.data`,this.data);
+					console.log(`this.data`, this.data);
 					// if(this.data.wrapWidth >= this.data.textWidth) return
 					this.startAnimation();
 				});
@@ -86,8 +86,10 @@ Component({
 				timer,
 			});
 		},
-		showContent() {
-			this.triggerEvent('showContent');
+		showContent(e) {
+			console.log(e);
+			const { target: { dataset: { index = 0 } = {} } = {} } = e || {}
+			this.triggerEvent('showContent', { index });
 		},
 	},
 

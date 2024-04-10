@@ -67,10 +67,10 @@
   <view class="notice-content" bindtap="onShowNoticeContent" wx:if="{{showNoticeContent}}">
     <view class="content">
       <view class="title">
-        {{anouncementList[0].title}}
+        {{anouncementList[noticeShowIndex].title}}
       </view>
       <view class="desc">
-        {{anouncementList[0].content}}
+        {{anouncementList[noticeShowIndex].content}}
       </view>
     </view>
   </view>
